@@ -50,27 +50,30 @@ public class MainActivity extends AppCompatActivity {
 
         mViewPager.addOnPageChangeListener(new MyPagerChangeListener());
     }
+
     /**
-     * 搜索点击跳转。
+     * 搜索点击舔砖。
+     *
      * @param view
      */
-    public void onSearchClick(View view){
+    public void onSearchClick(View view) {
         Intent intent = new Intent(MainActivity.this, SearchActivity.class);
         startActivity(intent);
     }
 
     private class MyPagerChangeListener implements ViewPager.OnPageChangeListener {
         /**
-         *偏移量不为0 就显示指示条。
+         * 偏移量不为0 就显示指示条。
+         *
          * @param position
          * @param offset
          * @param positionOffsetPixels
          */
         @Override
         public void onPageScrolled(int position, float offset, int positionOffsetPixels) {
-            if (offset!=0){
+            if (offset != 0) {
                 mTabLayout.setSelectedTabIndicatorHeight(1);
-            }else {
+            } else {
                 mTabLayout.setSelectedTabIndicatorHeight(0);
             }
         }

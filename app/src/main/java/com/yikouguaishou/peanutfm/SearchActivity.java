@@ -7,6 +7,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.yikouguaishou.peanutfm.bean.SearchResult;
@@ -23,6 +24,7 @@ public class SearchActivity extends AppCompatActivity
     private ListView lv_results;
     private RadioGroup radioGroup;
     private SearchView searchView;
+    private RelativeLayout rl_search_result;
     private List<SearchResult> resultDatas;
     private SearchAdapter searchAdapter;
 
@@ -37,16 +39,16 @@ public class SearchActivity extends AppCompatActivity
     }
 
 
-
     private void initViews() {
         lv_results = (ListView) findViewById(R.id.mListView_search);
         searchView = (SearchView) findViewById(R.id.search_layout);
         radioGroup = (RadioGroup) findViewById(R.id.mRadioGroup_search);
+        rl_search_result = (RelativeLayout) findViewById(R.id.rl_search_result);
     }
 
-//    private void initData() {
-//        getResultData(null);
-//    }
+    private void initData() {
+        getResultData(null);
+    }
 
     private void setListener() {
         searchView.setSearchViewListener(this);
@@ -56,32 +58,34 @@ public class SearchActivity extends AppCompatActivity
 
     /**
      * 获取搜索结果
+     *
      * @param text
      */
-//    private void getResultData(String text){
-//        if (resultDatas == null){
-//            //初始化
-//            resultDatas = new ArrayList<>();
-//        } else {
-//            resultDatas.clear();
-//        }
-//        if (searchAdapter == null){
-//            searchAdapter = new SearchAdapter(SearchActivity.this, resultDatas);
-//        } else {
-//            searchAdapter.notifyDataSetChanged();
-//        }
-//    }
+    private void getResultData(String text) {
+        if (resultDatas == null) {
+            //初始化
+            resultDatas = new ArrayList<>();
+        } else {
+            resultDatas.clear();
+        }
+        if (searchAdapter == null) {
+            searchAdapter = new SearchAdapter(SearchActivity.this, resultDatas);
+        } else {
+            searchAdapter.notifyDataSetChanged();
+        }
+    }
 
     /**
      * 点击搜索按钮时editText触发回调
+     *
      * @param text
      */
-    public void onSearch(String text){
+    public void onSearch(String text) {
         //更新搜索结果数据
 //        getResultData(text);
-        lv_results.setVisibility(View.VISIBLE);
+        rl_search_result.setVisibility(View.VISIBLE);
         //第一次获取结果，还未配置适配器
-        if (lv_results.getAdapter() == null){
+        if (lv_results.getAdapter() == null) {
             Toast.makeText(SearchActivity.this, "加载中...", Toast.LENGTH_SHORT).show();
             //获取搜索结果，设置适配器
             lv_results.setAdapter(searchAdapter);
@@ -100,7 +104,7 @@ public class SearchActivity extends AppCompatActivity
 
     @Override
     public void onCheckedChanged(RadioGroup radioGroup, int i) {
-        switch (i){
+        switch (i) {
             case R.id.mRadioButton_album:
                 Toast.makeText(this, "专辑", Toast.LENGTH_SHORT).show();
                 break;

@@ -6,5 +6,5 @@
     <color name="colorYellow">#89FA36</color>
 
     <color name="bgSearchRadio_selected">#ffffff</color>
-    <color name="bgSearchRadio_normal">#999999</color>
+    <color name="bgSearchRadio_normal">#bfbfbf</color>
 </resources>

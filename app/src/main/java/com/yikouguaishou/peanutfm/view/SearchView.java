@@ -36,6 +36,7 @@ public class SearchView extends LinearLayout implements View.OnClickListener {
 
     /**
      * 设置搜索回调接口
+     *
      * @param searchViewListener
      */
     public void setSearchViewListener(SearchViewListener searchViewListener) {
@@ -73,7 +74,7 @@ public class SearchView extends LinearLayout implements View.OnClickListener {
         et_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                if (i == EditorInfo.IME_ACTION_SEARCH){
+                if (i == EditorInfo.IME_ACTION_SEARCH) {
                     notifyStartSearching(et_search.getText().toString());
                 }
                 return true;
@@ -82,7 +83,7 @@ public class SearchView extends LinearLayout implements View.OnClickListener {
     }
 
     private void notifyStartSearching(String text) {
-        if (searchViewListener != null){
+        if (searchViewListener != null) {
             searchViewListener.onSearch(et_search.getText().toString());
         }
         //隐藏软键盘
@@ -98,7 +99,7 @@ public class SearchView extends LinearLayout implements View.OnClickListener {
 
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            if (!"".equals(charSequence.toString())){
+            if (!"".equals(charSequence.toString())) {
                 iv_delete.setVisibility(VISIBLE);
             } else {
                 iv_delete.setVisibility(GONE);
@@ -113,13 +114,13 @@ public class SearchView extends LinearLayout implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.mImageView_delete:
                 et_search.setText("");
                 iv_delete.setVisibility(GONE);
                 break;
             case R.id.mButton_back:
-                ((Activity)context).finish();
+                ((Activity) context).finish();
                 break;
         }
     }

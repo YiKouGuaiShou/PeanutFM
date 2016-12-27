@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.yikouguaishou.peanutfm.R;
 import com.yikouguaishou.peanutfm.bean.SearchResult;
 
@@ -17,11 +18,13 @@ import java.util.List;
  * Created by snowflake on 2016/12/27.
  */
 public class SearchAdapter extends BaseAdapter {
-    private List<SearchResult> resultDatas;
+    private List<SearchResult.ConBean> resultDatas;
     private Context context;
     private final LayoutInflater inflater;
 
-    public SearchAdapter(Context context, List<SearchResult> resultDatas) {
+    private static final String URL = "http://fsapp.linker.cc/fslhsrv/srv/wifimusicbox/search/-1/0";
+
+    public SearchAdapter(Context context,  List<SearchResult.ConBean> resultDatas) {
         this.context = context;
         this.resultDatas = resultDatas;
         inflater = LayoutInflater.from(context);
@@ -55,9 +58,13 @@ public class SearchAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) view.getTag();
         }
-        viewHolder.tv_title.setText(resultDatas.get(position).getTitle());
-        viewHolder.tv_source.setText("本台");
-        viewHolder.img_photo.setImageResource(R.mipmap.ic_launcher);
+
+        viewHolder.tv_title.setText(resultDatas.get(position).getName());
+        viewHolder.tv_source.setText(resultDatas.get(position).getProviderName());
+        String logoUrl = resultDatas.get(position).getLogoUrl();
+        Glide.with(context)
+                .load(logoUrl)
+                .into(viewHolder.img_photo);
 
         return view;
     }

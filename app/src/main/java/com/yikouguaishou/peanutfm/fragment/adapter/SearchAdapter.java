@@ -24,7 +24,7 @@ public class SearchAdapter extends BaseAdapter {
 
     private static final String URL = "http://fsapp.linker.cc/fslhsrv/srv/wifimusicbox/search/-1/0";
 
-    public SearchAdapter(Context context,  List<SearchResult.ConBean> resultDatas) {
+    public SearchAdapter(Context context, List<SearchResult.ConBean> resultDatas) {
         this.context = context;
         this.resultDatas = resultDatas;
         inflater = LayoutInflater.from(context);

@@ -1,4 +1,4 @@
-package com.yikouguaishou.peanutfm.aipservice;
+package com.yikouguaishou.peanutfm.apiservice;
 
 
 import com.yikouguaishou.peanutfm.bean.SearchResult;

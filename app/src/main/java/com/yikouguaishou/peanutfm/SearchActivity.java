@@ -11,7 +11,7 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.yikouguaishou.peanutfm.aipservice.HttpApiService;
+import com.yikouguaishou.peanutfm.apiservice.HttpApiService;
 import com.yikouguaishou.peanutfm.bean.SearchResult;
 import com.yikouguaishou.peanutfm.fragment.adapter.SearchAdapter;
 import com.yikouguaishou.peanutfm.view.SearchView;

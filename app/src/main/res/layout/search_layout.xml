@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <Button
+            android:id="@+id/mButton_back"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center_vertical"
+            android:background="@mipmap/back"
+            />
+        <FrameLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#bfbfbf"
+            >
+            <EditText
+                android:id="@+id/mEditText_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:paddingLeft="10dp"
+                android:background="@null"
+                android:drawableLeft="@mipmap/search_icon"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:textSize="18sp"
+                android:hint="请输入要搜索的内容"
+
+                />
+            <ImageView
+                android:id="@+id/mImageView_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_gravity="right|center_vertical"
+                android:src="@mipmap/delete_icon"/>
+        </FrameLayout>
+    </LinearLayout>
+
+</LinearLayout>

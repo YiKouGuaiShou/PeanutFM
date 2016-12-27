@@ -1,5 +1,6 @@
 package com.yikouguaishou.peanutfm;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -50,11 +51,12 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new MyPagerChangeListener());
     }
     /**
-     * TODO Search 收索点击事件。
+     * 搜索点击跳转。
      * @param view
      */
     public void onSearchClick(View view){
-        Toast.makeText(MainActivity.this, "a", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+        startActivity(intent);
     }
 
     private class MyPagerChangeListener implements ViewPager.OnPageChangeListener {

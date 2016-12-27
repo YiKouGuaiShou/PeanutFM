@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.yikouguaishou.peanutfm.SearchActivity">
+
+    <com.yikouguaishou.peanutfm.view.SearchView
+        android:id="@+id/search_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.yikouguaishou.peanutfm.view.SearchView>
+
+    <RelativeLayout
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RadioGroup
+            android:id="@+id/mRadioGroup_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="1dp"
+            android:orientation="horizontal"
+            android:background="#999999">
+            <RadioButton
+                android:id="@+id/mRadioButton_album"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center_horizontal"
+                android:text="专辑"
+                android:textSize="20sp"
+                android:textColor="@drawable/search_rb_text_color"
+                android:background="@drawable/search_rb_background_color"
+                />
+            <RadioButton
+                android:id="@+id/mRadioButton_single"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:gravity="center_horizontal"
+                android:text="单曲"
+                android:textSize="20sp"
+                android:textColor="@drawable/search_rb_text_color"
+                android:background="@drawable/search_rb_background_color"
+                />
+        </RadioGroup>
+        <ListView
+            android:id="@+id/mListView_search"
+            android:layout_below="@id/mRadioGroup_search"
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </RelativeLayout>
+</LinearLayout>

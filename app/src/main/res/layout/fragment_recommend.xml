@@ -1,13 +1,14 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.yikouguaishou.peanutfm.fragment.RecommendFragment">
 
-
-    <TextView
+    <com.marshalchen.ultimaterecyclerview.UltimateRecyclerView
+        android:id="@+id/mRecycleView"
+        android:layout_margin="4dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+    </com.marshalchen.ultimaterecyclerview.UltimateRecyclerView>
 
-</FrameLayout>
+</RelativeLayout>

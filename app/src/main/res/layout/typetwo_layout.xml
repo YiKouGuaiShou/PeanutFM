@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="12dp"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_margin="10dp"
+        android:id="@+id/iv_typetwo"
+        android:layout_width="match_parent"
+        android:background="@mipmap/ic_launcher"
+        android:layout_height="120dp" />
+
+    <TextView
+        android:id="@+id/tv_typetwo"
+        android:layout_width="match_parent"
+        android:text="俊青K歌排行榜"
+        android:textSize="12sp"
+        android:layout_marginLeft="10dp"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

@@ -1,6 +1,7 @@
 package com.yikouguaishou.peanutfm.apiservice;
 
 
+import com.yikouguaishou.peanutfm.bean.RecommendBean;
 import com.yikouguaishou.peanutfm.bean.SearchResult;
 
 import retrofit2.http.POST;

@@ -4,15 +4,19 @@ package com.yikouguaishou.peanutfm.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.TextView;
 
 
 import com.marshalchen.ultimaterecyclerview.UltimateRecyclerView;
+import com.marshalchen.ultimaterecyclerview.ui.VerticalSwipeRefreshLayout;
 import com.yikouguaishou.peanutfm.R;
 import com.yikouguaishou.peanutfm.apiservice.RecommendHttpApiService;
 import com.yikouguaishou.peanutfm.bean.RecommendBean;
@@ -34,14 +38,16 @@ public class RecommendFragment extends Fragment {
 
     private UltimateRecyclerView mRecycleview;
     private RecommendRecyclerViewAdapter mAdapter;
-
     private RecommendBean recommendBeans;
-
     String baseUrl = "http://fsapp.linker.cc/";
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        refreshData();
+    }
 
+    private void refreshData() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -53,30 +59,32 @@ public class RecommendFragment extends Fragment {
         Observable<RecommendBean> recommendBean = recommendHttpApiService.getRecommendBean();
 
         recommendBean.subscribeOn(Schedulers.io())
-                     .observeOn(AndroidSchedulers.mainThread())
-                     .subscribe(new Subscriber<RecommendBean>() {
-                         @Override
-                         public void onCompleted() {
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<RecommendBean>() {
+                    @Override
+                    public void onCompleted() {
 
-                         }
+                    }
 
-                         @Override
-                         public void onError(Throwable e) {
+                    @Override
+                    public void onError(Throwable e) {
 
-                         }
+                    }
 
-                         @Override
-                         public void onNext(RecommendBean recommendBean) {
-                             if(recommendBean!=null){
-                                 recommendBeans = recommendBean;
-                                 Log.e("onNext",recommendBeans.getDes());
-                                 mAdapter.setdata(recommendBeans);
-                             }else {
-                                 Log.e("onNext","kong");
-                             }
-                         }
-                     });
-
+                    @Override
+                    public void onNext(RecommendBean recommendBean) {
+                        if (recommendBean != null) {
+                            recommendBeans = recommendBean;
+                            Log.e("onNext", recommendBeans.getDes());
+                            mAdapter.setdata(recommendBeans);
+                            if (mRecycleview != null) {
+                                mRecycleview.setRefreshing(false);
+                            }
+                        } else {
+                            Log.e("onNext", "kong");
+                        }
+                    }
+                });
     }
 
     @Override
@@ -94,5 +102,11 @@ public class RecommendFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        mRecycleview.setDefaultOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshData();
+            }
+        });
     }
 }

@@ -3,6 +3,7 @@ package com.yikouguaishou.peanutfm.fragment.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.view.ViewGroup;
 
 import java.util.List;
 
@@ -30,5 +31,16 @@ public class MainActivityViewPagerAdapter extends FragmentStatePagerAdapter{
     @Override
     public CharSequence getPageTitle(int position) {
         return titles[position];
+    }
+
+    /**
+     * 保存页面的状态。
+     * @param container
+     * @param position
+     * @param object
+     */
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+        //super.destroyItem(container, position, object);
     }
 }

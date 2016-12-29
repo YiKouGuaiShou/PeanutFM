@@ -1,6 +1,7 @@
 package com.yikouguaishou.peanutfm.fragment.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,18 +13,21 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.data.ExifOrientationStream;
 import com.marshalchen.ultimaterecyclerview.UltimateViewAdapter;
 import com.marshalchen.ultimaterecyclerview.dragsortadapter.DragSortAdapter;
 import com.marshalchen.ultimaterecyclerview.stickyheadersrecyclerview.rendering.HeaderRenderer;
+import com.yikouguaishou.peanutfm.AdviceActivity;
 import com.yikouguaishou.peanutfm.R;
 import com.yikouguaishou.peanutfm.bean.RecommendBean;
 import com.yikouguaishou.peanutfm.view.MyImageLoader;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
+import com.youth.banner.listener.OnBannerClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -135,20 +139,22 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
             //头部布局
             HeadViewHolder holder4 = (HeadViewHolder) holder;
             List<RecommendBean.BannerListEntity> bannerList = recommendBean.getBannerList();
+            //设置图片点击事件。
+            holder4.banner.setOnBannerClickListener(new BannerClickListener(context, bannerList));
+            //设置"活动点击事件"。
+            holder4.mTurnOne.setOnClickListener(new TurnOneClickListener(context, recommendBean.getTurnList().get(0)));
+            //设置"视频点击事件"。
+            holder4.mTurnTwo.setOnClickListener(new TurnTwoClikeListener(context, recommendBean.getTurnList().get(1)));
+            //设置"商城点击事件"。
+            holder4.mTurnThree.setOnClickListener(new TurnThreeClikeListener(context, recommendBean.getTurnList().get(2)));
+            //设置"签到点击事件"。
+            holder4.mTurnFour.setOnClickListener(new TurnFourClikeListener(context, recommendBean.getTurnList().get(3)));
             //循环获取图片。
             for (int i = 0; i < bannerList.size(); i++) {
                 RecommendBean.BannerListEntity bannerListEntity = bannerList.get(i);
                 //避免重复加载图片。
                 if (images.size() < bannerList.size()) {
                     images.add(bannerListEntity.getUrl());
-                }
-                String linkType = bannerListEntity.getLinkType();
-                if (linkType.equals("2")) {
-                    //说明是webview
-
-                } else {
-                    //不是webview。
-
                 }
             }
             //设置图片集合
@@ -170,23 +176,23 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
 
             //设置turn 图片 就是(活动，视频。。。)
             List<RecommendBean.TurnListEntity> turnList = recommendBean.getTurnList();
-            for (int i = 0; i < turnList.size() ; i++) {
-                if(i==0){
+            for (int i = 0; i < turnList.size(); i++) {
+                if (i == 0) {
                     //活动
                     RecommendBean.TurnListEntity turnListEntity = turnList.get(i);
                     Glide.with(context).load(turnListEntity.getIcon()).placeholder(R.mipmap.place_holder).into(holder4.mIvOne);
                     holder4.mTvOne.setText(turnListEntity.getTitle());
-                }else if(i==1){
+                } else if (i == 1) {
                     //视频
                     RecommendBean.TurnListEntity turnListEntity = turnList.get(i);
                     Glide.with(context).load(turnListEntity.getIcon()).placeholder(R.mipmap.place_holder).into(holder4.mIvTwo);
                     holder4.mTvTwo.setText(turnListEntity.getTitle());
-                }else if(i==2){
+                } else if (i == 2) {
                     //商城
                     RecommendBean.TurnListEntity turnListEntity = turnList.get(i);
                     Glide.with(context).load(turnListEntity.getIcon()).placeholder(R.mipmap.place_holder).into(holder4.mIvThree);
                     holder4.mTvThree.setText(turnListEntity.getTitle());
-                }else {
+                } else {
                     //签到
                     RecommendBean.TurnListEntity turnListEntity = turnList.get(i);
                     Glide.with(context).load(turnListEntity.getIcon()).placeholder(R.mipmap.place_holder).into(holder4.mIvFour);
@@ -365,6 +371,98 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
             typeZeroAdapter = new TypeZeroAdapter(context);
             typeZeroAdapter.setDetailListEntities(detailListEntities);
             recyvler0.setAdapter(typeZeroAdapter);
+        }
+    }
+
+    /**
+     * 广告条点击事件。
+     */
+    private class BannerClickListener implements OnBannerClickListener {
+        Context context;
+        List<RecommendBean.BannerListEntity> bannerList;
+
+        public BannerClickListener(Context context, List<RecommendBean.BannerListEntity> bannerList) {
+            this.context = context;
+            this.bannerList = bannerList;
+        }
+
+        @Override
+        public void OnBannerClick(int position1) {
+            int position = position1 - 1;
+            String linkType = bannerList.get(position).getLinkType();
+            if (linkType.equals("2")) {
+                //表示连接的是webview。
+                Intent intent = new Intent(context, AdviceActivity.class);
+                context.startActivity(intent);
+            } else {
+                //表示是自定义布局。
+                Toast.makeText(context, "linkType = " + linkType, Toast.LENGTH_SHORT).show();
+            }
+
+        }
+    }
+
+    /**
+     * TurnOne （活动）的点击事件。
+     */
+    private class TurnOneClickListener implements View.OnClickListener {
+        Context context;
+        RecommendBean.TurnListEntity turnListEntity;
+
+        public TurnOneClickListener(Context context, RecommendBean.TurnListEntity turnListEntity) {
+            this.context = context;
+            this.turnListEntity = turnListEntity;
+        }
+
+        @Override
+        public void onClick(View view) {
+            Toast.makeText(context, "我是" + turnListEntity.getTitle(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * TurnTwo （视频）的点击事件。
+     */
+    private class TurnTwoClikeListener extends TurnOneClickListener {
+
+        public TurnTwoClikeListener(Context context, RecommendBean.TurnListEntity turnListEntity) {
+            super(context, turnListEntity);
+
+        }
+
+        @Override
+        public void onClick(View view) {
+            super.onClick(view);
+        }
+    }
+
+    /**
+     * TurnThree （商城）的点击事件。
+     */
+    private class TurnThreeClikeListener extends TurnOneClickListener {
+
+        public TurnThreeClikeListener(Context context, RecommendBean.TurnListEntity turnListEntity) {
+            super(context, turnListEntity);
+        }
+
+        @Override
+        public void onClick(View view) {
+            super.onClick(view);
+        }
+    }
+
+    /**
+     * TurnFour （签到）的点击事件。
+     */
+    private class TurnFourClikeListener extends TurnOneClickListener {
+
+        public TurnFourClikeListener(Context context, RecommendBean.TurnListEntity turnListEntity) {
+            super(context, turnListEntity);
+        }
+
+        @Override
+        public void onClick(View view) {
+            super.onClick(view);
         }
     }
 }

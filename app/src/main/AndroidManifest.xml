@@ -16,6 +16,15 @@
             </intent-filter>
         </activity>
         <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".AdviceActivity" />
+        <activity android:name=".MyNewsActivity" />
+        <activity android:name=".MyZhuBoActivity" />
+        <activity android:name=".MyActivityActivity" />
+        <activity android:name=".MyCountActivity" />
+        <activity android:name=".MyCollectionActivity" />
+        <activity android:name=".ListenHistoryActivity" />
+        <activity android:name=".SettingActivity" />
+        <activity android:name=".PersonInfoActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFCF5"
+    tools:context=".ListenHistoryActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+
+        >
+        <ImageView
+            android:id="@+id/itemlog"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:padding="15dp"
+            android:src="@drawable/mf_leftjian"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="57dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:textSize="18dp"
+            android:text="收听历史"/>
+        <TextView
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="57dp"
+            android:gravity="center"
+            android:layout_marginRight="8dp"
+            android:textColor="#ced607"
+            android:text="清空"
+            android:onClick="clearHistory"
+            />
+
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tv_history"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:text="暂无历史收听记录"
+            android:visibility="invisible"
+            />
+        <ListView
+            android:id="@+id/lv_listenhistory"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
+    </RelativeLayout>
+
+</LinearLayout>

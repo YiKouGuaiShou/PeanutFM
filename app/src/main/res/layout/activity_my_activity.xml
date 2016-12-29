@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFCF5"
+    tools:context="com.yikouguaishou.peanutfm.MyActivityActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="57dp">
+        <ImageView
+            android:id="@+id/itemlog"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:padding="15dp"
+            android:src="@drawable/mf_leftjian"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="57dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:textSize="18dp"
+            android:text="我的活动"/>
+
+    </RelativeLayout>
+
+    <RadioGroup
+        android:padding="2dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#9f9f9f"
+        android:orientation="horizontal">
+        <RadioButton
+            android:layout_marginRight="2dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:button="@null"
+            android:gravity="center"
+            android:background="@drawable/raidobutton_selecter_"
+
+            android:text="审核中"/>
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:button="@null"
+            android:gravity="center"
+            android:background="@drawable/raidobutton_selecter_"
+            android:text="已审核"/>
+    </RadioGroup>
+
+    <ListView
+        android:id="@+id/lv_myactivity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
+
+</LinearLayout>

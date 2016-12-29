@@ -2,12 +2,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.yikouguaishou.peanutfm.fragment.MineFragment">
+    tools:context="com.yikouguaishou.peanutfm.fragment.MineFragment"
+    android:background="#FFFCF5"
+    >
 
 
-    <TextView
+    <ListView
+        android:id="@+id/mListView_mf"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        >
+
+    </ListView>
 
 </FrameLayout>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFCF5"
+    tools:context="com.yikouguaishou.peanutfm.SettingActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="57dp">
+        <ImageView
+            android:id="@+id/itemlog"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:padding="15dp"
+            android:src="@drawable/mf_leftjian"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="57dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:textSize="18dp"
+            android:text="设置"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:textSize="15dp"
+            android:text="个人中心"/>
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:padding="20dp"
+            android:src="@drawable/mf_rightjian"/>
+
+
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:textSize="15dp"
+            android:text="修改密码"/>
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:padding="20dp"
+            android:src="@drawable/mf_rightjian"/>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:textSize="15dp"
+            android:text="使用2G/3G/4G网络播放"/>
+        <Switch
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:padding="20dp"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:textSize="15dp"
+            android:text="清理缓存"/>
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:padding="20dp"
+            android:src="@drawable/mf_rightjian"/>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:textSize="15dp"
+            android:text="定时关闭"/>
+        <Switch
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:padding="20dp"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:textSize="15dp"
+            android:text="账号绑定"/>
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:padding="20dp"
+            android:src="@drawable/mf_rightjian"/>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:textSize="15dp"
+            android:text="关于"/>
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:padding="20dp"
+            android:src="@drawable/mf_rightjian"/>
+    </LinearLayout>
+
+    <Switch
+        android:id="@+id/switch_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+
+</LinearLayout>

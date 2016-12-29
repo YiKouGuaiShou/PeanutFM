@@ -68,7 +68,7 @@ public class RecommendFragment extends Fragment {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        Log.e("onError", "onError==="+e.getMessage());
                     }
 
                     @Override

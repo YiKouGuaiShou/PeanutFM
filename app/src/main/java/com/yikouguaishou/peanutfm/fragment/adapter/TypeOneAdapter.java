@@ -46,7 +46,7 @@ public class TypeOneAdapter extends RecyclerView.Adapter {
         RecommendBean.ConEntity.DetailListEntity detailListEntity = detailListEntities.get(position);
         String name = detailListEntity.getName();
         Log.e("TypeOneAdapter", "name=" + name);
-        Glide.with(context).load(detailListEntity.getLogo()).placeholder(R.mipmap.ic_launcher)
+        Glide.with(context).load(detailListEntity.getLogo()).placeholder(R.mipmap.place_holder)
                 .into(holder1.iv_picture);
         holder1.tv_describtion.setText(detailListEntity.getDescriptions());
         holder1.tv_name.setText(detailListEntity.getName());

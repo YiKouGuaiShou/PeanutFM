@@ -22,6 +22,6 @@ public class MyImageLoader extends ImageLoader{
          */
         //Glide 加载图片简单用法
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        Glide.with(context).load(path).placeholder(R.mipmap.ic_launcher).into(imageView);
+        Glide.with(context).load(path).placeholder(R.mipmap.place_holder).into(imageView);
     }
 }

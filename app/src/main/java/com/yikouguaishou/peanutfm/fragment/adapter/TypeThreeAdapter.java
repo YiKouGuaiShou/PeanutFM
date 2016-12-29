@@ -44,8 +44,8 @@ public class TypeThreeAdapter extends RecyclerView.Adapter {
         RecommendBean.ConEntity.DetailListEntity detailListEntity = detailListEntities.get(position);
         String name = detailListEntity.getName();
         Log.e("TypeThreeAdapter","name="+name);
-        Glide.with(context).load(detailListEntity.getLogo()).into(holder.iv_picture);
-        holder.iv_start.setBackgroundResource(R.mipmap.ic_launcher);
+        Glide.with(context).load(detailListEntity.getLogo()).placeholder(R.mipmap.place_holder).into(holder.iv_picture);
+        holder.iv_start.setBackgroundResource(R.mipmap.play_start);
         holder.tv_descriptions.setText(detailListEntity.getDescriptions());
         holder.tv_name.setText(detailListEntity.getName());
     }

@@ -168,6 +168,32 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
             //banner设置方法全部调用完毕时最后调用
             holder4.banner.start();
 
+            //设置turn 图片 就是(活动，视频。。。)
+            List<RecommendBean.TurnListEntity> turnList = recommendBean.getTurnList();
+            for (int i = 0; i < turnList.size() ; i++) {
+                if(i==0){
+                    //活动
+                    RecommendBean.TurnListEntity turnListEntity = turnList.get(i);
+                    Glide.with(context).load(turnListEntity.getIcon()).placeholder(R.mipmap.place_holder).into(holder4.mIvOne);
+                    holder4.mTvOne.setText(turnListEntity.getTitle());
+                }else if(i==1){
+                    //视频
+                    RecommendBean.TurnListEntity turnListEntity = turnList.get(i);
+                    Glide.with(context).load(turnListEntity.getIcon()).placeholder(R.mipmap.place_holder).into(holder4.mIvTwo);
+                    holder4.mTvTwo.setText(turnListEntity.getTitle());
+                }else if(i==2){
+                    //商城
+                    RecommendBean.TurnListEntity turnListEntity = turnList.get(i);
+                    Glide.with(context).load(turnListEntity.getIcon()).placeholder(R.mipmap.place_holder).into(holder4.mIvThree);
+                    holder4.mTvThree.setText(turnListEntity.getTitle());
+                }else {
+                    //签到
+                    RecommendBean.TurnListEntity turnListEntity = turnList.get(i);
+                    Glide.with(context).load(turnListEntity.getIcon()).placeholder(R.mipmap.place_holder).into(holder4.mIvFour);
+                    holder4.mTvFour.setText(turnListEntity.getTitle());
+                }
+            }
+
         } else if (viewType == TYPE_THREE_LAYOUT) {
             //布局3
             TypeThreeHolder holder3 = (TypeThreeHolder) holder;

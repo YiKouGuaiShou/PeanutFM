@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="12dp">
 
         <TextView
@@ -25,205 +26,9 @@
             android:text="更多 >" />
     </RelativeLayout>
 
-    <LinearLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_typeThree"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:id="@+id/con_layout1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp">
-
-                <ImageView
-                    android:id="@+id/iv_picture1"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:background="@mipmap/ic_launcher" />
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_margin="4dp"
-                    android:background="@mipmap/ic_launcher"
-                    android:scaleType="fitXY" />
-            </RelativeLayout>
-
-
-            <TextView
-                android:id="@+id/tv_descriptions1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:text="帝国崛起第三十集"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/tv_name1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="帝国崛起"
-                android:textSize="10sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/con_layout2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp">
-
-                <ImageView
-                    android:id="@+id/iv_picture2"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:background="@mipmap/ic_launcher" />
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_margin="4dp"
-                    android:background="@mipmap/ic_launcher"
-                    android:scaleType="fitXY" />
-            </RelativeLayout>
-
-
-            <TextView
-                android:id="@+id/tv_descriptions2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:text="帝国崛起第三十集"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/tv_name2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="帝国崛起"
-                android:textSize="10sp" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:id="@+id/con_layout3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp">
-
-                <ImageView
-                    android:id="@+id/iv_picture3"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:background="@mipmap/ic_launcher" />
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_margin="4dp"
-                    android:background="@mipmap/ic_launcher"
-                    android:scaleType="fitXY" />
-            </RelativeLayout>
-
-
-            <TextView
-                android:id="@+id/tv_descriptions3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:text="帝国崛起第三十集"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/tv_name3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="帝国崛起"
-                android:textSize="10sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/con_layout4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp">
-
-                <ImageView
-                    android:id="@+id/iv_picture4"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:background="@mipmap/ic_launcher" />
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_margin="4dp"
-                    android:background="@mipmap/ic_launcher"
-                    android:scaleType="fitXY" />
-            </RelativeLayout>
-
-
-            <TextView
-                android:id="@+id/tv_descriptions4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:text="帝国崛起第三十集"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/tv_name4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="帝国崛起"
-                android:textSize="10sp" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-
+        android:layout_margin="10dp" />
 </LinearLayout>

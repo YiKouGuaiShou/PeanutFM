@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="12dp">
 
         <TextView
@@ -25,109 +26,8 @@
             android:text="更多 >" />
     </RelativeLayout>
 
-    <RelativeLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_typeOne"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginLeft="10dp">
-
-        <ImageView
-            android:id="@+id/iv_picture1"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:background="@mipmap/ic_launcher"
-            android:scaleType="fitXY" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:layout_toRightOf="@+id/iv_picture1"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="国泰郁金香回家了，花卉音乐节2017"
-            android:textSize="12sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="45dp"
-            android:layout_marginLeft="12dp"
-            android:layout_toRightOf="@+id/iv_picture1"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:text="置身于国际花卉盛会中的爵色音乐现场一睹“国泰郁金香”的尊贵真容 共度一个浪漫开心的迎新PARTY"
-            android:textSize="10sp" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginLeft="10dp">
-
-        <ImageView
-            android:id="@+id/iv_picture2"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:background="@mipmap/ic_launcher"
-            android:scaleType="fitXY" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:layout_toRightOf="@+id/iv_picture2"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="国泰郁金香回家了，花卉音乐节2017"
-            android:textSize="12sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="45dp"
-            android:layout_marginLeft="12dp"
-            android:layout_toRightOf="@+id/iv_picture2"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:text="置身于国际花卉盛会中的爵色音乐现场一睹“国泰郁金香”的尊贵真容 共度一个浪漫开心的迎新PARTY"
-            android:textSize="10sp" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginLeft="10dp">
-
-        <ImageView
-            android:id="@+id/iv_picture3"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:background="@mipmap/ic_launcher"
-            android:scaleType="fitXY" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:layout_toRightOf="@+id/iv_picture3"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="国泰郁金香回家了，花卉音乐节2017"
-            android:textSize="12sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="45dp"
-            android:layout_marginLeft="12dp"
-            android:layout_toRightOf="@+id/iv_picture3"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:text="置身于国际花卉盛会中的爵色音乐现场一睹“国泰郁金香”的尊贵真容 共度一个浪漫开心的迎新PARTY"
-            android:textSize="10sp" />
-    </RelativeLayout>
-
+        android:layout_height="wrap_content" />
 </LinearLayout>

@@ -35,16 +35,12 @@ public class RecommendFragment extends Fragment {
     private UltimateRecyclerView mRecycleview;
     private RecommendRecyclerViewAdapter mAdapter;
 
-    private List<String> lists ;
+    private RecommendBean recommendBeans;
 
     String baseUrl = "http://fsapp.linker.cc/";
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        lists = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            lists.add("dfdsf"+i);
-        }
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
@@ -72,7 +68,9 @@ public class RecommendFragment extends Fragment {
                          @Override
                          public void onNext(RecommendBean recommendBean) {
                              if(recommendBean!=null){
-                                 Log.e("onNext",recommendBean.getDes());
+                                 recommendBeans = recommendBean;
+                                 Log.e("onNext",recommendBeans.getDes());
+                                 mAdapter.setdata(recommendBeans);
                              }else {
                                  Log.e("onNext","kong");
                              }
@@ -88,7 +86,7 @@ public class RecommendFragment extends Fragment {
         mRecycleview = (UltimateRecyclerView) view.findViewById(R.id.mRecycleView);
         mRecycleview.setLayoutManager(new LinearLayoutManager(getActivity()));
         mAdapter = new RecommendRecyclerViewAdapter(getActivity());
-        mAdapter.setdata(lists);
+        mAdapter.setdata(recommendBeans);
         mRecycleview.setAdapter(mAdapter);
         return view;
     }

@@ -6,7 +6,7 @@
 
     <com.marshalchen.ultimaterecyclerview.UltimateRecyclerView
         android:id="@+id/mRecycleView"
-        android:layout_margin="4dp"
+        android:layout_margin="2dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </com.marshalchen.ultimaterecyclerview.UltimateRecyclerView>

@@ -20,7 +20,10 @@ import com.marshalchen.ultimaterecyclerview.dragsortadapter.DragSortAdapter;
 import com.marshalchen.ultimaterecyclerview.stickyheadersrecyclerview.rendering.HeaderRenderer;
 import com.yikouguaishou.peanutfm.R;
 import com.yikouguaishou.peanutfm.bean.RecommendBean;
+import com.yikouguaishou.peanutfm.view.MyImageLoader;
 import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
+import com.youth.banner.Transformer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +37,7 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
     private List<RecommendBean.ConEntity> conList = new ArrayList<>();
     private List<RecommendBean.BannerListEntity> bannerList = new ArrayList<>();
     private List<RecommendBean.TurnListEntity> turnList = new ArrayList<>();
+    List<String> images = new ArrayList<>();
     public static final int TYPE_ZERO_LAYOUT = 0;
     public static final int TYPE_ONE_LAYOUT = 1;
     public static final int TYPE_TWO_LAYOUT = 2;
@@ -46,6 +50,7 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
 
     public void setdata(RecommendBean recommendBean) {
         this.recommendBean = recommendBean;
+        //List<RecommendBean.BannerListEntity> bannerList = recommendBean.getBannerList();
         notifyDataSetChanged();
     }
 
@@ -72,7 +77,6 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
     @Override
     public int getAdapterItemCount() {
         if (null != recommendBean) {
-            Log.e("itemcount", "count = " + recommendBean.getCon().size());
             return recommendBean.getCon().size() + 1;
         } else {
             return 0;
@@ -130,16 +134,39 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
         if (viewType == TYPE_BANNER_LAYOUT) {
             //头部布局
             HeadViewHolder holder4 = (HeadViewHolder) holder;
-            RecommendBean.BannerListEntity bannerListEntity = recommendBean.getBannerList().get(position);
-            String linkType = bannerListEntity.getLinkType();
-            if (linkType.equals("2")){
-                //说明是webview
+            List<RecommendBean.BannerListEntity> bannerList = recommendBean.getBannerList();
+            //循环获取图片。
+            for (int i = 0; i < bannerList.size(); i++) {
+                RecommendBean.BannerListEntity bannerListEntity = bannerList.get(i);
+                //避免重复加载图片。
+                if (images.size() < bannerList.size()) {
+                    images.add(bannerListEntity.getUrl());
+                }
+                String linkType = bannerListEntity.getLinkType();
+                if (linkType.equals("2")) {
+                    //说明是webview
 
-            }else {
-                //不是webview。
+                } else {
+                    //不是webview。
 
+                }
             }
-//            Glide.with(context).load()
+            //设置图片集合
+            holder4.banner.setImages(images);
+            //设置banner样式
+            holder4.banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
+            //设置图片加载器
+            holder4.banner.setImageLoader(new MyImageLoader());
+            //设置banner动画效果
+            holder4.banner.setBannerAnimation(Transformer.DepthPage);
+            //设置自动轮播，默认为true
+            holder4.banner.isAutoPlay(true);
+            //设置轮播时间
+            holder4.banner.setDelayTime(5000);
+            //设置指示器位置（当banner模式中有指示器时）
+            holder4.banner.setIndicatorGravity(BannerConfig.CENTER);
+            //banner设置方法全部调用完毕时最后调用
+            holder4.banner.start();
 
         } else if (viewType == TYPE_THREE_LAYOUT) {
             //布局3
@@ -196,14 +223,14 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
      * 头部布局viewholder
      */
     private static class HeadViewHolder extends RecyclerView.ViewHolder {
-        public Banner mBanner;
+        public Banner banner;
         public LinearLayout mTurnOne, mTurnTwo, mTurnThree, mTurnFour;
         public ImageView mIvOne, mIvTwo, mIvThree, mIvFour;
         public TextView mTvOne, mTvTwo, mTvThree, mTvFour;
 
         public HeadViewHolder(View mHeard) {
             super(mHeard);
-            mBanner = (Banner) mHeard.findViewById(R.id.mBanner);
+            banner = (Banner) mHeard.findViewById(R.id.mBanner);
 
             mTurnOne = (LinearLayout) mHeard.findViewById(R.id.turn_one);
             mIvOne = (ImageView) mHeard.findViewById(R.id.iv_one);

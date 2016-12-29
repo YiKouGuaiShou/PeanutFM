@@ -6,7 +6,7 @@
 
     <LinearLayout
         android:id="@+id/con_layout1"
-        android:layout_width="140dp"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 

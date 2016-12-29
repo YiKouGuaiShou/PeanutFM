@@ -7,12 +7,49 @@
     android:orientation="vertical"
     tools:context="com.yikouguaishou.peanutfm.SearchActivity">
 
-    <com.yikouguaishou.peanutfm.view.SearchView
-        android:id="@+id/search_layout"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-    </com.yikouguaishou.peanutfm.view.SearchView>
+        <Button
+            android:id="@+id/mButton_back"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="15dp"
+            android:background="@mipmap/back" />
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#e6e6e6">
+
+            <EditText
+                android:id="@+id/mEditText_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@null"
+                android:drawableLeft="@mipmap/search_icon"
+                android:singleLine="true"
+                android:imeOptions="actionSearch"
+                android:hint="请输入要搜索的内容"
+                android:inputType="text"
+                android:paddingLeft="10dp"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/mImageView_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="20dp"
+                android:src="@mipmap/delete_icon"
+                android:visibility="gone" />
+        </FrameLayout>
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/rl_search_result"

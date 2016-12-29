@@ -1,9 +1,9 @@
 package com.yikouguaishou.peanutfm.apiservice;
 
 
-import com.yikouguaishou.peanutfm.bean.RecommendBean;
 import com.yikouguaishou.peanutfm.bean.SearchResult;
 
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 import rx.Observable;
@@ -13,8 +13,8 @@ import rx.Observable;
  */
 public interface HttpApiService {
 
-    @POST("fslhsrv/srv/wifimusicbox/search/-1/0")
+    @Headers({"Content-Type:text/html; charset=UTF-8"})
+    @POST("/fslhsrv/srv/wifimusicbox/search/-1/0")
     Observable<SearchResult> getEditTextData(
-            @Query("word") String word
-    );
+            @Query("word") String word);
 }

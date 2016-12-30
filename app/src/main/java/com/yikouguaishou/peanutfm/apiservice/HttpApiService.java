@@ -14,7 +14,7 @@ import rx.Observable;
 public interface HttpApiService {
 
     @Headers({"Content-Type:text/html; charset=UTF-8"})
-    @POST("/fslhsrv/srv/wifimusicbox/search/-1/0")
+    @POST("fslhsrv/srv/wifimusicbox/search/-1/0")
     Observable<SearchResult> getEditTextData(
             @Query("word") String word);
 }

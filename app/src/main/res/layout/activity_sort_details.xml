@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="15dp"
+    tools:context="com.yikouguaishou.peanutfm.SortDetailsActivity">
+
+    <RelativeLayout
+        android:id="@+id/mLinearLayout_sortDetails"
+        android:layout_width="match_parent"
+        android:layout_height="32dp">
+
+        <Button
+            android:id="@+id/mButton_sortDetails_back"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="15dp"
+            android:background="@mipmap/back" />
+
+        <TextView
+            android:id="@+id/mTextView_sortDetails_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="mTextView_sortDetails_title"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/mRelativeLayout_sortDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mLinearLayout_sortDetails"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        >
+
+        <TextView
+            android:id="@+id/mTextView_sortDetails_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sortDetails_name"
+            android:textColor="#ffcc00"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/mButton_sortDetails_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:drawableRight="@mipmap/more"
+            android:layout_alignParentRight="true"
+            android:text="更多"
+            android:textSize="12sp"
+            android:textColor="#bfbfbf"
+            />
+    </RelativeLayout>
+
+    <com.marshalchen.ultimaterecyclerview.UltimateRecyclerView
+        android:id="@+id/mUltimateRecyclerView_sortDetails"
+        android:layout_below="@id/mRelativeLayout_sortDetails"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.marshalchen.ultimaterecyclerview.UltimateRecyclerView>
+
+</RelativeLayout>

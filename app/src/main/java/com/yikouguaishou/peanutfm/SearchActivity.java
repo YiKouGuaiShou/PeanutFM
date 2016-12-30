@@ -92,7 +92,7 @@ public class SearchActivity extends AppCompatActivity
     /**
      * 点击搜索时触发
      *
-     * @param textView  输入框
+     * @param textView 输入框
      * @param i
      * @param keyEvent
      * @return
@@ -190,28 +190,28 @@ public class SearchActivity extends AppCompatActivity
         resultCall.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<SearchResult>() {
-            @Override
-            public void onCompleted() {
-            }
+                    @Override
+                    public void onCompleted() {
+                    }
 
-            @Override
-            public void onError(Throwable e) {
-                Log.e("======onError===", "=====" + e.getMessage());
-            }
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e("======onError===", "=====" + e.getMessage());
+                    }
 
-            @Override
-            public void onNext(SearchResult searchResult) {
-                resultData = searchResult.getCon();
-                for (int i = 0; i < 20; i++) {
-                    Log.e("======onNext===", "===name===" + resultData.get(i).getName());
-                    Log.e("======onNext===", "===Artist===" + resultData.get(i).getArtist());
-                    Log.e("======onNext===", "===ProviderName===" + resultData.get(i).getProviderName());
-                    Log.e("======onNext===", "===LogoUrl===" + resultData.get(i).getLogoUrl());
-                    Log.e("======onNext===", "===Type===" + resultData.get(i).getType());
-                    Log.e("======onNext===", "===PlayUrl===" + resultData.get(i).getPlayUrl());
-                }
-            }
-        });
+                    @Override
+                    public void onNext(SearchResult searchResult) {
+                        resultData = searchResult.getCon();
+                        for (int i = 0; i < 20; i++) {
+                            Log.e("======onNext===", "===name===" + resultData.get(i).getName());
+                            Log.e("======onNext===", "===Artist===" + resultData.get(i).getArtist());
+                            Log.e("======onNext===", "===ProviderName===" + resultData.get(i).getProviderName());
+                            Log.e("======onNext===", "===LogoUrl===" + resultData.get(i).getLogoUrl());
+                            Log.e("======onNext===", "===Type===" + resultData.get(i).getType());
+                            Log.e("======onNext===", "===PlayUrl===" + resultData.get(i).getPlayUrl());
+                        }
+                    }
+                });
     }
 
     @Override

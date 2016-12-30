@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * 搜索点击舔砖。
+     * 点击搜索按钮跳转。
      *
      * @param view
      */

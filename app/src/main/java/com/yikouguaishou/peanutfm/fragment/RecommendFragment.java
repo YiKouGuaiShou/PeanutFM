@@ -4,27 +4,18 @@ package com.yikouguaishou.peanutfm.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
-import android.widget.TextView;
-
 
 import com.marshalchen.ultimaterecyclerview.UltimateRecyclerView;
-import com.marshalchen.ultimaterecyclerview.ui.VerticalSwipeRefreshLayout;
 import com.yikouguaishou.peanutfm.R;
 import com.yikouguaishou.peanutfm.apiservice.RecommendHttpApiService;
 import com.yikouguaishou.peanutfm.bean.RecommendBean;
 import com.yikouguaishou.peanutfm.fragment.adapter.RecommendRecyclerViewAdapter;
-import com.youth.banner.Banner;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -68,7 +59,8 @@ public class RecommendFragment extends Fragment {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.e("onError", "onError==="+e.getMessage());
+                        Log.e("onError", "onError===" + e.getMessage());
+                        refreshData();
                     }
 
                     @Override

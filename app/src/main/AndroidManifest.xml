@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.yikouguaishou.peanutfm">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/app_icon"
@@ -15,7 +17,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".SearchActivity" />
         <activity android:name=".AdviceActivity" />
         <activity android:name=".MyNewsActivity" />
         <activity android:name=".MyZhuBoActivity" />
@@ -24,7 +26,8 @@
         <activity android:name=".MyCollectionActivity" />
         <activity android:name=".ListenHistoryActivity" />
         <activity android:name=".SettingActivity" />
-        <activity android:name=".PersonInfoActivity"></activity>
+        <activity android:name=".PersonInfoActivity" />
+        <activity android:name=".TypeThreeMoreActivity" />
     </application>
 
 </manifest>

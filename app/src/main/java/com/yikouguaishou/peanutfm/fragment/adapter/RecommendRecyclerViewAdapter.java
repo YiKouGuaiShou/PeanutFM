@@ -9,19 +9,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Transformation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.data.ExifOrientationStream;
 import com.marshalchen.ultimaterecyclerview.UltimateViewAdapter;
-import com.marshalchen.ultimaterecyclerview.dragsortadapter.DragSortAdapter;
-import com.marshalchen.ultimaterecyclerview.stickyheadersrecyclerview.rendering.HeaderRenderer;
 import com.yikouguaishou.peanutfm.AdviceActivity;
 import com.yikouguaishou.peanutfm.R;
+import com.yikouguaishou.peanutfm.TypeThreeMoreActivity;
 import com.yikouguaishou.peanutfm.bean.RecommendBean;
 import com.yikouguaishou.peanutfm.view.MyImageLoader;
 import com.youth.banner.Banner;
@@ -54,7 +52,6 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
 
     public void setdata(RecommendBean recommendBean) {
         this.recommendBean = recommendBean;
-        //List<RecommendBean.BannerListEntity> bannerList = recommendBean.getBannerList();
         notifyDataSetChanged();
     }
 
@@ -164,11 +161,11 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
             //设置图片加载器
             holder4.banner.setImageLoader(new MyImageLoader());
             //设置banner动画效果
-            holder4.banner.setBannerAnimation(Transformer.DepthPage);
+            holder4.banner.setBannerAnimation(Transformer.RotateDown);
             //设置自动轮播，默认为true
             holder4.banner.isAutoPlay(true);
             //设置轮播时间
-            holder4.banner.setDelayTime(5000);
+            holder4.banner.setDelayTime(4000);
             //设置指示器位置（当banner模式中有指示器时）
             holder4.banner.setIndicatorGravity(BannerConfig.CENTER);
             //banner设置方法全部调用完毕时最后调用
@@ -206,6 +203,8 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
             RecommendBean.ConEntity conEntity = recommendBean.getCon().get(position - 1);
             String name = conEntity.getName();
             holder3.tvMore3.setText("更多 >");
+            //设置监听。
+            holder3.tvMore3.setOnClickListener(new TypeThreeMoreListener(context, conEntity));
             holder3.tvTitle3.setText(name);
             holder3.tvTitle3.setTextColor(context.getResources().getColor(R.color.colorYellow));
             holder3.typeThreeAdapter.setDetailListEntities(conEntity.getDetailList());
@@ -215,6 +214,8 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
             List<RecommendBean.ConEntity.DetailListEntity> detailList = conEntity.getDetailList();
             TypeTwoHolder holder2 = (TypeTwoHolder) holder;
             holder2.tv_typeTwo.setText(detailList.get(0).getName());
+            //设置监听。
+            holder2.iv_typeTwo.setOnClickListener(new TypeThreeMoreListener(context, conEntity));
             //下载图片。
             Glide.with(context).load(detailList.get(0).getLogo()).into(holder2.iv_typeTwo);
         } else if (viewType == TYPE_ONE_LAYOUT) {
@@ -223,6 +224,8 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
             RecommendBean.ConEntity conEntity = recommendBean.getCon().get(position - 1);
             Log.e("TypeOneHolder", "conEntuty.getname()" + conEntity.getName());
             String name = conEntity.getName();
+            //设置监听。
+            holder1.tvMore1.setOnClickListener(new TypeThreeMoreListener(context, conEntity));
             holder1.tvMore1.setText("更多 >");
             holder1.tvTitle1.setText(name);
             holder1.tvTitle1.setTextColor(context.getResources().getColor(R.color.colorYellow));
@@ -232,6 +235,8 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
             TypeZeroHolder holder0 = (TypeZeroHolder) holder;
             RecommendBean.ConEntity conEntity = recommendBean.getCon().get(position - 1);
             String name = conEntity.getName();
+            //设置监听。
+            holder0.tvMore0.setOnClickListener(new TypeThreeMoreListener(context, conEntity));
             holder0.tvMore0.setText("更多 >");
             holder0.tvTitle0.setText(name);
             holder0.tvTitle0.setTextColor(context.getResources().getColor(R.color.colorYellow));
@@ -463,6 +468,48 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
         @Override
         public void onClick(View view) {
             super.onClick(view);
+        }
+    }
+
+    /**
+     * "推荐页的'更多'"的点击事件。
+     */
+    private class TypeThreeMoreListener implements View.OnClickListener {
+        Context context;
+        int categoryId;
+        int layout;
+        String name;
+        public TypeThreeMoreListener(Context context, RecommendBean.ConEntity conEntity) {
+            this.context = context;
+            this.categoryId = conEntity.getCategoryId();
+            this.layout = conEntity.getLayout();
+             this.name = conEntity.getName();
+        }
+
+        @Override
+        public void onClick(View view) {
+            switch (layout) {
+                //跳到第3种类型的activity。
+                case TYPE_THREE_LAYOUT:
+                    Toast.makeText(context, "我是布局" + layout + "\n我的CategoryId = " + categoryId, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(context, TypeThreeMoreActivity.class);
+                    intent.putExtra("categoryId", categoryId);
+                    intent.putExtra("title",name);
+                    context.startActivity(intent);
+                    break;
+                //跳到第2种类型的activity。
+                case TYPE_TWO_LAYOUT:
+                    Toast.makeText(context, "我是布局" + layout + "\n我的CategoryId = " + categoryId, Toast.LENGTH_SHORT).show();
+                    break;
+                //跳到第1种类型的activity。
+                case TYPE_ONE_LAYOUT:
+                    Toast.makeText(context, "我是布局" + layout + "\n我的CategoryId = " + categoryId, Toast.LENGTH_SHORT).show();
+                    break;
+                //跳到第0种类型的activity。
+                case TYPE_ZERO_LAYOUT:
+                    Toast.makeText(context, "我是布局" + layout + "\n我的CategoryId = " + categoryId, Toast.LENGTH_SHORT).show();
+                    break;
+            }
         }
     }
 }

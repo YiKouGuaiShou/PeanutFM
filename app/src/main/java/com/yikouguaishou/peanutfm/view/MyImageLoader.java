@@ -10,7 +10,7 @@ import com.youth.banner.loader.ImageLoader;
 /**
  * Created by Administrator on 2016/12/29.
  */
-public class MyImageLoader extends ImageLoader{
+public class MyImageLoader extends ImageLoader {
     @Override
     public void displayImage(Context context, Object path, ImageView imageView) {
         /**

@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Transformation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -479,11 +478,12 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
         int categoryId;
         int layout;
         String name;
+
         public TypeThreeMoreListener(Context context, RecommendBean.ConEntity conEntity) {
             this.context = context;
             this.categoryId = conEntity.getCategoryId();
             this.layout = conEntity.getLayout();
-             this.name = conEntity.getName();
+            this.name = conEntity.getName();
         }
 
         @Override
@@ -494,7 +494,7 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
                     Toast.makeText(context, "我是布局" + layout + "\n我的CategoryId = " + categoryId, Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(context, TypeThreeMoreActivity.class);
                     intent.putExtra("categoryId", categoryId);
-                    intent.putExtra("title",name);
+                    intent.putExtra("title", name);
                     context.startActivity(intent);
                     break;
                 //跳到第2种类型的activity。

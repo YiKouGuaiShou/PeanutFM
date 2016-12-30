@@ -132,7 +132,8 @@ public class SortDetailsActivity extends AppCompatActivity implements View.OnCli
                 break;
             case R.id.mButton_sortDetails_more:
                 //// TODO: 2016/12/30 点击更多跳转
-                Toast.makeText(this, "更多", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, ColumnListActivity.class);
+                startActivity(intent);
                 break;
         }
     }

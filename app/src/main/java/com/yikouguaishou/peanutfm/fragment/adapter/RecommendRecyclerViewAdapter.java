@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.marshalchen.ultimaterecyclerview.UltimateViewAdapter;
 import com.yikouguaishou.peanutfm.AdviceActivity;
 import com.yikouguaishou.peanutfm.R;
+import com.yikouguaishou.peanutfm.TurnOneActivity;
 import com.yikouguaishou.peanutfm.TypeOneMoreActivity;
 import com.yikouguaishou.peanutfm.TypeThreeMoreActivity;
 import com.yikouguaishou.peanutfm.TypeZeroMoreActivity;
@@ -422,7 +423,11 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
 
         @Override
         public void onClick(View view) {
-            Toast.makeText(context, "我是" + turnListEntity.getTitle(), Toast.LENGTH_SHORT).show();
+            // Toast.makeText(context, "我是" + turnListEntity.getTitle(), Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(context, TurnOneActivity.class);
+            String title = turnListEntity.getTitle();
+            intent.putExtra("title", title);
+            context.startActivity(intent);
         }
     }
 
@@ -493,7 +498,7 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
             switch (layout) {
                 //跳到第3种类型的activity。
                 case TYPE_THREE_LAYOUT:
-                    Toast.makeText(context, "我是布局" + layout + "\n我的CategoryId = " + categoryId, Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(context, "我是布局" + layout + "\n我的CategoryId = " + categoryId, Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(context, TypeThreeMoreActivity.class);
                     intent.putExtra("categoryId", categoryId);
                     intent.putExtra("title", name);

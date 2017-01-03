@@ -19,7 +19,9 @@ import com.bumptech.glide.Glide;
 import com.marshalchen.ultimaterecyclerview.UltimateViewAdapter;
 import com.yikouguaishou.peanutfm.AdviceActivity;
 import com.yikouguaishou.peanutfm.R;
+import com.yikouguaishou.peanutfm.TypeOneMoreActivity;
 import com.yikouguaishou.peanutfm.TypeThreeMoreActivity;
+import com.yikouguaishou.peanutfm.TypeZeroMoreActivity;
 import com.yikouguaishou.peanutfm.bean.RecommendBean;
 import com.yikouguaishou.peanutfm.view.MyImageLoader;
 import com.youth.banner.Banner;
@@ -479,11 +481,12 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
         int categoryId;
         int layout;
         String name;
+
         public TypeThreeMoreListener(Context context, RecommendBean.ConEntity conEntity) {
             this.context = context;
             this.categoryId = conEntity.getCategoryId();
             this.layout = conEntity.getLayout();
-             this.name = conEntity.getName();
+            this.name = conEntity.getName();
         }
 
         @Override
@@ -494,7 +497,7 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
                     Toast.makeText(context, "我是布局" + layout + "\n我的CategoryId = " + categoryId, Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(context, TypeThreeMoreActivity.class);
                     intent.putExtra("categoryId", categoryId);
-                    intent.putExtra("title",name);
+                    intent.putExtra("title", name);
                     context.startActivity(intent);
                     break;
                 //跳到第2种类型的activity。
@@ -503,11 +506,17 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
                     break;
                 //跳到第1种类型的activity。
                 case TYPE_ONE_LAYOUT:
-                    Toast.makeText(context, "我是布局" + layout + "\n我的CategoryId = " + categoryId, Toast.LENGTH_SHORT).show();
+                    Intent intent1 = new Intent(context, TypeOneMoreActivity.class);
+                    intent1.putExtra("categoryId", categoryId);
+                    intent1.putExtra("title", name);
+                    context.startActivity(intent1);
                     break;
                 //跳到第0种类型的activity。
                 case TYPE_ZERO_LAYOUT:
-                    Toast.makeText(context, "我是布局" + layout + "\n我的CategoryId = " + categoryId, Toast.LENGTH_SHORT).show();
+                    Intent intent0 = new Intent(context, TypeZeroMoreActivity.class);
+                    intent0.putExtra("categoryId", categoryId);
+                    intent0.putExtra("title", name);
+                    context.startActivity(intent0);
                     break;
             }
         }

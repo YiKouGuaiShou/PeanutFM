@@ -28,6 +28,8 @@
         <activity android:name=".SettingActivity" />
         <activity android:name=".PersonInfoActivity" />
         <activity android:name=".TypeThreeMoreActivity" />
+        <activity android:name=".TypeZeroMoreActivity" />
+        <activity android:name=".TypeOneMoreActivity"></activity>
     </application>
 
 </manifest>

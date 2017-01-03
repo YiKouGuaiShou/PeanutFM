@@ -1,7 +1,9 @@
 package com.yikouguaishou.peanutfm.apiservice;
 
 import com.yikouguaishou.peanutfm.bean.RecommendBean;
+import com.yikouguaishou.peanutfm.bean.TypeOneItemBean;
 import com.yikouguaishou.peanutfm.bean.TypeThreeItemBean;
+import com.yikouguaishou.peanutfm.bean.TypeZeroItemBean;
 
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -19,6 +21,12 @@ public interface RecommendHttpApiService {
     @GET("fslhsrv/srv/radio/channelAlbumDetail/list/{id}/{pageIndex}")
     Observable<TypeThreeItemBean> getTypeThreeItemBean
             (@Path("id") int id, @Path("pageIndex") int pageIndex);
+
+    @GET("fslhsrv/srv/radio/news_list/{id}")
+    Observable<TypeZeroItemBean> getTypeZeroItemBean
+            (@Path("id") int id);
+
+    @GET("fslhsrv/srv/radio/news_list/{id}")
+    Observable<TypeOneItemBean> getTypeOneItemBean
+            (@Path("id") int id);
 }
-//    @Query("id") String id,
-//    @Query("pageIndex") String pageIndex);

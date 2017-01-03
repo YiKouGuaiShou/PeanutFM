@@ -13,15 +13,16 @@ import rx.Observable;
  * Created by snowflake on 2016/12/29.
  */
 public interface SortApiService {
-    @Headers({"Content-Type:text/html; charset=UTF-8"})
     @GET("fslhsrv/srv/classification/channelType/13010")
     Observable<SortBean> getSortData();
 
-    @Headers({"Content-Type:text/html; charset=UTF-8"})
-    @POST("/fslhsrv/srv/wifimusicbox/demand/detail")
+    @Headers({"Content-Type:application/x-www-form-urlencoded;charset=UTF-8"})
+    @POST("fslhsrv/srv/wifimusicbox/demand/detail")
     Observable<ColumnListBean> getColumnListData(
             @Query("providerCode") int providerCode,
-            @Query("pid") int pid,
+            @Query("sortType") int sortType,
+            @Query("pid") String pid,
+            @Query("mobileId") String mobileId,
             @Query("pageIndex") int pageIndex
     );
 }

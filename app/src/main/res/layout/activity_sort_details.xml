@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="15dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:layout_marginTop="15dp"
     tools:context="com.yikouguaishou.peanutfm.SortDetailsActivity">
 
     <RelativeLayout
@@ -34,36 +36,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/mLinearLayout_sortDetails"
-        android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
-        >
+        android:layout_marginTop="20dp">
 
         <TextView
             android:id="@+id/mTextView_sortDetails_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:text="sortDetails_name"
             android:textColor="#ffcc00"
             android:textSize="14sp" />
 
         <Button
             android:id="@+id/mButton_sortDetails_more"
-            android:layout_width="wrap_content"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:background="@null"
             android:drawableRight="@mipmap/more"
-            android:layout_alignParentRight="true"
             android:text="更多"
-            android:textSize="12sp"
             android:textColor="#bfbfbf"
-            />
+            android:textSize="12sp" />
     </RelativeLayout>
 
     <com.marshalchen.ultimaterecyclerview.UltimateRecyclerView
         android:id="@+id/mUltimateRecyclerView_sortDetails"
-        android:layout_below="@id/mRelativeLayout_sortDetails"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@id/mRelativeLayout_sortDetails">
 
     </com.marshalchen.ultimaterecyclerview.UltimateRecyclerView>
 

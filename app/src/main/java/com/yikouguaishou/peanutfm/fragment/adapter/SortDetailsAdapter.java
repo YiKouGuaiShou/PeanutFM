@@ -1,15 +1,14 @@
 package com.yikouguaishou.peanutfm.fragment.adapter;
 
 import android.content.Context;
-import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.marshalchen.ultimaterecyclerview.UltimateViewAdapter;
 import com.yikouguaishou.peanutfm.R;
 import com.yikouguaishou.peanutfm.bean.SortDetailsBean;
@@ -29,32 +28,32 @@ public class SortDetailsAdapter extends UltimateViewAdapter<SortDetailsAdapter.S
         this.sortDetailsDatas = sortDetailsDatas;
     }
 
-    private onSortItemClickListener itemClickListener = null;
+    private OnSortDetailsItemClickListener mItemClickListener = null;
 
-    public interface onSortItemClickListener {
+    public interface OnSortDetailsItemClickListener {
         void onItemClick(View v, int position);
     }
 
-    public void setOnItemClickListener(onSortItemClickListener itemClickListener) {
-        this.itemClickListener = itemClickListener;
+    public void setOnItemClickListener(OnSortDetailsItemClickListener listener) {
+        this.mItemClickListener = listener;
     }
 
     public class SortDetailsViewHolder extends RecyclerView.ViewHolder {
-        ImageView iv_sortDetails_logo;
+        RoundedImageView iv_sortDetails_logo;
         TextView tv_sortDetails_name;
         TextView tv_sortDetails_descriptions;
 
         public SortDetailsViewHolder(View itemView) {
             super(itemView);
-            iv_sortDetails_logo = (ImageView) itemView.findViewById(R.id.iv_sortDetails_logo);
+            iv_sortDetails_logo = (RoundedImageView) itemView.findViewById(R.id.iv_sortDetails_logo);
             tv_sortDetails_name = (TextView) itemView.findViewById(R.id.tv_sortDetails_name);
             tv_sortDetails_descriptions = (TextView) itemView.findViewById(R.id.tv_sortDetails_descriptions);
 
-            itemView.setOnClickListener(new View.OnClickListener() {   //为每一个item绑定监听
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-                    if (itemClickListener != null) {
-                        itemClickListener.onItemClick(v, getPosition());
+                public void onClick(View view) {
+                    if (mItemClickListener != null) {
+                        mItemClickListener.onItemClick(view, getPosition());
                     }
                 }
             });
@@ -74,7 +73,7 @@ public class SortDetailsAdapter extends UltimateViewAdapter<SortDetailsAdapter.S
     }
 
     @Override
-    public void onBindViewHolder(SortDetailsViewHolder holder, int position) {
+    public void onBindViewHolder(SortDetailsViewHolder holder, final int position) {
         SortDetailsBean.ConBean.DetailListBean detailListBean = sortDetailsDatas.get(position);
         String name = detailListBean.getName();
         holder.tv_sortDetails_name.setText(name);
@@ -83,6 +82,8 @@ public class SortDetailsAdapter extends UltimateViewAdapter<SortDetailsAdapter.S
         String logo = detailListBean.getLogo();
         Glide.with(context)
                 .load(logo)
+//                .placeholder(R.mipmap.place_holder)
+                .crossFade()
                 .into(holder.iv_sortDetails_logo);
     }
 

@@ -36,7 +36,6 @@ public class SortFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     private SortFragmentAdapter sortAdapter;
     private List<SortBean.ConBean> sortDatas = new ArrayList<>();
     private Handler handler = new Handler();
-    private int sortId;
 
     public SortFragment() {
         // Required empty public constructor
@@ -88,9 +87,6 @@ public class SortFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                     @Override
                     public void onNext(SortBean sortBean) {
                         List<SortBean.ConBean> sortData = sortBean.getCon();
-                        for (int i = 0; i < sortData.size(); i++) {
-                            sortId = sortData.get(i).getId();
-                        }
                         if (sortData != null) {
                             sortDatas.addAll(sortData);
                         }
@@ -104,8 +100,8 @@ public class SortFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                sortAdapter.notifyDataSetChanged();
-                ultimateRecyclerView_sort.setRefreshing(false);
+                sortDatas.clear();
+                getSort();
             }
         }, 2000);
     }

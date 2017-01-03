@@ -2,21 +2,19 @@ package com.yikouguaishou.peanutfm;
 
 import android.content.Intent;
 import android.graphics.Rect;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.marshalchen.ultimaterecyclerview.UltimateRecyclerView;
 import com.yikouguaishou.peanutfm.apiservice.SortDetailsApiService;
-import com.yikouguaishou.peanutfm.bean.ColumnListBean;
 import com.yikouguaishou.peanutfm.bean.SortDetailsBean;
 import com.yikouguaishou.peanutfm.fragment.adapter.SortDetailsAdapter;
 
@@ -31,9 +29,10 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class SortDetailsActivity extends AppCompatActivity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener, SortDetailsAdapter.onSortItemClickListener {
+public class SortDetailsActivity extends AppCompatActivity implements View.OnClickListener,
+        SwipeRefreshLayout.OnRefreshListener,
+        SortDetailsAdapter.OnSortDetailsItemClickListener {
     private String baseUrl = "http://fsapp.linker.cc";
-
     private UltimateRecyclerView ultimateRecyclerView_sortDetails;
     private Button btn_sortDetails_back;
     private Button btn_sortDetails_more;
@@ -45,6 +44,8 @@ public class SortDetailsActivity extends AppCompatActivity implements View.OnCli
 
     private int sort_id;
     private String sort_name;
+    private int categoryId;
+    private String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +56,6 @@ public class SortDetailsActivity extends AppCompatActivity implements View.OnCli
         sort_name = bundle.getString("sort_name");
 
         initViews();
-        setListener();
-
         sortDetailsAdapter = new SortDetailsAdapter(this, sortDetailsDatas);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
         ultimateRecyclerView_sortDetails.setLayoutManager(gridLayoutManager);
@@ -64,6 +63,7 @@ public class SortDetailsActivity extends AppCompatActivity implements View.OnCli
         ultimateRecyclerView_sortDetails.enableDefaultSwipeRefresh(true);//开启下拉刷新
         ultimateRecyclerView_sortDetails.setDefaultOnRefreshListener(this);
         ultimateRecyclerView_sortDetails.addItemDecoration(new SpaceItemDecoration(3));
+        setListener();
         getSortDetails();
     }
 
@@ -113,9 +113,8 @@ public class SortDetailsActivity extends AppCompatActivity implements View.OnCli
                     public void onNext(SortDetailsBean sortDetailsBean) {
                         SortDetailsBean.ConBean conBean = sortDetailsBean.getCon().get(0);
                         List<SortDetailsBean.ConBean.DetailListBean> sortDetailsData = conBean.getDetailList();
-//                        for (int i = 0; i < sortDetailsData.size(); i++) {
-//                            sort_id = sortDetailsData.get(i).getId();
-//                        }
+                        categoryId = conBean.getCategoryId();
+                        name = conBean.getName();
                         if (sortDetailsData != null) {
                             sortDetailsDatas.addAll(sortDetailsData);
                         }
@@ -126,13 +125,14 @@ public class SortDetailsActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.mButton_sortDetails_back:
                 finish();
                 break;
             case R.id.mButton_sortDetails_more:
-                //// TODO: 2016/12/30 点击更多跳转
-                Intent intent = new Intent(this, ColumnListActivity.class);
+                Intent intent = new Intent(this, TypeThreeMoreActivity.class);
+                intent.putExtra("categoryId", categoryId);
+                intent.putExtra("title", name);
                 startActivity(intent);
                 break;
         }
@@ -143,8 +143,8 @@ public class SortDetailsActivity extends AppCompatActivity implements View.OnCli
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                sortDetailsAdapter.notifyDataSetChanged();
-                ultimateRecyclerView_sortDetails.setRefreshing(false);
+                sortDetailsDatas.clear();
+                getSortDetails();
             }
         }, 2000);
     }
@@ -154,9 +154,13 @@ public class SortDetailsActivity extends AppCompatActivity implements View.OnCli
         SortDetailsBean.ConBean.DetailListBean detailListBean = sortDetailsDatas.get(position);
         if (detailListBean != null) {
             Intent intent = new Intent(this, ColumnListActivity.class);
+            String name = detailListBean.getName();
+            String logo = detailListBean.getLogo();
             long albumId = detailListBean.getAlbumId();
             int providerCode = detailListBean.getProviderCode();
             Bundle bundle = new Bundle();
+            bundle.putString("name", name);
+            bundle.putString("logoUrl", logo);
             bundle.putLong("albumId", albumId);
             bundle.putInt("providerCode", providerCode);
             intent.putExtras(bundle);

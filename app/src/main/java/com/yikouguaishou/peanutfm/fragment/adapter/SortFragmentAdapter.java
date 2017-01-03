@@ -80,6 +80,8 @@ public class SortFragmentAdapter extends UltimateViewAdapter<SortFragmentAdapter
         String logo = conBean.getLogo();
         Glide.with(context)
                 .load(logo)
+                .placeholder(R.mipmap.place_holder)
+                .crossFade()
                 .into(holder.iv_sort_logo);
     }
 

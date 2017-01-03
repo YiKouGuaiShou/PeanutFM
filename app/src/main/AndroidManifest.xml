@@ -30,6 +30,8 @@
         <activity android:name=".TypeThreeMoreActivity" />
         <activity android:name=".TypeZeroMoreActivity" />
         <activity android:name=".TypeOneMoreActivity"></activity>
+        <activity android:name=".SortDetailsActivity" />
+        <activity android:name=".ColumnListActivity"></activity>
     </application>
 
 </manifest>

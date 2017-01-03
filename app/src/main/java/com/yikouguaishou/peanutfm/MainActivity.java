@@ -7,7 +7,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import com.yikouguaishou.peanutfm.fragment.MineFragment;
 import com.yikouguaishou.peanutfm.fragment.RadioStationFragment;
@@ -52,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * 搜索点击舔砖。
+     * 点击搜索按钮跳转。
      *
      * @param view
      */

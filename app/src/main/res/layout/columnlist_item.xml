@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:padding="10dp"
+    >
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/mImageView_column_logo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:src="@mipmap/place_holder"
+        app:riv_corner_radius="5dp"
+        />
+
+    <TextView
+        android:id="@+id/mTextView_column_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="3dp"
+        android:layout_toEndOf="@+id/mImageView_column_logo"
+        android:layout_toRightOf="@id/mImageView_column_logo"
+        android:text="节目名称"
+        android:textColor="#515151"
+        android:textSize="15sp" />
+
+    <RelativeLayout
+        android:layout_toRightOf="@id/mImageView_column_logo"
+        android:layout_below="@id/mTextView_column_name"
+        android:layout_width="match_parent"
+        android:layout_height="15dp">
+        <ImageView
+            android:id="@+id/imageView_comments"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:src="@mipmap/comments"
+            android:layout_centerVertical="true"
+            />
+        <TextView
+            android:id="@+id/mTextView_column_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/imageView_comments"
+            android:layout_centerVertical="true"
+            android:text=" 评论数"
+            android:textColor="#8a8a8a"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/imageView_listens"
+            android:layout_width="14dp"
+            android:layout_height="12dp"
+            android:layout_marginLeft="20dp"
+            android:src="@mipmap/listen_icon"
+            android:layout_toRightOf="@id/mTextView_column_comment"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:id="@+id/mTextView_column_listen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/imageView_listens"
+            android:layout_centerVertical="true"
+            android:text=" 收听数"
+            android:textColor="#8a8a8a"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/imageView_duration"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_marginLeft="20dp"
+            android:src="@mipmap/pub_time"
+            android:layout_toRightOf="@id/mTextView_column_listen"
+            android:layout_centerVertical="true"
+            />
+        <TextView
+            android:id="@+id/mTextView__column_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/imageView_duration"
+            android:layout_centerVertical="true"
+            android:text=" 发表时间"
+            android:textColor="#8a8a8a"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="10dp"
+        >
+        <ImageView
+            android:id="@+id/mImageView_column_download"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@mipmap/download" />
+        <ImageView
+            android:id="@+id/mImageView_column_downloaded"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:visibility="gone"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/download_succeed" />
+    </RelativeLayout>
+</RelativeLayout>

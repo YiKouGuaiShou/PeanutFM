@@ -5,7 +5,8 @@
     tools:context="com.yikouguaishou.peanutfm.fragment.SortFragment">
 
 
-    <TextView
+    <com.marshalchen.ultimaterecyclerview.UltimateRecyclerView
+        android:id="@+id/mUltimateRecyclerView_sort"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/hello_blank_fragment" />

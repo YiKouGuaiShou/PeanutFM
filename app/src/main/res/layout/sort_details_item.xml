@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal">
+
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/iv_sortDetails_logo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@mipmap/ic_launcher"
+            app:riv_corner_radius="14dp" />
+
+        <ImageView
+            android:id="@+id/iv_start"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:background="@mipmap/play_start"
+            android:scaleType="fitXY" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_sortDetails_descriptions"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:singleLine="true"
+        android:text="分类描述"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_sortDetails_name"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:singleLine="true"
+        android:text="分类名"
+        android:textColor="#999999"
+        android:textSize="12sp" />
+</LinearLayout>

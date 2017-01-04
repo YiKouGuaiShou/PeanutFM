@@ -11,6 +11,6 @@
         android:layout_height="75dp"
         android:src="@mipmap/ic_launcher" />
 
-    <include layout="@layout/rv_item_radio_station_child" />
+    <include layout="@layout/rv_item_radio_station_list_child" />
 
 </LinearLayout>

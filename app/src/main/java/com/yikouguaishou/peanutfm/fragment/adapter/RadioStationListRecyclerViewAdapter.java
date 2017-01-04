@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.yikouguaishou.peanutfm.R;
+import com.yikouguaishou.peanutfm.apiservice.RadioStationItemClickListener;
 import com.yikouguaishou.peanutfm.bean.RadioStationBean;
 
 import java.text.SimpleDateFormat;
@@ -19,51 +20,52 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/12/27.
  */
-public class RadioStationRecyclerViewAdapter extends RecyclerView.Adapter<RadioStationRecyclerViewAdapter.MyRadioStationViewHolder> {
-    private Context ctx;
+public class RadioStationListRecyclerViewAdapter extends UltimateBaseAdapter {
     private List<RadioStationBean.ConBeanX> radioStationData;
 
-    public RadioStationRecyclerViewAdapter(Context ctx) {
-        this.ctx = ctx;
+    private RadioStationItemClickListener listener;
+
+    public RadioStationListRecyclerViewAdapter(Context context) {
+        super(context);
     }
 
-    /**
-     * 更新数据
-     *
-     * @param radioStationData
-     */
     public void setRadioStationData(List<RadioStationBean.ConBeanX> radioStationData) {
         this.radioStationData = radioStationData;
         notifyDataSetChanged();
     }
 
-    /**
-     * 获取子布局
-     *
-     * @param parent
-     * @return
-     */
-    @Override
-    public MyRadioStationViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(ctx).inflate(R.layout.rv_item_radio_station, parent, false);
-        return new MyRadioStationViewHolder(view);
+    public void setOnItemClickListener(RadioStationItemClickListener listener) {
+        this.listener = listener;
     }
 
     @Override
-    public void onBindViewHolder(MyRadioStationViewHolder holder, int position) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent) {
+        View view = LayoutInflater.from(context).inflate(R.layout.rv_item_radio_station_list, parent, false);
+        return new MyRadioStationListViewHolder(view);
+    }
+
+    @Override
+    public int getAdapterItemCount() {
+        return radioStationData == null ? 0 : radioStationData.get(0).getLiveList().size();
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder1, final int position) {
+        MyRadioStationListViewHolder holder = (MyRadioStationListViewHolder) holder1;
+
         List<RadioStationBean.ConBeanX.LiveListBean> liveList = radioStationData.get(0).getLiveList();
         RadioStationBean.ConBeanX.LiveListBean liveListBean = liveList.get(position);
 
         //设置logo图片
         String logoUrl = liveListBean.getLogoUrl();
         if (logoUrl != null) {
-            Glide.with(ctx).load(logoUrl).into(holder.rv_item_iv_logo);
+            Glide.with(context).load(logoUrl).into(holder.rv_item_iv_logo);
         } else {
             holder.rv_item_iv_logo.setImageResource(R.mipmap.ic_launcher);
         }
 
         //设置频道名
-        String name = liveListBean.getName();
+        final String name = liveListBean.getName();
         holder.rv_item_tv_channel.setText(name);
 
         //设置点击量
@@ -88,6 +90,13 @@ public class RadioStationRecyclerViewAdapter extends RecyclerView.Adapter<RadioS
                 holder.rv_item_tv_title.setText("正在直播:" + conName);
             }
         }
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onFetch(position, name);
+            }
+        });
     }
 
     /**
@@ -111,21 +120,11 @@ public class RadioStationRecyclerViewAdapter extends RecyclerView.Adapter<RadioS
         return time;
     }
 
-    /**
-     * 返回item个数
-     *
-     * @return
-     */
-    @Override
-    public int getItemCount() {
-        return radioStationData == null ? 0 : radioStationData.get(0).getLiveList().size();
-    }
-
-    class MyRadioStationViewHolder extends RecyclerView.ViewHolder {
+    class MyRadioStationListViewHolder extends RecyclerView.ViewHolder {
         public ImageView rv_item_iv_logo;
         public TextView rv_item_tv_channel, rv_item_tv_title, rv_item_tv_anchor, rv_item_tv_number;
 
-        public MyRadioStationViewHolder(View itemView) {
+        public MyRadioStationListViewHolder(View itemView) {
             super(itemView);
             rv_item_iv_logo = (ImageView) itemView.findViewById(R.id.rv_item_iv_logo);
             rv_item_tv_channel = (TextView) itemView.findViewById(R.id.rv_item_tv_channel);

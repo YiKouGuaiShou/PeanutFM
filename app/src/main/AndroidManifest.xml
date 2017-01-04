@@ -35,6 +35,7 @@
         <activity android:name=".TurnOneActivity" />
         <activity android:name=".TurnTwoActivity" />
         <activity android:name=".WebViewActivity"></activity>
+        <activity android:name=".PlayRadioActivity"></activity>
     </application>
 
 </manifest>

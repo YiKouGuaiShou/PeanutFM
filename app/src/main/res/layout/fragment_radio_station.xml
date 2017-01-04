@@ -9,13 +9,13 @@
         android:id="@+id/tv_radio_station"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:padding="10dp"
         android:gravity="center_horizontal"
         android:text="请选择电台" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_radio_station"
+    <FrameLayout
+        android:id="@+id/fl_radio_station"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="match_parent">
+    </FrameLayout>
 </LinearLayout>

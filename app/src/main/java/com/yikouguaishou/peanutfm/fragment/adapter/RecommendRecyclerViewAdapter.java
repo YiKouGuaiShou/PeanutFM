@@ -2,6 +2,7 @@ package com.yikouguaishou.peanutfm.fragment.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,12 +18,14 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.marshalchen.ultimaterecyclerview.UltimateViewAdapter;
 import com.yikouguaishou.peanutfm.AdviceActivity;
+import com.yikouguaishou.peanutfm.ColumnListActivity;
 import com.yikouguaishou.peanutfm.R;
 import com.yikouguaishou.peanutfm.TurnOneActivity;
 import com.yikouguaishou.peanutfm.TurnTwoActivity;
 import com.yikouguaishou.peanutfm.TypeOneMoreActivity;
 import com.yikouguaishou.peanutfm.TypeThreeMoreActivity;
 import com.yikouguaishou.peanutfm.TypeZeroMoreActivity;
+import com.yikouguaishou.peanutfm.WebViewActivity;
 import com.yikouguaishou.peanutfm.bean.RecommendBean;
 import com.yikouguaishou.peanutfm.view.MyImageLoader;
 import com.youth.banner.Banner;
@@ -401,11 +404,31 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
             String linkType = bannerList.get(position).getLinkType();
             if (linkType.equals("2")) {
                 //表示连接的是webview。
-                Intent intent = new Intent(context, AdviceActivity.class);
+                RecommendBean.BannerListEntity bannerListEntity = bannerList.get(position);
+                Intent intent = new Intent(context, WebViewActivity.class);
+                intent.putExtra("linkUrl", bannerListEntity.getLinkUrl());
+                intent.putExtra("name", bannerListEntity.getTitle());
+                intent.putExtra("linkType", 1);
                 context.startActivity(intent);
-            } else {
-                //表示是自定义布局。
+                return;
+            } else if (linkType.equals("15")) {
+                //表示播放界面。
+                //TODO 跳转播放界面
                 Toast.makeText(context, "linkType = " + linkType, Toast.LENGTH_SHORT).show();
+                return;
+            } else if (linkType.equals("1")) {
+                //表示是播放列表。
+                RecommendBean.BannerListEntity bannerListEntity = bannerList.get(position);
+                Intent intent = new Intent(context, ColumnListActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("name", bannerListEntity.getTitle());
+                bundle.putString("logoUrl", bannerListEntity.getUrl());
+                String albumId = bannerListEntity.getColumnId();
+                Long aLong = Long.valueOf(albumId);
+                bundle.putLong("albumId", aLong);
+                bundle.putInt("providerCode", bannerListEntity.getPrividerCode());
+                intent.putExtras(bundle);
+                context.startActivity(intent);
             }
 
         }
@@ -463,7 +486,14 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
 
         @Override
         public void onClick(View view) {
-
+            Intent intent = new Intent(context, WebViewActivity.class);
+            String linkUrl = turnListEntity.getLinkUrl();
+            String name = turnListEntity.getTitle();
+            //1代表是typeZero item点击布局，2代表typeTwo布局，3代表turnThree布局。
+            intent.putExtra("linkType", 3);
+            intent.putExtra("name", name);
+            intent.putExtra("linkUrl", linkUrl);
+            context.startActivity(intent);
         }
     }
 
@@ -478,7 +508,7 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
 
         @Override
         public void onClick(View view) {
-
+            //TODO 跳转签到界面。
         }
     }
 
@@ -490,12 +520,14 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
         int categoryId;
         int layout;
         String name;
+        RecommendBean.ConEntity conEntity;
 
         public TypeThreeMoreListener(Context context, RecommendBean.ConEntity conEntity) {
             this.context = context;
             this.categoryId = conEntity.getCategoryId();
             this.layout = conEntity.getLayout();
             this.name = conEntity.getName();
+            this.conEntity = conEntity;
         }
 
         @Override
@@ -511,7 +543,15 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
                     break;
                 //跳到第2种类型的activity。
                 case TYPE_TWO_LAYOUT:
-                    Toast.makeText(context, "我是布局" + layout + "\n我的CategoryId = " + categoryId, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(context, "我是布局" + layout + "\n我的CategoryId = " + categoryId, Toast.LENGTH_SHORT).show();
+                    RecommendBean.ConEntity.DetailListEntity detailListEntity = conEntity.getDetailList().get(0);
+                    String linkUrl = detailListEntity.getLinkUrl();
+                    int linkType = detailListEntity.getLinkType();
+                    Intent intent2 = new Intent(context, WebViewActivity.class);
+                    intent2.putExtra("linkUrl", linkUrl);
+                    //1代表是typeZero item点击布局，2代表typeTwo布局，3代表turnThree布局。
+                    intent2.putExtra("linkType", 2);
+                    context.startActivity(intent2);
                     break;
                 //跳到第1种类型的activity。
                 case TYPE_ONE_LAYOUT:

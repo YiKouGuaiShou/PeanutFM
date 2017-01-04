@@ -1,6 +1,7 @@
 package com.yikouguaishou.peanutfm.fragment.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.yikouguaishou.peanutfm.R;
+import com.yikouguaishou.peanutfm.WebViewActivity;
 import com.yikouguaishou.peanutfm.bean.RecommendBean;
 
 import java.util.ArrayList;
@@ -50,6 +52,7 @@ public class TypeOneAdapter extends RecyclerView.Adapter {
                 .into(holder1.iv_picture);
         holder1.tv_describtion.setText(detailListEntity.getDescriptions());
         holder1.tv_name.setText(detailListEntity.getName());
+        holder1.itemView.setOnClickListener(new typeOneClickLisener(detailListEntity));
     }
 
     @Override
@@ -66,6 +69,24 @@ public class TypeOneAdapter extends RecyclerView.Adapter {
             tv_name = (TextView) itemView.findViewById(R.id.tv_name);
             tv_describtion = (TextView) itemView.findViewById(R.id.tv_describtion);
             iv_picture = (ImageView) itemView.findViewById(R.id.iv_picture1);
+        }
+    }
+
+    public class typeOneClickLisener implements View.OnClickListener {
+        RecommendBean.ConEntity.DetailListEntity detailListEntity;
+
+        public typeOneClickLisener(RecommendBean.ConEntity.DetailListEntity detailListEntity) {
+            this.detailListEntity = detailListEntity;
+        }
+
+        @Override
+        public void onClick(View view) {
+            String linkUrl = detailListEntity.getLinkUrl();
+            Intent intent = new Intent(context, WebViewActivity.class);
+            intent.putExtra("linkUrl", linkUrl);
+            //linkType  1 代表是typeZero webView布局，2 代表typeTwo webView布局，3 代表turnThree webView布局。
+            intent.putExtra("linkType", 1);
+            context.startActivity(intent);
         }
     }
 }

@@ -9,11 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.marshalchen.ultimaterecyclerview.UltimateRecyclerView;
 import com.yikouguaishou.peanutfm.apiservice.SortDetailsApiService;
 import com.yikouguaishou.peanutfm.bean.SortDetailsBean;
 import com.yikouguaishou.peanutfm.fragment.adapter.SortDetailsAdapter;
@@ -33,11 +33,12 @@ public class SortDetailsActivity extends AppCompatActivity implements View.OnCli
         SwipeRefreshLayout.OnRefreshListener,
         SortDetailsAdapter.OnSortDetailsItemClickListener {
     private String baseUrl = "http://fsapp.linker.cc";
-    private UltimateRecyclerView ultimateRecyclerView_sortDetails;
+    private RecyclerView recyclerView_sortDetails;
+    private SwipeRefreshLayout swipeRefreshLayout;
     private Button btn_sortDetails_back;
-    private Button btn_sortDetails_more;
     private TextView tv_sortDetails_title;
     private TextView tv_sortDetails_name;
+    private TextView tv_sortDetails_more;
 
     private List<SortDetailsBean.ConBean.DetailListBean> sortDetailsDatas = new ArrayList<>();
     private SortDetailsAdapter sortDetailsAdapter;
@@ -46,6 +47,7 @@ public class SortDetailsActivity extends AppCompatActivity implements View.OnCli
     private String sort_name;
     private int categoryId;
     private String name;
+    private View header;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,30 +59,43 @@ public class SortDetailsActivity extends AppCompatActivity implements View.OnCli
 
         initViews();
         sortDetailsAdapter = new SortDetailsAdapter(this, sortDetailsDatas);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
-        ultimateRecyclerView_sortDetails.setLayoutManager(gridLayoutManager);
-        ultimateRecyclerView_sortDetails.setAdapter(sortDetailsAdapter);
-        ultimateRecyclerView_sortDetails.enableDefaultSwipeRefresh(true);//开启下拉刷新
-        ultimateRecyclerView_sortDetails.setDefaultOnRefreshListener(this);
-        ultimateRecyclerView_sortDetails.addItemDecoration(new SpaceItemDecoration(3));
+        final GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
+        recyclerView_sortDetails.setLayoutManager(gridLayoutManager);
+        recyclerView_sortDetails.setAdapter(sortDetailsAdapter);
+        recyclerView_sortDetails.addItemDecoration(new SpaceItemDecoration(2));
         setListener();
         getSortDetails();
+        setHeader(recyclerView_sortDetails);
+        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                return sortDetailsAdapter.isHeader(position) ? gridLayoutManager.getSpanCount() : 1;
+            }
+        });
     }
 
     private void initViews() {
-        ultimateRecyclerView_sortDetails = (UltimateRecyclerView) findViewById(R.id.mUltimateRecyclerView_sortDetails);
+        recyclerView_sortDetails = (RecyclerView) findViewById(R.id.mRecyclerView_sortDetails);
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.mSwipeRefreshLayout_sortDetails);
         btn_sortDetails_back = (Button) findViewById(R.id.mButton_sortDetails_back);
-        btn_sortDetails_more = (Button) findViewById(R.id.mButton_sortDetails_more);
         tv_sortDetails_title = (TextView) findViewById(R.id.mTextView_sortDetails_title);
         tv_sortDetails_title.setText(sort_name);
-        tv_sortDetails_name = (TextView) findViewById(R.id.mTextView_sortDetails_name);
-        tv_sortDetails_name.setText(sort_name);
+
     }
 
     private void setListener() {
         btn_sortDetails_back.setOnClickListener(this);
-        btn_sortDetails_more.setOnClickListener(this);
         sortDetailsAdapter.setOnItemClickListener(this);
+        swipeRefreshLayout.setOnRefreshListener(this);
+    }
+
+    void setHeader(RecyclerView view){
+        header = LayoutInflater.from(this).inflate(R.layout.sortdetails_header, view, false);
+        tv_sortDetails_more = (TextView) header.findViewById(R.id.mTextView_sortDetails_more);
+        tv_sortDetails_name = (TextView) header.findViewById(R.id.mTextView_sortDetails_name);
+        tv_sortDetails_name.setText(sort_name);
+        tv_sortDetails_more.setOnClickListener(this);
+        sortDetailsAdapter.setHeaderSortDetails(header);
     }
 
     /**
@@ -129,7 +144,7 @@ public class SortDetailsActivity extends AppCompatActivity implements View.OnCli
             case R.id.mButton_sortDetails_back:
                 finish();
                 break;
-            case R.id.mButton_sortDetails_more:
+            case R.id.mTextView_sortDetails_more:
                 Intent intent = new Intent(this, TypeThreeMoreActivity.class);
                 intent.putExtra("categoryId", categoryId);
                 intent.putExtra("title", name);
@@ -143,6 +158,7 @@ public class SortDetailsActivity extends AppCompatActivity implements View.OnCli
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                swipeRefreshLayout.setRefreshing(false);
                 sortDetailsDatas.clear();
                 getSortDetails();
             }
@@ -151,7 +167,7 @@ public class SortDetailsActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onItemClick(View v, int position) {
-        SortDetailsBean.ConBean.DetailListBean detailListBean = sortDetailsDatas.get(position);
+        SortDetailsBean.ConBean.DetailListBean detailListBean = sortDetailsDatas.get(position - 1);
         if (detailListBean != null) {
             Intent intent = new Intent(this, ColumnListActivity.class);
             String name = detailListBean.getName();
@@ -167,7 +183,6 @@ public class SortDetailsActivity extends AppCompatActivity implements View.OnCli
             startActivity(intent);
         }
     }
-
 
     /**
      * 给GridView设置间距

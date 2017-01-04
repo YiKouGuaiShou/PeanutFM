@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -28,11 +27,11 @@ public class ColumnListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     //item类型
     public static final int ITEM_TYPE_HEADER = 0;
     public static final int ITEM_TYPE_CONTENT = 1;
+    private View headerRecycleView;
 
-    private View headerView;
-    private AdapterView.OnItemClickListener mListener;
+    private OnItemClickListener mListener;
 
-    public void setOnItemClickListener(AdapterView.OnItemClickListener listener) {
+    public void setOnItemClickListener(OnItemClickListener listener) {
         mListener = listener;
     }
 
@@ -45,18 +44,18 @@ public class ColumnListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         this.columnListDatas = columnListDatas;
     }
 
-    public View getHeaderView() {
-        return headerView;
+    public View getHeaderRecycleView() {
+        return headerRecycleView;
     }
 
-    public void setHeaderView(View headerView) {
-        this.headerView = headerView;
+    public void setHeaderRecycleView(View headerRecycleView) {
+        this.headerRecycleView = headerRecycleView;
     }
 
     //判断当前item类型
     @Override
     public int getItemViewType(int position) {
-        if (headerView == null) {
+        if (headerRecycleView == null) {
             return ITEM_TYPE_CONTENT;
         }
         if (position == 0) {
@@ -67,34 +66,21 @@ public class ColumnListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public int getItemCount() {
-        return headerView == null ? columnListDatas.size() : columnListDatas.size() + 1;
+        return headerRecycleView == null ? columnListDatas.size() : columnListDatas.size() + 1;
     }
 
     //头部 ViewHolder
-    public static class HeaderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private RelativeLayout rl_collect;
-        private TextView tv_columnList_collect;
-        private ImageView iv_collect_logo;
-
+    public static class HeaderViewHolder extends RecyclerView.ViewHolder {
+        TextView tv_columnList_count;
+        ImageView iv_columnList_sort;
+        RelativeLayout rl_sort;
         public HeaderViewHolder(View itemView) {
             super(itemView);
-            rl_collect = (RelativeLayout) itemView.findViewById(R.id.mRelativeLayout_collect);
-            tv_columnList_collect = (TextView) itemView.findViewById(R.id.mTextView_collect);
-            iv_collect_logo = (ImageView) itemView.findViewById(R.id.mImageView_collect_logo);
-
-            rl_collect.setOnClickListener(this);
+            tv_columnList_count = (TextView) itemView.findViewById(R.id.mTextView_columnList_count);
+            iv_columnList_sort = (ImageView) itemView.findViewById(R.id.mImageView_columnList_sort);
+            rl_sort = (RelativeLayout) itemView.findViewById(R.id.rl_sort);
         }
 
-        @Override
-        public void onClick(View view) {
-            if (tv_columnList_collect.getText().toString().equals("收藏")) {
-                tv_columnList_collect.setText("已收藏");
-                iv_collect_logo.setImageResource(R.mipmap.collected);
-            } else {
-                tv_columnList_collect.setText("收藏");
-                iv_collect_logo.setImageResource(R.mipmap.collect);
-            }
-        }
     }
 
     //内容 ViewHolder
@@ -122,12 +108,10 @@ public class ColumnListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         }
     }
 
-
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (headerView != null && viewType == ITEM_TYPE_HEADER) {
-//            View view_header = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_columnlist_header, parent, false);
-            return new HeaderViewHolder(headerView);
+        if (headerRecycleView != null && viewType == ITEM_TYPE_HEADER) {
+            return new HeaderViewHolder(headerRecycleView);
         }
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.columnlist_item, parent, false);
         return new ColumnViewHolder(view);
@@ -136,7 +120,6 @@ public class ColumnListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (getItemViewType(position) == ITEM_TYPE_CONTENT) {
-
             ColumnListBean.ConBean conBean = columnListDatas.get(position - 1);
             if (holder instanceof ColumnViewHolder) {
                 String name = conBean.getName();
@@ -155,10 +138,7 @@ public class ColumnListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                         .load(logoUrl)
                         .into(((ColumnViewHolder) holder).iv_column_logo);
                 return;
-            } else if (getItemViewType(position) == ITEM_TYPE_HEADER) {
-                ColumnListBean columnListBean = new ColumnListBean();
-                String logoUrl = columnListBean.getLogoUrl();
-
+            }else if (getItemViewType(position) == ITEM_TYPE_HEADER) {
                 return;
             }
             return;

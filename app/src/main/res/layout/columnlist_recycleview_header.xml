@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_sort"
+    android:layout_width="match_parent"
+    android:layout_height="20dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginLeft="12dp"
+    android:layout_marginRight="12dp"
+    android:layout_marginTop="2dp">
+
+    <TextView
+        android:id="@+id/mTextView_columnList_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text="共xxx首"
+        android:textColor="#818181"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/mTextView_columnList_sort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:text="排序"
+        android:textColor="#515151"
+        android:textSize="16sp" />
+    <ImageView
+        android:id="@+id/mImageView_columnList_sort"
+        android:layout_toLeftOf="@id/mTextView_columnList_sort"
+        android:layout_centerVertical="true"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:src="@mipmap/sort_icon"/>
+</RelativeLayout>

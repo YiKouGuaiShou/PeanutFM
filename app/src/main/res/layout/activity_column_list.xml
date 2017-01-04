@@ -6,16 +6,17 @@
     android:layout_height="match_parent"
     tools:context="com.yikouguaishou.peanutfm.ColumnListActivity">
 
-    <FrameLayout
+    <android.support.v7.widget.Toolbar
         android:id="@+id/mFrameLayout_columnList"
         android:layout_width="match_parent"
-        android:layout_height="32dp">
+        android:layout_height="32dp"
+        android:background="?attr/colorPrimary"
+        android:layout_margin="5dp">
 
         <RelativeLayout
             android:id="@+id/mLinearLayout_columnList"
             android:layout_width="match_parent"
             android:layout_height="32dp"
-            android:layout_margin="5dp"
             android:background="@android:color/transparent"
             android:padding="5dp">
 
@@ -44,11 +45,203 @@
                 android:layout_gravity="center_vertical"
                 android:src="@mipmap/column_share" />
         </RelativeLayout>
-    </FrameLayout>
+    </android.support.v7.widget.Toolbar>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/mRecyclerView_columnList"
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/layout_columnList_header"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_below="@id/mFrameLayout_columnList"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="270dp">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsingToolbarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:contentScrim="#ffffff"
+                app:layout_scrollFlags="scroll">
+
+                <RelativeLayout
+                    android:id="@+id/rl_columnList"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp">
+
+                    <ImageView
+                        android:id="@+id/iv_columnList_header"
+                        android:layout_width="500dp"
+                        android:layout_height="500dp"
+                        android:src="@mipmap/place_holder"
+                        android:scaleType="centerCrop"
+                        />
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/riv_columnList_logo"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_centerInParent="true"
+                        android:src="@mipmap/place_holder"
+                        app:riv_border_color="#ffffff"
+                        app:riv_border_width="2dp"
+                        app:riv_corner_radius="10dp" />
+
+                    <RelativeLayout
+                        android:id="@+id/mRelativeLayout_collect"
+                        android:layout_width="100dp"
+                        android:layout_height="30dp"
+                        android:layout_below="@id/riv_columnList_logo"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="5dp"
+                        android:background="@android:color/transparent">
+
+                        <com.makeramen.roundedimageview.RoundedImageView
+                            android:layout_width="100dp"
+                            android:layout_height="30dp"
+                            android:background="#f4c600"
+                            app:riv_corner_radius="10dp" />
+
+                        <ImageView
+                            android:id="@+id/mImageView_collect_logo"
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="8dp"
+                            android:src="@mipmap/collect" />
+
+                        <TextView
+                            android:id="@+id/mTextView_collect"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@id/mImageView_collect_logo"
+                            android:text="收藏"
+                            android:textColor="#ffffff"
+                            android:textSize="16sp" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+            <RadioGroup
+                android:id="@+id/mRadioGroup_columnList"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_below="@id/rl_columnList"
+                android:layout_margin="16dp"
+                android:background="#bfbfbf"
+                android:orientation="horizontal"
+                android:padding="1dp">
+
+                <RadioButton
+                    android:id="@+id/mRadioButton_program"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/columnlist_rb_background_color"
+                    android:button="@null"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:text="节目"
+                    android:textColor="@drawable/columnlist_rb_text_color"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/mRadioButton_details"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/columnlist_rb_background_color"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="详情"
+                    android:textColor="@drawable/columnlist_rb_text_color"
+                    android:textSize="16sp" />
+            </RadioGroup>
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/mRecyclerView_columnList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <LinearLayout
+            android:id="@+id/ll_columnDetails"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <TextView
+                android:id="@+id/mTextView_columnDetails_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="专辑名"
+                android:textColor="#999999"
+                android:textSize="18sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:layout_marginLeft="10dp">
+
+                <ImageView
+                    android:id="@+id/iv_columnDetails_play1"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/play_icon" />
+
+                <TextView
+                    android:id="@+id/mTextView_columnDetails_play"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="2dp"
+                    android:layout_toRightOf="@id/iv_columnDetails_play1"
+                    android:text="播放源"
+                    android:textColor="#818181"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/iv_columnDetails_play2"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/mTextView_columnDetails_play"
+                    android:src="@mipmap/play_icon" />
+
+                <TextView
+                    android:id="@+id/mTextView_columnDetails_listens"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="2dp"
+                    android:layout_toRightOf="@id/iv_columnDetails_play2"
+                    android:text="收听数"
+                    android:textColor="#818181"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/mTextView_columnDetails_descriptions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="30dp"
+                android:text="专辑描述"
+                android:textColor="#818181"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </android.support.design.widget.CoordinatorLayout>
 
 </RelativeLayout>

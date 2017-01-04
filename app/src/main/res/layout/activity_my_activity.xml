@@ -14,7 +14,8 @@
             android:layout_width="60dp"
             android:layout_height="match_parent"
             android:padding="15dp"
-            android:src="@drawable/mf_leftjian"/>
+            android:src="@drawable/mf_leftjian"
+            android:onClick="goBack"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="57dp"

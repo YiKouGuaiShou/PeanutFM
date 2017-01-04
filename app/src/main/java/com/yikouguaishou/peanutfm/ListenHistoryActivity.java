@@ -24,4 +24,8 @@ public class ListenHistoryActivity extends AppCompatActivity {
         tv_history.setVisibility(View.VISIBLE);
         lv_history.setVisibility(View.INVISIBLE);
     }
+
+    public void goBack(View view) {
+        finish();
+    }
 }

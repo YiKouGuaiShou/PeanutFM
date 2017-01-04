@@ -53,8 +53,8 @@ public class MineFragment extends Fragment implements ListView.OnItemClickListen
         //从资源文件中得到字符串数组
         mItemnames = getResources().getStringArray(R.array.minefragment_itemnames);
 
-        itemlogo = new int[]{R.drawable.mynews,R.drawable.woguanzhudezhubo,R.drawable.myactivity,R.drawable.mycount,
-                R.drawable.mycollection,R.drawable.myhistory,R.drawable.advice,R.drawable.setting};
+        itemlogo = new int[]{R.drawable.ic_mynews,R.drawable.woguanzhudezhubo,R.drawable.myactivity,R.drawable.mycount,
+                R.drawable.mycollection,R.drawable.ic_shoutinglishi,R.drawable.ic_yijianfankui,R.drawable.setting};
 
         mListView_mf.addHeaderView(LayoutInflater.from(getContext()).inflate(R.layout.fragment_mine_header,null,false));
         adapter =new ListViewAdapter();

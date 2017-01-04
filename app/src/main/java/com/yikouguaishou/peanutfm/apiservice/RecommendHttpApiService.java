@@ -2,11 +2,15 @@ package com.yikouguaishou.peanutfm.apiservice;
 
 import com.yikouguaishou.peanutfm.bean.RecommendBean;
 import com.yikouguaishou.peanutfm.bean.TurnOneItemBean;
+import com.yikouguaishou.peanutfm.bean.TurnTwoItemBean;
 import com.yikouguaishou.peanutfm.bean.TypeOneItemBean;
 import com.yikouguaishou.peanutfm.bean.TypeThreeItemBean;
 import com.yikouguaishou.peanutfm.bean.TypeZeroItemBean;
 
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -33,4 +37,8 @@ public interface RecommendHttpApiService {
 
     @GET("fslhsrv/srv/radio/coampaign_list/null")
     Observable<TurnOneItemBean> getTurnOneItemBean();
+
+    @FormUrlEncoded
+    @POST("fslhsrv/srv/video/videoList")
+    Observable<TurnTwoItemBean> getTurnTwoItemBean(@Field("sort") int sort);
 }

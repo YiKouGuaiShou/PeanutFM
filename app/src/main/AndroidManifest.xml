@@ -32,7 +32,8 @@
         <activity android:name=".TypeOneMoreActivity" />
         <activity android:name=".SortDetailsActivity" />
         <activity android:name=".ColumnListActivity" />
-        <activity android:name=".TurnOneActivity"></activity>
+        <activity android:name=".TurnOneActivity" />
+        <activity android:name=".TurnTwoActivity"></activity>
     </application>
 
 </manifest>

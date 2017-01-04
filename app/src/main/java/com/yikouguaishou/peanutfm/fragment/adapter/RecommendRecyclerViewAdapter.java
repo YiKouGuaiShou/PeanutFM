@@ -19,6 +19,7 @@ import com.marshalchen.ultimaterecyclerview.UltimateViewAdapter;
 import com.yikouguaishou.peanutfm.AdviceActivity;
 import com.yikouguaishou.peanutfm.R;
 import com.yikouguaishou.peanutfm.TurnOneActivity;
+import com.yikouguaishou.peanutfm.TurnTwoActivity;
 import com.yikouguaishou.peanutfm.TypeOneMoreActivity;
 import com.yikouguaishou.peanutfm.TypeThreeMoreActivity;
 import com.yikouguaishou.peanutfm.TypeZeroMoreActivity;
@@ -141,7 +142,8 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
             //设置图片点击事件。
             holder4.banner.setOnBannerClickListener(new BannerClickListener(context, bannerList));
             //设置"活动点击事件"。
-            holder4.mTurnOne.setOnClickListener(new TurnOneClickListener(context, recommendBean.getTurnList().get(0)));
+            if (holder4.mTurnOne != null)
+                holder4.mTurnOne.setOnClickListener(new TurnOneClickListener(context, recommendBean.getTurnList().get(0)));
             //设置"视频点击事件"。
             holder4.mTurnTwo.setOnClickListener(new TurnTwoClikeListener(context, recommendBean.getTurnList().get(1)));
             //设置"商城点击事件"。
@@ -443,7 +445,10 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
 
         @Override
         public void onClick(View view) {
-            super.onClick(view);
+            Intent intent = new Intent(context, TurnTwoActivity.class);
+            String title = turnListEntity.getTitle();
+            intent.putExtra("title", title);
+            context.startActivity(intent);
         }
     }
 
@@ -458,7 +463,7 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
 
         @Override
         public void onClick(View view) {
-            super.onClick(view);
+
         }
     }
 
@@ -473,7 +478,7 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
 
         @Override
         public void onClick(View view) {
-            super.onClick(view);
+
         }
     }
 

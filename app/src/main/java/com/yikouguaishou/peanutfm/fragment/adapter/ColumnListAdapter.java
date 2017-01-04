@@ -95,7 +95,7 @@ public class ColumnListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     //内容 ViewHolder
-    public class ColumnViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ColumnViewHolder extends RecyclerView.ViewHolder {
         RoundedImageView iv_column_logo;
         ImageView iv_column_download, iv_column_downloaded;
         TextView tv_column_name, tv_column_replyNum, tv_column_listenNum, tv_column_duration;
@@ -111,9 +111,11 @@ public class ColumnListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             tv_column_listenNum = (TextView) itemView.findViewById(R.id.mTextView_column_listen);
             tv_column_duration = (TextView) itemView.findViewById(R.id.mTextView__column_duration);
 
-            iv_column_download.setOnClickListener(this);
+            iv_column_download.setOnClickListener(new DownMP3ClickListener());
         }
 
+    }
+    class DownMP3ClickListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
             String path = "file";
@@ -164,16 +166,17 @@ public class ColumnListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 e.printStackTrace();
             } finally {
                 try {
-                    output.close();
-                    iv_column_downloaded.setVisibility(View.VISIBLE);
+                    if (output != null) {
+                        output.close();
+                    }
+                    Toast.makeText(context, "下载完成！", Toast.LENGTH_SHORT).show();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-            Toast.makeText(context, "下载", Toast.LENGTH_SHORT).show();
+
         }
     }
-
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (headerRecycleView != null && viewType == ITEM_TYPE_HEADER) {

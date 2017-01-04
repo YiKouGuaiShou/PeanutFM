@@ -105,7 +105,6 @@ public class ColumnListActivity extends AppCompatActivity
         iv_collect_logo = (ImageView) findViewById(R.id.mImageView_collect_logo);
         rv_columnList = (RecyclerView) findViewById(R.id.mRecyclerView_columnList);
         tv_columnList_title = (TextView) findViewById(R.id.mTextView_columnList_title);
-        tv_columnList_title.setText(columnName);
         iv_back = (ImageView) findViewById(R.id.mButton_columnList_back);
         iv_share = (ImageView) findViewById(R.id.mButton_columnList_share);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.mSwipeRefreshLayout);
@@ -195,6 +194,7 @@ public class ColumnListActivity extends AppCompatActivity
                         count = columnListBean.getCount();
                         Log.e("======onNext===", "===ColumnList==count=" + count);
                         columnName = columnListBean.getColumnName();
+                        tv_columnList_title.setText(columnName);
                         Log.e("======onNext===", "===ColumnList==columnName=" + columnName);
                         providerName = columnListBean.getProviderName();
                         int listenNum = columnListBean.getListenNum();

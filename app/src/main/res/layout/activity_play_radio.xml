@@ -1,35 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.yikouguaishou.peanutfm.PlayRadioActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp">
+    <include layout="@layout/play_radio_title" />
 
-        <ImageButton
-            android:id="@+id/btn_play_radio_back"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:background="@mipmap/back" />
+    <include layout="@layout/play_radio_logo" />
 
-        <TextView
-            android:id="@+id/tv_play_radio_title"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:textColor="#000000" />
-
-        <ImageButton
-            android:id="@+id/btn_play_radio_share"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:background="@mipmap/back" />
-    </RelativeLayout>
-</RelativeLayout>
+    <include layout="@layout/play_radio_anchorperson" />
+</LinearLayout>

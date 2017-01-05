@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -100,10 +101,9 @@ public class RadioStationListFragment extends Fragment implements RadioStationIt
 //        } else if (radioStationData.get(0).getLiveList().get(position).getModelType().equals("3")) {
         //如果类型为3
         Intent intent = new Intent(ctx, PlayRadioActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("radioStationData", (Serializable) radioStationData);
-        bundle.putInt("position", position);
-        bundle.putString("name", name);
+        intent.putExtra("radioStationData", (Serializable) radioStationData);
+        intent.putExtra("position", position);
+        intent.putExtra("name", name);
         startActivity(intent);
 //        }
     }
@@ -151,7 +151,7 @@ public class RadioStationListFragment extends Fragment implements RadioStationIt
 
                     @Override
                     public void onError(Throwable e) {
-
+                        Log.e("===onError===>", e.getMessage());
                     }
 
                     @Override

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_play_radio_logo"
+        android:layout_width="match_parent"
+        android:scaleType="fitXY"
+        android:layout_height="200dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/iv_play_radio_logo"
+        android:background="#50555555">
+
+        <ImageView
+            android:id="@+id/iv_play_radio_list"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="10dp"
+            android:src="@drawable/three" />
+
+        <ImageView
+            android:id="@+id/playing_radio"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentRight="true"
+            android:padding="7dp"
+            android:src="@drawable/play_ondemand_image_pause" />
+    </RelativeLayout>
+</RelativeLayout>

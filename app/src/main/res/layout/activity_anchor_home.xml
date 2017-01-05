@@ -99,20 +99,28 @@
     </RelativeLayout>
 
     <RadioGroup
+        android:id="@+id/mRadioGroup_anchorHome"
         android:layout_below="@id/rl_anchorHome"
         android:layout_width="match_parent"
         android:layout_height="32dp"
         android:padding="1dp"
         android:layout_margin="16dp"
+        android:background="#bfbfbf"
         android:orientation="horizontal"
         >
         <RadioButton
+            android:id="@+id/mRadioButton_anchorHome_"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="32dp" />
+            android:layout_height="32dp"
+            android:text="动态"
+            android:checked="true"
+            />
         <RadioButton
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="32dp" />
+            android:layout_height="32dp"
+            android:text="作品"
+            />
     </RadioGroup>
 </RelativeLayout>

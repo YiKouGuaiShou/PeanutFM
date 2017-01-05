@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="diameter" format="dimension" />
+    <declare-styleable name="CircleProgressView">
+        <attr name="diameter" />
+    </declare-styleable>
+</resources>

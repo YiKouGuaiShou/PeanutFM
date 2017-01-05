@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.yikouguaishou.peanutfm.AnchorHomeActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_anchorHome"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@mipmap/icon_anchor_detail_bg">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/mToolbar_anchorHome"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            >
+            <RelativeLayout
+                android:id="@+id/mRelativeLayout_columnList"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@android:color/transparent"
+                android:padding="5dp">
+
+                <ImageView
+                    android:id="@+id/mButton_anchor_back"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:src="@mipmap/icon_back_white" />
+
+                <TextView
+                    android:id="@+id/mTextView_columnList_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/mButton_anchor_share"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/icon_share_white" />
+            </RelativeLayout>
+        </android.support.v7.widget.Toolbar>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/mCircleImageView_anchor_photo"
+            android:layout_below="@id/mToolbar_anchorHome"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/boy"
+            />
+        <TextView
+            android:id="@+id/mTextView_anchor_nickname"
+            android:layout_below="@id/mCircleImageView_anchor_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
+            android:layout_centerHorizontal="true"
+            android:text="anchor_nickname"
+            android:textColor="#ffffff"
+            />
+        <RelativeLayout
+            android:layout_below="@id/mTextView_anchor_nickname"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@android:color/transparent"
+            >
+            <TextView
+                android:id="@+id/mTextView_anchor_focusNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="关注 n"
+                android:textColor="#ffffff"
+                />
+            <View
+                android:layout_width="1sp"
+                android:layout_height="14dp"
+                android:background="#ffffff"
+                android:layout_centerHorizontal="true"
+                />
+            <TextView
+                android:id="@+id/mTextView_anchor_focus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="+关注"
+                android:textColor="#ffffff"
+                />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RadioGroup
+        android:layout_below="@id/rl_anchorHome"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:padding="1dp"
+        android:layout_margin="16dp"
+        android:orientation="horizontal"
+        >
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="32dp" />
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="32dp" />
+    </RadioGroup>
+</RelativeLayout>

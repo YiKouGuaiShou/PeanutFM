@@ -6,12 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.yikouguaishou.peanutfm.ColumnListActivity">
 
-
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/mSwipeRefreshLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <android.support.design.widget.CoordinatorLayout
             android:id="@+id/layout_columnList_header"
             android:layout_width="match_parent"
@@ -31,7 +25,7 @@
                     android:minHeight="32dp"
                     app:collapsedTitleGravity="center"
                     app:contentScrim="#ffffff"
-                    app:layout_scrollFlags="scroll|snap|exitUntilCollapsed|enterAlways|enterAlwaysCollapsed"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed|enterAlways|enterAlwaysCollapsed"
                     app:titleEnabled="true">
 
                     <RelativeLayout
@@ -117,7 +111,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
-                                android:text="mTextView_column_title"
                                 android:textColor="#000000"
                                 android:textSize="16sp" />
 
@@ -170,7 +163,7 @@
                 </RadioGroup>
             </android.support.design.widget.AppBarLayout>
 
-            <android.support.v7.widget.RecyclerView
+            <com.marshalchen.ultimaterecyclerview.UltimateRecyclerView
                 android:id="@+id/mRecyclerView_columnList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -249,7 +242,14 @@
                     android:textColor="#818181"
                     android:textSize="16sp" />
             </LinearLayout>
+            <TextView
+                android:id="@+id/tv_empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="暂无数据"
+                android:textColor="@color/colorAccent"
+                android:visibility="gone" />
         </android.support.design.widget.CoordinatorLayout>
-    </android.support.v4.widget.SwipeRefreshLayout>
 
 </RelativeLayout>

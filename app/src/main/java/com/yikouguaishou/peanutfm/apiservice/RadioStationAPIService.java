@@ -33,7 +33,7 @@ public interface RadioStationAPIService {
             @Query("userId") String userId);
 
     @POST("fslhsrv/srv/interactive/getAnchorDynamicList")
-    Observable<AnchorDynamicListBean> AnchorDynamicList(
+    Observable<AnchorDynamicListBean> getAnchorDynamicList(
             @Query("anchorId") String anchorId);
 
     @FormUrlEncoded

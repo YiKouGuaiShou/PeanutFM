@@ -31,7 +31,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 /**
- * A simple {@link Fragment} subclass.
+ * 主播作品列表
  */
 public class AnchorProductFragment extends Fragment
         implements SwipeRefreshLayout.OnRefreshListener, AnchorProductAdapter.OnProductItemClickListener {
@@ -45,15 +45,12 @@ public class AnchorProductFragment extends Fragment
 
     public AnchorProductFragment(String anchorId) {
         this.anchorId = anchorId;
-        Log.e("======AnchorProduct===", "==anchorId==" + anchorId);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_anchor_product, container, false);
-
         urv_anchor_product = (UltimateRecyclerView) view.findViewById(R.id.mUltimateRecyclerView_anchor_product);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         manager.setOrientation(LinearLayoutManager.VERTICAL);

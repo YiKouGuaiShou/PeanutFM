@@ -16,9 +16,9 @@ import java.util.List;
  */
 public class AnchorDynamicAdapter extends UltimateViewAdapter<AnchorDynamicAdapter.DynamicViewHolder> {
     private Context context;
-    private List<AnchorDynamicListBean> dynamicDatas = new ArrayList<>();
+    private List<AnchorDynamicListBean.ConBean> dynamicDatas = new ArrayList<>();
 
-    public AnchorDynamicAdapter(Context context, List<AnchorDynamicListBean> dynamicDatas) {
+    public AnchorDynamicAdapter(Context context, List<AnchorDynamicListBean.ConBean> dynamicDatas) {
         this.context = context;
         this.dynamicDatas = dynamicDatas;
     }

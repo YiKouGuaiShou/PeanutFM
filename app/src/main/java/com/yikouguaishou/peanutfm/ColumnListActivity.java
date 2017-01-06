@@ -43,7 +43,7 @@ public class ColumnListActivity extends AppCompatActivity
         UltimateRecyclerView.OnLoadMoreListener, ColumnListAdapter.OnItemClickListener {
     private String baseUrl = "http://fsapp.linker.cc";
     private String pid;
-    private int providerCode;
+    private String providerCode;
     private String columnName;
     private String mobileId = "";
 
@@ -79,7 +79,7 @@ public class ColumnListActivity extends AppCompatActivity
         Bundle bundle = getIntent().getExtras();
         logoUrl = bundle.getString("logoUrl");
         pid = bundle.getString("albumId");
-        providerCode = bundle.getInt("providerCode");
+        providerCode = bundle.getString("providerCode");
         Log.e("======columnList===", "===pid===" + pid);
 
 

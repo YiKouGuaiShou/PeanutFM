@@ -19,7 +19,7 @@ public interface SortApiService {
     @Headers({"Content-Type:application/x-www-form-urlencoded;charset=UTF-8"})
     @POST("fslhsrv/srv/wifimusicbox/demand/detail")
     Observable<ColumnListBean> getColumnListData(
-            @Query("providerCode") int providerCode,
+            @Query("providerCode") String providerCode,
             @Query("sortType") int sortType,
             @Query("pid") String pid,
             @Query("mobileId") String mobileId,

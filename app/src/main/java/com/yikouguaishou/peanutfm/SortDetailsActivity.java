@@ -175,12 +175,13 @@ public class SortDetailsActivity extends AppCompatActivity implements View.OnCli
             String logo = detailListBean.getLogo();
             long pid = detailListBean.getAlbumId();
             String albumId = String.valueOf(pid);
-            int providerCode = detailListBean.getProviderCode();
+            int code = detailListBean.getProviderCode();
+            String providerCode = String.valueOf(code);
             Bundle bundle = new Bundle();
             bundle.putString("name", name);
             bundle.putString("logoUrl", logo);
             bundle.putString("albumId", albumId);
-            bundle.putInt("providerCode", providerCode);
+            bundle.putString("providerCode", providerCode);
             intent.putExtras(bundle);
             startActivity(intent);
         }

@@ -22,18 +22,18 @@
         android:layout_weight="1"
         android:background="#f0f0f0" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:elevation="2dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="50dp"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:elevation="2dp"-->
+    <!--android:gravity="center"-->
+    <!--android:orientation="horizontal">-->
 
-        <ImageView
-            android:id="@+id/playList_quXiao"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@mipmap/quxiao" />
-    </LinearLayout>
+    <!--<ImageView-->
+    <!--android:id="@+id/playList_quXiao"-->
+    <!--android:layout_width="30dp"-->
+    <!--android:layout_height="30dp"-->
+    <!--android:background="@mipmap/quxiao" />-->
+    <!--</LinearLayout>-->
 </LinearLayout>

@@ -40,7 +40,7 @@ public class RadioPlayListActivity extends AppCompatActivity implements RadioPla
     //请求参数
     private String baseUrl = "http://fsapp.linker.cc";
     private String pid;
-    private int providerCode;
+    private String providerCode;
     private String mobileId = "";
     private boolean isRefreshing = false;
     private int totalPage;
@@ -85,7 +85,6 @@ public class RadioPlayListActivity extends AppCompatActivity implements RadioPla
     private void findView() {
         mTitle = (TextView) findViewById(R.id.playList_title);
         mRecycler = (UltimateRecyclerView) findViewById(R.id.playList_recycler);
-        mquXiao = (ImageView) findViewById(R.id.playList_quXiao);
         adapter = new RadioPlayListAdapter(this);
         adapter.setNameList(nameList);
         adapter.setCurrentPage(currentPage);
@@ -95,7 +94,7 @@ public class RadioPlayListActivity extends AppCompatActivity implements RadioPla
 
         pid = columnListBeens.get(0).getColumnId();
         totalPage = columnListBeens.get(0).getTotalPage();
-        providerCode = columnListBeens.get(0).getProviderCode();
+        providerCode = columnListBeens.get(0).getProviderCode() + "";
     }
 
     private void initData() {
@@ -148,6 +147,7 @@ public class RadioPlayListActivity extends AppCompatActivity implements RadioPla
                             isRefreshing = false;
                         } else {
                             columnListBeens.add(columnListBean);
+                            sendColumnListBeens.clear();
                             sendColumnListBeens.addAll(columnListBeens);
                             initData();
                         }

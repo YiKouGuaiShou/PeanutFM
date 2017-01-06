@@ -426,9 +426,8 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
                 bundle.putString("name", bannerListEntity.getTitle());
                 bundle.putString("logoUrl", bannerListEntity.getUrl());
                 String albumId = bannerListEntity.getColumnId();
-                Long aLong = Long.valueOf(albumId);
-                bundle.putLong("albumId", aLong);
-                bundle.putInt("providerCode", bannerListEntity.getPrividerCode());
+                bundle.putString("albumId", albumId);
+                bundle.putString("providerCode", bannerListEntity.getPrividerCode() + "");
                 intent.putExtras(bundle);
                 context.startActivity(intent);
             }

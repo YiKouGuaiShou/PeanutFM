@@ -98,9 +98,8 @@ public class TypeThreeAdapter extends RecyclerView.Adapter {
         bundle.putString("name", detailListEntity.getName());
         bundle.putString("logoUrl", detailListEntity.getLogo());
         String albumId = detailListEntity.getAlbumId();
-        Long aLong = Long.valueOf(albumId);
-        bundle.putLong("albumId", aLong);
-        bundle.putInt("providerCode", detailListEntity.getProviderCode());
+        bundle.putString("albumId", albumId);
+        bundle.putString("providerCode", detailListEntity.getProviderCode() + "");
         intent.putExtras(bundle);
         context.startActivity(intent);
     }

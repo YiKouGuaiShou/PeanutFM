@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="310dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+
+        <ImageView
+            android:id="@+id/play_bgPicture"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ff737373" />
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/mToolbar_playt"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_collapseMode="pin">
+
+            <RelativeLayout
+                android:id="@+id/mRelativeLayout_playt"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@android:color/transparent"
+                android:padding="5dp">
+
+                <ImageView
+                    android:id="@+id/mIv_play_back"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:src="@mipmap/column_back" />
+
+                <TextView
+                    android:id="@+id/mTV_play_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="神雕侠女063"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/mIv_play_share"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/column_share" />
+            </RelativeLayout>
+        </android.support.v7.widget.Toolbar>
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/mToolbar_playb"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentBottom="true">
+
+            <RelativeLayout
+                android:id="@+id/mRelativeLayout_playb"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@android:color/transparent"
+                android:padding="5dp">
+
+                <LinearLayout
+                    android:id="@+id/mIv_play_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:src="@drawable/play_orders" />
+
+                    <TextView
+                        android:id="@+id/play_currentTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="16dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="00:07"
+                        android:textColor="#ffffff"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/play_lastone"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:background="@drawable/play_ondemand_previous" />
+
+                    <ImageButton
+                        android:id="@+id/play_playOrpause"
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:background="@drawable/play_ondemand_image_play" />
+
+                    <ImageButton
+                        android:id="@+id/play_nextone"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:background="@drawable/play_ondemand_next" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/mIv_play_heart"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="1"
+                        android:src="@mipmap/collect" />
+
+                    <TextView
+                        android:id="@+id/play_totleTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="16dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="23:35"
+                        android:textColor="#ffffff"
+                        android:textSize="10sp" />
+                </LinearLayout>
+            </RelativeLayout>
+        </android.support.v7.widget.Toolbar>
+    </RelativeLayout>
+
+    <SeekBar
+        android:id="@+id/play_seekBar"
+        style="@style/Base.Widget.AppCompat.SeekBar"
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:layout_below="@+id/play_bgPicture"
+        android:background="@color/grey"
+        android:backgroundTint="#ff00f0ff" />
+</LinearLayout>

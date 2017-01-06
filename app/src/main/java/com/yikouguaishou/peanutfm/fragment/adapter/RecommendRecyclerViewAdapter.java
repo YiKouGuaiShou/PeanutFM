@@ -19,7 +19,9 @@ import com.bumptech.glide.Glide;
 import com.marshalchen.ultimaterecyclerview.UltimateViewAdapter;
 import com.yikouguaishou.peanutfm.AdviceActivity;
 import com.yikouguaishou.peanutfm.ColumnListActivity;
+import com.yikouguaishou.peanutfm.PlayRadioActivity;
 import com.yikouguaishou.peanutfm.R;
+import com.yikouguaishou.peanutfm.RadioPlayActivity;
 import com.yikouguaishou.peanutfm.TurnOneActivity;
 import com.yikouguaishou.peanutfm.TurnTwoActivity;
 import com.yikouguaishou.peanutfm.TypeOneMoreActivity;
@@ -168,7 +170,7 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
             //设置图片加载器
             holder4.banner.setImageLoader(new MyImageLoader());
             //设置banner动画效果
-            holder4.banner.setBannerAnimation(Transformer.RotateDown);
+            holder4.banner.setBannerAnimation(Transformer.RotateUp);
             //设置自动轮播，默认为true
             holder4.banner.isAutoPlay(true);
             //设置轮播时间
@@ -509,6 +511,7 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
         @Override
         public void onClick(View view) {
             //TODO 跳转签到界面。
+
         }
     }
 

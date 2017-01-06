@@ -40,7 +40,9 @@
         <activity android:name=".TurnTwoActivity" />
         <activity android:name=".WebViewActivity" />
         <activity android:name=".PlayRadioActivity" />
-        <activity android:name=".AnchorHomeActivity"></activity>
+        <activity android:name=".AnchorHomeActivity" />
+        <activity android:name=".RadioPlayActivity" />
+        <activity android:name=".RadioPlayListActivity"></activity>
     </application>
 
 </manifest>

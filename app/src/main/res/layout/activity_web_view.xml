@@ -1,21 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <include layout="@layout/webview_base_layout" />
+    <include
+        android:id="@+id/include"
+        layout="@layout/webview_base_layout" />
 
     <ProgressBar
         android:id="@+id/myProgressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
-        android:layout_height="2dp" />
+        android:layout_height="2dp"
+        android:layout_below="@+id/include" />
 
     <WebView
         android:id="@+id/web_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:layout_below="@+id/myProgressBar" />
 
-</LinearLayout>
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_btn"
+        android:layout_width="180dp"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_margin="30dp"
+        app:cardBackgroundColor="#89FA36"
+        app:cardCornerRadius="4dp">
+
+        <TextView
+            android:id="@+id/card_btn_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="我要报名"
+            android:textColor="#ffffff" />
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

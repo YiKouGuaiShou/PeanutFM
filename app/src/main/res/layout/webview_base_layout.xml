@@ -9,8 +9,8 @@
 
         <ImageButton
             android:id="@+id/web_back"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
             android:layout_centerVertical="true"
             android:background="@mipmap/back" />
 

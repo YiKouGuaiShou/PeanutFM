@@ -23,9 +23,9 @@
 
         <ImageButton
             android:id="@+id/mSearch"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_marginRight="10dp"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginRight="16dp"
             android:layout_gravity="center_vertical"
             android:onClick="onSearchClick"
             android:background="@mipmap/search" />

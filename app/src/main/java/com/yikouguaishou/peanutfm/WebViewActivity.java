@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * 跳转这个界面注意：
@@ -36,6 +37,8 @@ public class WebViewActivity extends AppCompatActivity implements View.OnClickLi
     private ProgressBar bar;
     private int linkType;
     private PopupWindow popupWindow;
+    private CardView mCardBtn;
+    private TextView mCardBtnTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,14 @@ public class WebViewActivity extends AppCompatActivity implements View.OnClickLi
         mShare = (ImageButton) findViewById(R.id.web_share);
         bar = (ProgressBar) findViewById(R.id.myProgressBar);
         mWebView = (WebView) findViewById(R.id.web_content);
+        mCardBtn = (CardView) findViewById(R.id.card_btn);
+        mCardBtnTv = (TextView) findViewById(R.id.card_btn_tv);
+        if (linkType == 2) {
+            mCardBtn.setVisibility(View.VISIBLE);
+            mCardBtn.setOnClickListener(this);
+        } else {
+            mCardBtn.setVisibility(View.GONE);
+        }
         initData();
         setLisener();
     }
@@ -137,6 +148,9 @@ public class WebViewActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.card_share:
                 //TODO 分享
                 popupWindow.dismiss();
+                break;
+            case R.id.card_btn:
+                Toast.makeText(WebViewActivity.this, "我要报名", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

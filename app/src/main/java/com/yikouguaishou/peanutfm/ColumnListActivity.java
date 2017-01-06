@@ -1,5 +1,6 @@
 package com.yikouguaishou.peanutfm;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -310,11 +311,13 @@ public class ColumnListActivity extends AppCompatActivity
     public void onItemClick(View v, int position) {
         Bundle bundle = new Bundle();
         bundle.putSerializable("columnListBeen", (Serializable) columnListBeen);
-//        Intent intent = new Intent(this, );
-//        intent.putExtras(bundle);
-//        startActivity(intent);
-        Toast.makeText(this, "跳转到播放页面", Toast.LENGTH_SHORT).show();
-
+        int pageIndex = position / 20;
+        int index = position % 20 + 1;
+        bundle.putInt("currentPage", pageIndex);
+        bundle.putInt("index", index);
+        Intent intent = new Intent(this, RadioPlayActivity.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
 

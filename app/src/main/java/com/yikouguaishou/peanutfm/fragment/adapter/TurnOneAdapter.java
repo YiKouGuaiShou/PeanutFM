@@ -1,6 +1,7 @@
 package com.yikouguaishou.peanutfm.fragment.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,10 +10,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.bumptech.glide.Glide;
 import com.yikouguaishou.peanutfm.R;
+import com.yikouguaishou.peanutfm.WebViewActivity;
 import com.yikouguaishou.peanutfm.bean.TurnOneItemBean;
 
 import java.text.ParseException;
@@ -57,6 +60,57 @@ public class TurnOneAdapter extends UltimateBaseAdapter {
         holder.tv_msg2.setText(conEntity.getCommentCount() + "");
         holder.tv_title.setText(conEntity.getTitle());
 
+        doTime(holder, conEntity);
+
+        setLisenser(holder, conEntity);
+
+    }
+
+    /**
+     * 点击事件
+     *
+     * @param holder
+     */
+    private void setLisenser(TurnOneItemHolder holder, final TurnOneItemBean.ConEntity conEntity) {
+
+        holder.layout1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                turnTOWebViewActivity(conEntity);
+            }
+        });
+
+        holder.layout2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        holder.layout3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                turnTOWebViewActivity(conEntity);
+            }
+        });
+    }
+
+    private void turnTOWebViewActivity(TurnOneItemBean.ConEntity conEntity) {
+        Intent intent = new Intent(context, WebViewActivity.class);
+        String linkUrl = conEntity.getConent();
+        intent.putExtra("linkType", 2);
+        intent.putExtra("linkUrl", linkUrl);
+        context.startActivity(intent);
+    }
+
+    private void doTime(TurnOneItemHolder holder, TurnOneItemBean.ConEntity conEntity) {
         Date date = new Date();
         String endDate = conEntity.getEndDate();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

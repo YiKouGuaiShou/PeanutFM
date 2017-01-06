@@ -122,6 +122,7 @@ public class SortDetailsActivity extends AppCompatActivity implements View.OnCli
                     @Override
                     public void onError(Throwable e) {
                         Log.e("======onError===", "===getSortDetails===" + e.getMessage());
+                        getSortDetails();
                     }
 
                     @Override
@@ -172,12 +173,13 @@ public class SortDetailsActivity extends AppCompatActivity implements View.OnCli
             Intent intent = new Intent(this, ColumnListActivity.class);
             String name = detailListBean.getName();
             String logo = detailListBean.getLogo();
-            long albumId = detailListBean.getAlbumId();
+            long pid = detailListBean.getAlbumId();
+            String albumId = String.valueOf(pid);
             int providerCode = detailListBean.getProviderCode();
             Bundle bundle = new Bundle();
             bundle.putString("name", name);
             bundle.putString("logoUrl", logo);
-            bundle.putLong("albumId", albumId);
+            bundle.putString("albumId", albumId);
             bundle.putInt("providerCode", providerCode);
             intent.putExtras(bundle);
             startActivity(intent);

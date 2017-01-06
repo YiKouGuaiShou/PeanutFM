@@ -1,7 +1,7 @@
 package com.yikouguaishou.peanutfm.apiservice;
 
 
-import com.yikouguaishou.peanutfm.bean.SearchResult;
+import com.yikouguaishou.peanutfm.bean.SearchResultBean;
 
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
@@ -15,6 +15,6 @@ public interface HttpApiService {
 
     @Headers({"Content-Type:text/html; charset=UTF-8"})
     @POST("fslhsrv/srv/wifimusicbox/search/-1/0")
-    Observable<SearchResult> getEditTextData(
+    Observable<SearchResultBean> getEditTextData(
             @Query("word") String word);
 }

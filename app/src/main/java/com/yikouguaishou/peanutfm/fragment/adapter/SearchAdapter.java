@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.yikouguaishou.peanutfm.R;
-import com.yikouguaishou.peanutfm.bean.SearchResult;
+import com.yikouguaishou.peanutfm.bean.SearchResultBean;
 
 import java.util.List;
 
@@ -18,11 +18,11 @@ import java.util.List;
  * Created by snowflake on 2016/12/27.
  */
 public class SearchAdapter extends BaseAdapter {
-    private List<SearchResult.ConBean> resultDatas;
+    private List<SearchResultBean.ConBean> resultDatas;
     private Context context;
 
 
-    public SearchAdapter(Context context, List<SearchResult.ConBean> resultDatas) {
+    public SearchAdapter(Context context, List<SearchResultBean.ConBean> resultDatas) {
         this.context = context;
         this.resultDatas = resultDatas;
     }

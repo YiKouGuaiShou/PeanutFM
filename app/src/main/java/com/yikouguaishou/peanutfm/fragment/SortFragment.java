@@ -82,6 +82,7 @@ public class SortFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                     @Override
                     public void onError(Throwable e) {
                         Log.e("======onError===", "===SortList===" + e.getMessage());
+                        getSort();
                     }
 
                     @Override

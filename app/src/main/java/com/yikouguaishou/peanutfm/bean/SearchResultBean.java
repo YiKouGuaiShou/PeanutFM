@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by snowflake on 2016/12/27.
  */
-public class SearchResult implements Serializable {
+public class SearchResultBean implements Serializable {
 
     /**
      * totalPage : 1

@@ -7,7 +7,6 @@ import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -45,7 +44,7 @@ public class ColumnListActivity extends AppCompatActivity
         UltimateRecyclerView.OnLoadMoreListener, ColumnListAdapter.OnItemClickListener {
     private String baseUrl = "http://fsapp.linker.cc";
     private String pid;
-    private int providerCode;
+    private String providerCode;
     private String columnName;
     private String mobileId = "";
 
@@ -71,7 +70,6 @@ public class ColumnListActivity extends AppCompatActivity
     private RelativeLayout rl_collect;
     private TextView tv_columnList_collect;
     private ImageView iv_collect_logo;
-    private String anchorpersons;
 
     private List<ColumnListBean> columnListBeen = new ArrayList<>();
 
@@ -81,9 +79,10 @@ public class ColumnListActivity extends AppCompatActivity
         setContentView(R.layout.activity_column_list);
         Bundle bundle = getIntent().getExtras();
         logoUrl = bundle.getString("logoUrl");
-        long albumId = bundle.getLong("albumId");
-        pid = String.valueOf(albumId);
-        providerCode = bundle.getInt("providerCode");
+        pid = bundle.getString("albumId");
+        providerCode = bundle.getString("providerCode");
+        Log.e("======columnList===", "===pid===" + pid);
+
 
         initViews();
         layoutManager = new LinearLayoutManager(this);
@@ -119,28 +118,8 @@ public class ColumnListActivity extends AppCompatActivity
         rv_columnList.enableDefaultSwipeRefresh(true);//开启下拉刷新
         rv_columnList.isLoadMoreEnabled();
         rv_columnList.setDefaultOnRefreshListener(this);
-        rv_columnList.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    if (!recyclerView.canScrollVertically(1)) { //到底部
-                        pageIndex++;
-                        getColumnList();
-                    }
-                }
-            }
-
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-
-            }
-        });
-
         columnListAdapter.enableLoadMore(true);
         rv_columnList.setOnLoadMoreListener(this);
-
         columnListAdapter.setOnItemClickListener(this);
     }
 
@@ -168,6 +147,7 @@ public class ColumnListActivity extends AppCompatActivity
                     @Override
                     public void onError(Throwable e) {
                         Log.e("======onError===", "===getColumnList===" + e.getMessage());
+                        getColumnList();
                     }
 
                     @Override
@@ -184,8 +164,6 @@ public class ColumnListActivity extends AppCompatActivity
                             columnListDatas.addAll(columnListData);
                         }
                         columnListAdapter.notifyDataSetChanged();
-
-                        anchorpersons = columnListBean.getAnchorpersons();//主持人
                     }
                 });
     }

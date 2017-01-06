@@ -10,11 +10,12 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="@mipmap/icon_anchor_detail_bg">
+
         <android.support.v7.widget.Toolbar
             android:id="@+id/mToolbar_anchorHome"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            >
+            android:layout_height="?attr/actionBarSize">
+
             <RelativeLayout
                 android:id="@+id/mRelativeLayout_columnList"
                 android:layout_width="match_parent"
@@ -50,77 +51,98 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/mCircleImageView_anchor_photo"
-            android:layout_below="@id/mToolbar_anchorHome"
             android:layout_width="70dp"
             android:layout_height="70dp"
+            android:layout_below="@id/mToolbar_anchorHome"
             android:layout_centerHorizontal="true"
-            android:src="@mipmap/boy"
-            />
+            android:src="@mipmap/boy" />
+
         <TextView
             android:id="@+id/mTextView_anchor_nickname"
-            android:layout_below="@id/mCircleImageView_anchor_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="15dp"
+            android:layout_below="@id/mCircleImageView_anchor_photo"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="8dp"
             android:text="anchor_nickname"
-            android:textColor="#ffffff"
-            />
+            android:textColor="#ffffff" />
+
         <RelativeLayout
-            android:layout_below="@id/mTextView_anchor_nickname"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
+            android:layout_below="@id/mTextView_anchor_nickname"
             android:layout_centerHorizontal="true"
-            android:background="@android:color/transparent"
-            >
+            android:background="@android:color/transparent">
+
             <TextView
                 android:id="@+id/mTextView_anchor_focusNum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="关注 n"
-                android:textColor="#ffffff"
-                />
+                android:textColor="#ffffff" />
+
             <View
                 android:layout_width="1sp"
                 android:layout_height="14dp"
-                android:background="#ffffff"
                 android:layout_centerHorizontal="true"
-                />
+                android:background="#ffffff" />
+
             <TextView
                 android:id="@+id/mTextView_anchor_focus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="+关注"
-                android:textColor="#ffffff"
-                />
+                android:text="+ 关注"
+                android:textColor="#ffffff" />
         </RelativeLayout>
     </RelativeLayout>
 
     <RadioGroup
         android:id="@+id/mRadioGroup_anchorHome"
-        android:layout_below="@id/rl_anchorHome"
         android:layout_width="match_parent"
         android:layout_height="32dp"
-        android:padding="1dp"
+        android:layout_below="@id/rl_anchorHome"
         android:layout_margin="16dp"
-        android:background="#bfbfbf"
+        android:background="#cfcfcf"
         android:orientation="horizontal"
-        >
+        android:padding="1dp">
+
         <RadioButton
-            android:id="@+id/mRadioButton_anchorHome_"
+            android:id="@+id/mRadioButton_anchorHome_dynamic"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="32dp"
-            android:text="动态"
+            android:layout_marginLeft="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/columnlist_rb_background_color"
+            android:button="@null"
             android:checked="true"
-            />
+            android:gravity="center"
+            android:text="动态"
+            android:textColor="@drawable/columnlist_rb_text_color" />
+
         <RadioButton
+            android:id="@+id/mRadioButton_anchorHome_product"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="32dp"
+            android:layout_marginRight="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/columnlist_rb_background_color"
+            android:button="@null"
+            android:gravity="center"
             android:text="作品"
+            android:textColor="@drawable/columnlist_rb_text_color"
+
             />
     </RadioGroup>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/mViewPager_anchorHome"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/mRadioGroup_anchorHome"
+        >
+
+    </android.support.v4.view.ViewPager>
+
 </RelativeLayout>

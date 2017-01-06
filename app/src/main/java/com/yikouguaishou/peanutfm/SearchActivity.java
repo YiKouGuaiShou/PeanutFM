@@ -20,7 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yikouguaishou.peanutfm.apiservice.HttpApiService;
-import com.yikouguaishou.peanutfm.bean.SearchResult;
+import com.yikouguaishou.peanutfm.bean.SearchResultBean;
 import com.yikouguaishou.peanutfm.fragment.adapter.SearchAdapter;
 
 import java.util.ArrayList;
@@ -46,8 +46,8 @@ public class SearchActivity extends AppCompatActivity
     private ImageView iv_delete;
     private ListView lv_results;
 
-    private List<SearchResult.ConBean> resultDatas = new ArrayList<>();
-    private List<SearchResult.ConBean> resultData;
+    private List<SearchResultBean.ConBean> resultDatas = new ArrayList<>();
+    private List<SearchResultBean.ConBean> resultData;
     private SearchAdapter searchAdapter;
 
     @Override
@@ -145,7 +145,7 @@ public class SearchActivity extends AppCompatActivity
                 if (resultData != null) {
                     resultDatas.clear();
                     for (int i = 0; i < this.resultData.size(); i++) {
-                        SearchResult.ConBean conBean = this.resultData.get(i);
+                        SearchResultBean.ConBean conBean = this.resultData.get(i);
                         int type = conBean.getType();
                         if (type == 3) {
                             resultDatas.add(conBean);
@@ -158,7 +158,7 @@ public class SearchActivity extends AppCompatActivity
                 if (resultData != null) {
                     resultDatas.clear();
                     for (int i = 0; i < this.resultData.size(); i++) {
-                        SearchResult.ConBean conBean = this.resultData.get(i);
+                        SearchResultBean.ConBean conBean = this.resultData.get(i);
                         int type = conBean.getType();
                         if (type == 4) {
                             resultDatas.add(conBean);
@@ -185,11 +185,11 @@ public class SearchActivity extends AppCompatActivity
 
         HttpApiService httpApiService = retrofit.create(HttpApiService.class);
 
-        Observable<SearchResult> resultCall = httpApiService.getEditTextData(word);
+        Observable<SearchResultBean> resultCall = httpApiService.getEditTextData(word);
 
         resultCall.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<SearchResult>() {
+                .subscribe(new Subscriber<SearchResultBean>() {
                     @Override
                     public void onCompleted() {
                     }
@@ -200,8 +200,8 @@ public class SearchActivity extends AppCompatActivity
                     }
 
                     @Override
-                    public void onNext(SearchResult searchResult) {
-                        resultData = searchResult.getCon();
+                    public void onNext(SearchResultBean searchResultBean) {
+                        resultData = searchResultBean.getCon();
                         for (int i = 0; i < 20; i++) {
                             Log.e("======onNext===", "===name===" + resultData.get(i).getName());
                             Log.e("======onNext===", "===Artist===" + resultData.get(i).getArtist());

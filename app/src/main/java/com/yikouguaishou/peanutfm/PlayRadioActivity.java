@@ -1,8 +1,8 @@
 package com.yikouguaishou.peanutfm;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -12,9 +12,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.yikouguaishou.peanutfm.bean.RadioStationBean;
 
-import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,6 +24,9 @@ public class PlayRadioActivity extends AppCompatActivity implements View.OnClick
     private List<RadioStationBean.ConBeanX> radioStationData;
     private int position;
     private String name;
+    private String anchorId;
+    private String anchorpersonName;
+    private String anchorpersonPic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +62,7 @@ public class PlayRadioActivity extends AppCompatActivity implements View.OnClick
         name = intent.getStringExtra("name");
 
         if (radioStationData != null && position != -1) {
-            List<RadioStationBean.ConBeanX.LiveListBean.ProgamlistBean> progamlist = radioStationData.get(0).getLiveList().get(position).getProgamlist();
+            List<RadioStationBean.ConBeanX.LiveListBean.ProgamlistBean> progamlist =  radioStationData.get(0).getLiveList().get(position).getProgamlist();
 
             int time = getTime();
             for (int i = 0; i < progamlist.size(); i++) {
@@ -83,7 +84,7 @@ public class PlayRadioActivity extends AppCompatActivity implements View.OnClick
                     tv_play_radio_name.setText(name);
 
                     //设置主播头像
-                    String anchorpersonPic = progamlist.get(i).getAnchorpersonList().get(0).getAnchorpersonPic();
+                    anchorpersonPic = progamlist.get(i).getAnchorpersonList().get(0).getAnchorpersonPic();
                     if (anchorpersonPic != null) {
                         Glide.with(this).load(anchorpersonPic).into(iv_play_radio_anchorperson);
                     } else {
@@ -92,7 +93,7 @@ public class PlayRadioActivity extends AppCompatActivity implements View.OnClick
 
                     //设置主播名
                     for (int j = 0; j < progamlist.get(i).getAnchorpersonList().size(); j++) {
-                        String anchorpersonName = progamlist.get(i).getAnchorpersonList().get(j).getAnchorpersonName();
+                        anchorpersonName = progamlist.get(i).getAnchorpersonList().get(j).getAnchorpersonName();
                         if (j == 0) {
                             names = anchorpersonName;
                         } else {
@@ -105,6 +106,9 @@ public class PlayRadioActivity extends AppCompatActivity implements View.OnClick
                     //设置鲜花数
                     int appraiseCount = progamlist.get(i).getAppraiseCount();
                     tv_play_radio_flower.setText("" + appraiseCount);
+
+                    //获取主播ID
+                    anchorId = progamlist.get(i).getAnchorpersonList().get(0).getAnchorpersonId();
                 }
             }
 
@@ -173,7 +177,13 @@ public class PlayRadioActivity extends AppCompatActivity implements View.OnClick
                 Toast.makeText(this, "播放!", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.iv_play_radio_anchorperson:
-                Toast.makeText(this, "主播详情!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(PlayRadioActivity.this,AnchorHomeActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("anchorpersonName", anchorpersonName);
+                bundle.putString("anchorpersonPic", anchorpersonPic);
+                bundle.putString("anchorId", anchorId);
+                intent.putExtras(bundle);
+                startActivity(intent);
                 break;
             case R.id.ll_play_radio_flower:
                 Toast.makeText(this, "播放!", Toast.LENGTH_SHORT).show();

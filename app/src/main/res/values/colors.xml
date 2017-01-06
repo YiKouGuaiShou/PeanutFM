@@ -6,6 +6,6 @@
     <color name="colorYellow">#89FA36</color>
 
     <color name="bgSearchRadio_selected">#ffffff</color>
-    <color name="bgSearchRadio_normal">#bfbfbf</color>
+    <color name="bgSearchRadio_normal">#cfcfcf</color>
     <color name="colorRed">#ff00</color>
 </resources>

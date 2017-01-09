@@ -91,7 +91,7 @@
                 android:text="点赞数" />
 
             <ImageView
-                android:id="@+id/mImageView_anchorDynamic_praise"
+                android:id="@+id/mImageView_dynamicDetails_praise"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_alignTop="@id/mTextView_dynamicDetails_createTime"
@@ -108,16 +108,20 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:visibility="gone"
+            android:id="@+id/mTextView_dynamicComment_null"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="80dp"
             android:layout_margin="10dp"
-            android:background="#cfcfcf"
+            android:background="#dfdfdf"
             android:gravity="center"
             android:text="暂无评论内容"
-            android:textColor="#818181"
+            android:textColor="#999999"
             android:textSize="18sp" />
 
+
         <LinearLayout
+            android:id="@+id/mLinearLayout_comment"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_alignParentBottom="true"
@@ -144,5 +148,17 @@
                 android:background="@mipmap/reply_but" />
 
         </LinearLayout>
+        <com.marshalchen.ultimaterecyclerview.UltimateRecyclerView
+            android:id="@+id/mUltimateRecyclerView_dynamicComment_notNull"
+            android:layout_above="@id/mLinearLayout_comment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+
+            >
+
+        </com.marshalchen.ultimaterecyclerview.UltimateRecyclerView>
     </RelativeLayout>
 </LinearLayout>

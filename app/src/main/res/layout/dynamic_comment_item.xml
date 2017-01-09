@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="#dfdfdf"
+    android:padding="10dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/mCircleImageView_dynamicDetails_commentList_photo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@mipmap/boy" />
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/mTextView_dynamicDetails_commentList_name"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:text="评论-用户昵称"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/mTextView_dynamicDetails_commentList_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mTextView_dynamicDetails_commentList_name"
+            android:maxLines="4"
+            android:text="评论内容"
+            android:textColor="#333333"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/mTextView_dynamicDetails_commentList_createTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mTextView_dynamicDetails_commentList_content"
+            android:layout_marginTop="15dp"
+            android:text="评论时间" />
+
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="16dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/mTextView_dynamicDetails_commentList_createTime"
+            android:background="@android:color/transparent">
+
+            <TextView
+                android:id="@+id/mTextView_dynamicDetails_commentList_replay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="回复"
+                android:textColor="#515151" />
+
+            <View
+                android:layout_width="1sp"
+                android:layout_height="14dp"
+                android:layout_centerHorizontal="true"
+                android:background="#515151" />
+
+            <TextView
+                android:id="@+id/mTextView_dynamicDetails_commentList_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="删除"
+                android:textColor="#515151" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+</LinearLayout>

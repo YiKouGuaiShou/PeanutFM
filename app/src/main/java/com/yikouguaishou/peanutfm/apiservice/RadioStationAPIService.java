@@ -3,6 +3,7 @@ package com.yikouguaishou.peanutfm.apiservice;
 import com.yikouguaishou.peanutfm.bean.AnchorDynamicListBean;
 import com.yikouguaishou.peanutfm.bean.AnchorPersonInfoBean;
 import com.yikouguaishou.peanutfm.bean.AnchorProductBean;
+import com.yikouguaishou.peanutfm.bean.DynamicCommentListBean;
 import com.yikouguaishou.peanutfm.bean.RadioStationBannerBean;
 import com.yikouguaishou.peanutfm.bean.RadioStationBean;
 
@@ -43,4 +44,14 @@ public interface RadioStationAPIService {
     @POST("fslhsrv/srv/interactive/getAnchorProduct")
     Observable<AnchorProductBean> getAnchorProduct(
             @Field("anchorId") String anchorId);
+
+    @FormUrlEncoded
+    @POST("/fslhsrv/srv/interactive/commentMultiMediaList")
+    Observable<DynamicCommentListBean> getCommentList(
+            @Field("fId") int fId,
+            @Field("correlateId") String correlateId,
+            @Field("userId") String userId,
+            @Field("type") int type,
+            @Field("isAnchorperson") int isAnchorperson,
+            @Field("version") String version);
 }

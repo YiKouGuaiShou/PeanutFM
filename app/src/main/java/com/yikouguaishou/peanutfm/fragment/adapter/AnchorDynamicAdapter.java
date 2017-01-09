@@ -1,6 +1,8 @@
 package com.yikouguaishou.peanutfm.fragment.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +13,10 @@ import com.bumptech.glide.Glide;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.marshalchen.ultimaterecyclerview.UltimateViewAdapter;
 import com.yikouguaishou.peanutfm.R;
+import com.yikouguaishou.peanutfm.ShowPhotoActivity;
 import com.yikouguaishou.peanutfm.bean.AnchorDynamicListBean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +35,8 @@ public class AnchorDynamicAdapter extends UltimateViewAdapter<AnchorDynamicAdapt
     }
 
     private OnDynamicItemClickListener onDynamicItemClickListener;
+
+
 
     public void setOnDynamicItemClickListener(OnDynamicItemClickListener onProductItemClickListener) {
         this.onDynamicItemClickListener = onProductItemClickListener;
@@ -59,7 +65,12 @@ public class AnchorDynamicAdapter extends UltimateViewAdapter<AnchorDynamicAdapt
             riv_anchorDynamic_contentPic.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    Intent intent = new Intent(context, ShowPhotoActivity.class);
+                    Bundle bundle = new Bundle();
+                    List<AnchorDynamicListBean.ConBean.ImgListBean> imgList = dynamicDatas.get(0).getImgList();
+                    bundle.putSerializable("imgList", (Serializable) imgList);
+                    intent.putExtras(bundle);
+                    context.startActivity(intent);
                 }
             });
         }

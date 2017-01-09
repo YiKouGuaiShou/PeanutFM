@@ -96,7 +96,7 @@ public class AnchorDynamicFragment extends Fragment
                     @Override
                     public void onError(Throwable e) {
                         Log.e("======onError===", "===getAnchorDynamicList===" + e.getMessage());
-//                        getAnchorDynamicList();
+                        getAnchorDynamicList();
                     }
 
                     @Override

@@ -42,7 +42,8 @@
         <activity android:name=".PlayRadioActivity" />
         <activity android:name=".AnchorHomeActivity" />
         <activity android:name=".RadioPlayActivity" />
-        <activity android:name=".RadioPlayListActivity"></activity>
+        <activity android:name=".RadioPlayListActivity" />
+        <activity android:name=".DynamicDetailsActivity"></activity>
     </application>
 
 </manifest>

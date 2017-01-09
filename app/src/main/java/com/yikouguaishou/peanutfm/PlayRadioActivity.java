@@ -25,8 +25,8 @@ public class PlayRadioActivity extends AppCompatActivity implements View.OnClick
     private int position;
     private String name;
     private String anchorId;
-    private String anchorpersonName;
     private String anchorpersonPic;
+    private String anchorpersonName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +93,7 @@ public class PlayRadioActivity extends AppCompatActivity implements View.OnClick
 
                     //设置主播名
                     for (int j = 0; j < progamlist.get(i).getAnchorpersonList().size(); j++) {
-                        anchorpersonName = progamlist.get(i).getAnchorpersonList().get(j).getAnchorpersonName();
+                        String anchorpersonName = progamlist.get(i).getAnchorpersonList().get(j).getAnchorpersonName();
                         if (j == 0) {
                             names = anchorpersonName;
                         } else {
@@ -109,6 +109,8 @@ public class PlayRadioActivity extends AppCompatActivity implements View.OnClick
 
                     //获取主播ID
                     anchorId = progamlist.get(i).getAnchorpersonList().get(0).getAnchorpersonId();
+                    //获取主播名
+                    anchorpersonName = progamlist.get(i).getAnchorpersonList().get(0).getAnchorpersonName();
                 }
             }
 

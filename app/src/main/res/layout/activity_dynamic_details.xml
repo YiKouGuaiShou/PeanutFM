@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.yikouguaishou.peanutfm.DynamicDetailsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/mCircleImageView_dynamicDetails_photo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@mipmap/boy" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/mTextView_dynamicDetails_name"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:gravity="center_vertical"
+                android:text="主播名" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="50dp"
+                android:layout_alignTop="@id/mTextView_dynamicDetails_name"
+                android:layout_toRightOf="@id/mTextView_dynamicDetails_name"
+                android:src="@mipmap/icon_host_logo" />
+
+            <TextView
+                android:id="@+id/mTextView_dynamicDetails_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mTextView_dynamicDetails_name"
+                android:maxLines="4"
+                android:text="动态内容" />
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/mRoundedImageView_dynamicDetails_contentPic"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_below="@id/mTextView_dynamicDetails_content"
+                android:layout_marginTop="5dp"
+                android:src="@mipmap/place_holder"
+                app:riv_corner_radius="5dp" />
+
+            <TextView
+                android:id="@+id/mTextView_dynamicDetails_createTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mRoundedImageView_dynamicDetails_contentPic"
+                android:layout_marginTop="5dp"
+                android:text="创建时间" />
+
+            <TextView
+                android:id="@+id/mTextView_dynamicDetails_commentNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@id/mTextView_dynamicDetails_createTime"
+                android:text="评论数" />
+
+            <ImageView
+                android:id="@+id/mImageView_dynamicDetails_comment"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_alignTop="@id/mTextView_dynamicDetails_createTime"
+                android:layout_marginRight="3dp"
+                android:layout_toLeftOf="@id/mTextView_dynamicDetails_commentNum"
+                android:src="@mipmap/comments" />
+
+            <TextView
+                android:id="@+id/mTextView_dynamicDetails_praiseCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/mTextView_dynamicDetails_createTime"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/mImageView_dynamicDetails_comment"
+                android:text="点赞数" />
+
+            <ImageView
+                android:id="@+id/mImageView_anchorDynamic_praise"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_alignTop="@id/mTextView_dynamicDetails_createTime"
+                android:layout_marginRight="3dp"
+                android:layout_toLeftOf="@id/mTextView_dynamicDetails_praiseCount"
+                android:src="@mipmap/icon_good" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:background="#cfcfcf"
+            android:gravity="center"
+            android:text="暂无评论内容"
+            android:textColor="#818181"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:background="#cfcfcf"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/mEditText_dynamicDetails"
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:hint="我也来说两句" />
+
+            <Button
+                android:id="@+id/mButton_dynamicDetails_comment"
+                android:layout_width="50dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:background="@mipmap/reply_but" />
+
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

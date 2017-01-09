@@ -1,6 +1,7 @@
 package com.yikouguaishou.peanutfm.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.marshalchen.ultimaterecyclerview.UltimateRecyclerView;
+import com.yikouguaishou.peanutfm.DynamicDetailsActivity;
 import com.yikouguaishou.peanutfm.R;
 import com.yikouguaishou.peanutfm.apiservice.RadioStationAPIService;
 import com.yikouguaishou.peanutfm.bean.AnchorDynamicListBean;
@@ -32,7 +34,7 @@ import rx.schedulers.Schedulers;
  * 作者动态列表
  */
 public class AnchorDynamicFragment extends Fragment
-        implements SwipeRefreshLayout.OnRefreshListener {
+        implements SwipeRefreshLayout.OnRefreshListener, AnchorDynamicAdapter.OnDynamicItemClickListener {
     private String baseUrl = "http://fsapp.linker.cc";
     private String anchorId;
 
@@ -41,6 +43,8 @@ public class AnchorDynamicFragment extends Fragment
     private List<AnchorDynamicListBean.ConBean> dynamicDatas = new ArrayList<>();
     private AnchorDynamicAdapter dynamicAdapter;
 
+    private int fId = 0;
+    private String userId = "";
     public AnchorDynamicFragment(String anchorId) {
         this.anchorId = anchorId;
     }
@@ -57,6 +61,7 @@ public class AnchorDynamicFragment extends Fragment
         urv_anchor_dynamic.setAdapter(dynamicAdapter);
         setListener();
         if (anchorId != null) {
+            Log.e("====AnchorDynamic===", "------anchorId----" + anchorId);
             getAnchorDynamicList();
         }
         return view;
@@ -64,6 +69,7 @@ public class AnchorDynamicFragment extends Fragment
 
     private void setListener() {
         urv_anchor_dynamic.setDefaultOnRefreshListener(this);
+        dynamicAdapter.setOnDynamicItemClickListener(this);
     }
 
     /**
@@ -78,7 +84,7 @@ public class AnchorDynamicFragment extends Fragment
 
         RadioStationAPIService radioStationAPIService = retrofit.create(RadioStationAPIService.class);
 
-        final Observable<AnchorDynamicListBean> anchorDynamicList = radioStationAPIService.getAnchorDynamicList(anchorId);
+        Observable<AnchorDynamicListBean> anchorDynamicList = radioStationAPIService.getAnchorDynamicList(fId, anchorId, userId);
 
         anchorDynamicList.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -89,13 +95,15 @@ public class AnchorDynamicFragment extends Fragment
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.e("======onError===", "===getAnchorProduct===" + e.getMessage());
-                        getAnchorDynamicList();
+                        Log.e("======onError===", "===getAnchorDynamicList===" + e.getMessage());
+//                        getAnchorDynamicList();
                     }
 
                     @Override
                     public void onNext(AnchorDynamicListBean anchorDynamicListBean) {
                         List<AnchorDynamicListBean.ConBean> conBeen = anchorDynamicListBean.getCon();
+                        Log.e("======onNext===", "===getAnchorDynamicList===" + conBeen.get(0).getAnchorName());
+                        Log.e("======onNext===", "===getAnchorDynamicList===" + conBeen.get(0).getContent());
                         if (conBeen != null) {
                             dynamicDatas.addAll(conBeen);
                         }
@@ -114,5 +122,15 @@ public class AnchorDynamicFragment extends Fragment
                 getAnchorDynamicList();
             }
         }, 2000);
+    }
+
+    @Override
+    public void onItemClick(View v, int position) {
+        Intent intent = new Intent(getActivity(), DynamicDetailsActivity.class);
+        Bundle bundle = new Bundle();
+        AnchorDynamicListBean.ConBean conBean = dynamicDatas.get(position);
+        bundle.putSerializable("dynamicDatas", conBean);
+        intent.putExtras(bundle);
+        getActivity().startActivity(intent);
     }
 }

@@ -34,7 +34,6 @@ import rx.schedulers.Schedulers;
 public class AnchorHomeActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener, ViewPager.OnPageChangeListener, View.OnClickListener {
     private String baseUrl = "http://fsapp.linker.cc";
     private String userId = "";
-    private String anchorId;
 
     private CircleImageView civ_anchor_photo;
     private ImageView btn_back, btn_share;
@@ -68,7 +67,6 @@ public class AnchorHomeActivity extends AppCompatActivity implements RadioGroup.
                     .load(anchorpersonPic)
                     .crossFade()
                     .into(civ_anchor_photo);
-            this.anchorId = bundle.getString("anchorId");
             getAnchorPersonInfo();
         }
 
@@ -122,7 +120,7 @@ public class AnchorHomeActivity extends AppCompatActivity implements RadioGroup.
 
         RadioStationAPIService radioStationAPIService = retrofit.create(RadioStationAPIService.class);
 
-        Observable<AnchorPersonInfoBean> anchorInfoBean = radioStationAPIService.getAnchorPersonInfo(anchorId, userId);
+        Observable<AnchorPersonInfoBean> anchorInfoBean = radioStationAPIService.getAnchorPersonInfo(anchorpersonId, userId);
 
         anchorInfoBean.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

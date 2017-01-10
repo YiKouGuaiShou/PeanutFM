@@ -6,7 +6,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import com.yikouguaishou.peanutfm.fragment.MineFragment;
 import com.yikouguaishou.peanutfm.fragment.RadioStationFragment;
@@ -23,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private List<Fragment> mFragments;
     private MainActivityViewPagerAdapter mAdapter;
+
+    private long firstTime=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,5 +90,28 @@ public class MainActivity extends AppCompatActivity {
         public void onPageScrollStateChanged(int state) {
 
         }
+    }
+
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (keyCode==KeyEvent.KEYCODE_BACK)
+        {
+
+            long secondTime=System.currentTimeMillis();
+            if (secondTime-firstTime>800)
+            {
+                Toast.makeText(MainActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                firstTime=secondTime;
+                return  true;
+            }
+            else
+            {
+                System.exit(0);
+            }
+        }
+
+        return super.onKeyUp(keyCode, event);
+
     }
 }

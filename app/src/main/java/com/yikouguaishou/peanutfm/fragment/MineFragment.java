@@ -3,7 +3,9 @@ package com.yikouguaishou.peanutfm.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 
 import com.yikouguaishou.peanutfm.AdviceActivity;
 import com.yikouguaishou.peanutfm.ListenHistoryActivity;
+import com.yikouguaishou.peanutfm.LoginActivity;
 import com.yikouguaishou.peanutfm.MyActivityActivity;
 import com.yikouguaishou.peanutfm.MyCollectionActivity;
 import com.yikouguaishou.peanutfm.MyCountActivity;
@@ -22,6 +25,8 @@ import com.yikouguaishou.peanutfm.MyNewsActivity;
 import com.yikouguaishou.peanutfm.MyZhuBoActivity;
 import com.yikouguaishou.peanutfm.R;
 import com.yikouguaishou.peanutfm.SettingActivity;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MineFragment extends Fragment implements ListView.OnItemClickListener{
     private ListView mListView_mf;
@@ -31,6 +36,9 @@ public class MineFragment extends Fragment implements ListView.OnItemClickListen
     private String[] mItemnames;
     private ListViewAdapter adapter;
     private int[] itemlogo;
+    private CircleImageView cv;
+
+
 
 
     //listview的每个子view的名称
@@ -53,6 +61,9 @@ public class MineFragment extends Fragment implements ListView.OnItemClickListen
         //从资源文件中得到字符串数组
         mItemnames = getResources().getStringArray(R.array.minefragment_itemnames);
 
+        cv= (CircleImageView) getActivity().findViewById(R.id.cv);
+
+
         itemlogo = new int[]{R.drawable.ic_mynews,R.drawable.woguanzhudezhubo,R.drawable.myactivity,R.drawable.mycount,
                 R.drawable.mycollection,R.drawable.ic_shoutinglishi,R.drawable.ic_yijianfankui,R.drawable.setting};
 
@@ -60,6 +71,9 @@ public class MineFragment extends Fragment implements ListView.OnItemClickListen
         adapter =new ListViewAdapter();
         mListView_mf.setAdapter(adapter);
         mListView_mf.setOnItemClickListener(this);
+
+
+
 
     }
 
@@ -126,10 +140,33 @@ public class MineFragment extends Fragment implements ListView.OnItemClickListen
         }
     }
 
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        cv= (CircleImageView) getActivity().findViewById(R.id.cv);
+        if (cv==null)
+        {
+            Log.e("TAG", "onActivityCreated: =========>cv==null");
+        }
+        else {
+            cv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(getActivity(),LoginActivity.class));
+                }
+            });
+        }
+    }
+
+
+
+
     static class ViewHolder{
         TextView itemname;
         ImageView itemlogo;
     }
+
 
 
 }

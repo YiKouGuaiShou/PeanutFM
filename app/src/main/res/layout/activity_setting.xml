@@ -14,7 +14,9 @@
             android:layout_width="60dp"
             android:layout_height="match_parent"
             android:padding="15dp"
-            android:src="@drawable/mf_leftjian"/>
+            android:src="@drawable/mf_leftjian"
+            android:onClick="goBack"
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="57dp"
@@ -28,7 +30,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="58dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:onClick="goPC">
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -44,8 +47,9 @@
             android:src="@drawable/mf_rightjian"/>
 
 
-</LinearLayout>
+    </LinearLayout>
     <LinearLayout
+        android:onClick="changePass"
         android:layout_width="match_parent"
         android:layout_height="58dp"
         android:orientation="horizontal">
@@ -78,7 +82,7 @@
             android:textSize="15dp"
             android:text="使用2G/3G/4G网络播放"/>
         <Switch
-            android:layout_width="60dp"
+            android:layout_width="80dp"
             android:layout_height="match_parent"
             android:padding="20dp"
             />
@@ -88,8 +92,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="58dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:onClick="clearCach"
+        >
         <TextView
+            android:id="@+id/tv_huancun"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
@@ -106,6 +113,7 @@
 
     </LinearLayout>
     <LinearLayout
+        android:onClick="setTimeClose"
         android:layout_width="match_parent"
         android:layout_height="58dp"
         android:orientation="horizontal">
@@ -118,7 +126,9 @@
             android:textSize="15dp"
             android:text="定时关闭"/>
         <Switch
-            android:layout_width="60dp"
+            android:id="@+id/sw_close"
+            android:onClick="SwitchSetTimeClose"
+            android:layout_width="80dp"
             android:layout_height="match_parent"
             android:padding="20dp"
             />
@@ -164,10 +174,7 @@
             android:src="@drawable/mf_rightjian"/>
     </LinearLayout>
 
-    <Switch
-        android:id="@+id/switch_setting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
 
 
 

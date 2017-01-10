@@ -46,6 +46,13 @@
         <activity android:name=".DynamicDetailsActivity" />
         <activity android:name=".ShowPhotoActivity"></activity>
 
+
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".RegistActivity" />
+        <activity android:name=".ChangePasswordActivity" />
+        <activity android:name=".AboutActivity"></activity>
+
+
         <service android:name=".service.MyService" />
     </application>
 

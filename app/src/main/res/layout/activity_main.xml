@@ -39,10 +39,15 @@
         android:layout_height="0dp"
         android:layout_weight="1">
     </android.support.v4.view.ViewPager>
+
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#d0c830"
-        android:visibility="gone"
-        ></LinearLayout>
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <include layout="@layout/quanjubofang_layout"/>
+    </LinearLayout>
+
+
+
 </LinearLayout>

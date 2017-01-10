@@ -8,13 +8,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.makeramen.roundedimageview.RoundedImageView;
 import com.yikouguaishou.peanutfm.R;
 import com.yikouguaishou.peanutfm.bean.TurnTwoItemBean;
 
 import java.util.List;
 
-import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 
 /**
@@ -45,29 +43,24 @@ public class TurnTwoAdapter extends UltimateBaseAdapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder1, int position) {
-        TurnTwoItemHolder holder = (TurnTwoItemHolder) holder1;
-        TurnTwoItemBean.VideoPlateListEntity entity = videoPlateList.get(position);
-        Glide.with(context).load(entity.getCover()).placeholder(R.mipmap.place_holder)
-                .into(holder.iv_picture);
-        holder.tv_descriptions1.setText(entity.getTitle());
-        holder.tv_name.setText(entity.getPlayDescribe());
-        holder.tv_person.setText(entity.getClickNum() + "人");
-
-        holder.iv_picture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
+        final TurnTwoItemHolder vh = (TurnTwoItemHolder) holder1;
+        final TurnTwoItemBean.VideoPlateListEntity entity = videoPlateList.get(position);
+        vh.tv_descriptions1.setText(entity.getTitle());
+        vh.tv_name.setText(entity.getPlayDescribe());
+        vh.tv_person.setText(entity.getClickNum() + "人");
+        vh.JC.setUp(entity.getVideoExpand().getVideoUrl(), JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "");
+        Glide.with(context).load(entity.getVideoExpand().getVideoIcon())
+                .placeholder(R.mipmap.place_holder)
+                .into(vh.JC.thumbImageView);
     }
 
     private static class TurnTwoItemHolder extends RecyclerView.ViewHolder {
-        public RoundedImageView iv_picture;
         public TextView tv_descriptions1, tv_name, tv_person;
+        JCVideoPlayerStandard JC;
 
         public TurnTwoItemHolder(View itemView) {
             super(itemView);
-            iv_picture = (RoundedImageView) itemView.findViewById(R.id.iv_picture1);
+            JC = (JCVideoPlayerStandard) itemView.findViewById(R.id.JC_video1);
             tv_descriptions1 = (TextView) itemView.findViewById(R.id.tv_descriptions1);
             tv_name = (TextView) itemView.findViewById(R.id.tv_name1);
             tv_person = (TextView) itemView.findViewById(R.id.tv_persons);

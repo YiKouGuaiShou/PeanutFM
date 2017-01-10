@@ -37,23 +37,24 @@
         <activity android:name=".SortDetailsActivity" />
         <activity android:name=".ColumnListActivity" />
         <activity android:name=".TurnOneActivity" />
-        <activity android:name=".TurnTwoActivity" />
+        <activity
+            android:name=".TurnTwoActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
         <activity android:name=".WebViewActivity" />
         <activity android:name=".PlayRadioActivity" />
         <activity android:name=".AnchorHomeActivity" />
         <activity android:name=".RadioPlayActivity" />
         <activity android:name=".RadioPlayListActivity" />
         <activity android:name=".DynamicDetailsActivity" />
-        <activity android:name=".ShowPhotoActivity"></activity>
-
-
+        <activity android:name=".ShowPhotoActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegistActivity" />
         <activity android:name=".ChangePasswordActivity" />
-        <activity android:name=".AboutActivity"></activity>
-
+        <activity android:name=".AboutActivity" />
 
         <service android:name=".service.MyService" />
+
     </application>
 
 </manifest>

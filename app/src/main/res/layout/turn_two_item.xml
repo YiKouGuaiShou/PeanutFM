@@ -17,12 +17,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.makeramen.roundedimageview.RoundedImageView
-                android:id="@+id/iv_picture1"
+            <!--<com.makeramen.roundedimageview.RoundedImageView-->
+            <!--android:id="@+id/iv_picture1"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="180dp"-->
+            <!--android:scaleType="centerCrop"-->
+            <!--app:riv_corner_radius="6dp" />-->
+
+            <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
+                android:id="@+id/JC_video1"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:scaleType="centerCrop"
-                app:riv_corner_radius="6dp" />
+                android:layout_height="180dp" />
 
         </RelativeLayout>
 

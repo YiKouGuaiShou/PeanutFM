@@ -79,6 +79,8 @@ public class WebViewActivity extends AppCompatActivity implements View.OnClickLi
         //扩大比例的缩放
         mWebView.getSettings().setUseWideViewPort(true);
 
+        mWebView.getSettings().setJavaScriptEnabled(true);
+
         //自适应屏幕
         mWebView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         mWebView.getSettings().setLoadWithOverviewMode(true);
@@ -107,7 +109,12 @@ public class WebViewActivity extends AppCompatActivity implements View.OnClickLi
                 super.onProgressChanged(view, newProgress);
             }
         });
-        mWebView.loadUrl(linkUrl);
+        boolean http = linkUrl.startsWith("http");
+        if (http) {
+            mWebView.loadUrl(linkUrl);
+        } else {
+            mWebView.loadDataWithBaseURL(null, linkUrl, "text/html", "UTF-8", null);
+        }
     }
 
     private void setLisener() {

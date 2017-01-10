@@ -430,8 +430,10 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
                 bundle.putString("providerCode", bannerListEntity.getPrividerCode() + "");
                 intent.putExtras(bundle);
                 context.startActivity(intent);
+            } else if (linkType.equals("5")) {
+                Toast.makeText(context, "linkType = " + linkType, Toast.LENGTH_SHORT).show();
+                return;
             }
-
         }
     }
 

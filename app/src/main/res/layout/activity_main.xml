@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="com.yikouguaishou.peanutfm.MainActivity">
 
     <LinearLayout
@@ -16,38 +15,27 @@
         <android.support.design.widget.TabLayout
             android:id="@+id/mTabLayout"
             android:layout_width="0dp"
-            android:layout_weight="4"
-            app:tabSelectedTextColor="#ced607"
             android:layout_height="54dp"
-            app:tabMode="scrollable" />
+            android:layout_weight="4"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="#ced607" />
 
         <ImageButton
             android:id="@+id/mSearch"
             android:layout_width="28dp"
             android:layout_height="28dp"
-            android:layout_marginRight="16dp"
             android:layout_gravity="center_vertical"
-            android:onClick="onSearchClick"
-            android:background="@mipmap/search" />
+            android:layout_marginRight="16dp"
+            android:background="@mipmap/search"
+            android:onClick="onSearchClick" />
 
     </LinearLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/mViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_below="@+id/top"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-    </android.support.v4.view.ViewPager>
+        android:layout_weight="1"></android.support.v4.view.ViewPager>
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone">
-        <include layout="@layout/quanjubofang_layout"/>
-    </LinearLayout>
-
-
-
-</LinearLayout>
+</RelativeLayout>

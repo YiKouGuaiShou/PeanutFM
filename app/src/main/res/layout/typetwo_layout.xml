@@ -10,7 +10,7 @@
         android:id="@+id/iv_typetwo"
         android:scaleType="fitXY"
         android:layout_width="match_parent"
-        android:background="@mipmap/ic_launcher"
+        android:background="@mipmap/place_holder"
         android:layout_height="150dp" />
 
     <TextView

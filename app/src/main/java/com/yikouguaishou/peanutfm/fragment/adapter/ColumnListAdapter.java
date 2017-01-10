@@ -275,10 +275,12 @@ public class ColumnListAdapter extends UltimateViewAdapter<ColumnListAdapter.Col
     public void onBindHeaderViewHolder(RecyclerView.ViewHolder holder, int position) {
 
     }
+
     @Override
     public long generateHeaderId(int position) {
         return 0;
     }
+
     @Override
     public ColumnViewHolder newFooterHolder(View view) {
         return null;

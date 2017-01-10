@@ -42,7 +42,7 @@ public class ColumnListActivity extends AppCompatActivity
         RadioGroup.OnCheckedChangeListener,
         SwipeRefreshLayout.OnRefreshListener,
         UltimateRecyclerView.OnLoadMoreListener, ColumnListAdapter.OnItemClickListener {
-    private String baseUrl = "http://fsapp.linker.cc";
+    private String baseUrl = "http://fsapp.linker.cc/";
     private String pid;
     private String providerCode;
     private String columnName;
@@ -152,6 +152,8 @@ public class ColumnListActivity extends AppCompatActivity
 
                     @Override
                     public void onNext(ColumnListBean columnListBean) {
+                        //刷新传数据给我有问题，我改了下。
+                        columnListBeen.clear();
                         columnListBeen.add(columnListBean);
                         columnName = columnListBean.getColumnName();//节目名称
                         tv_columnList_title.setText(columnName);
@@ -295,8 +297,6 @@ public class ColumnListActivity extends AppCompatActivity
         bundle.putInt("index", index);
         Intent intent = new Intent(this, RadioPlayActivity.class);
         intent.putExtras(bundle);
-        startActivity(intent);
+        startActivityForResult(intent, 2);
     }
-
-
 }

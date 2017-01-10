@@ -30,7 +30,6 @@ public class RadioPlayListActivity extends AppCompatActivity implements RadioPla
 
     private TextView mTitle;
     private UltimateRecyclerView mRecycler;
-    private ImageView mquXiao;
     private List<ColumnListBean> columnListBeens = new ArrayList<>();
     private List<ColumnListBean> sendColumnListBeens = new ArrayList<>();
     private List<String> nameList = new ArrayList<>();
@@ -38,7 +37,7 @@ public class RadioPlayListActivity extends AppCompatActivity implements RadioPla
     private int index;
     private int currentPage;
     //请求参数
-    private String baseUrl = "http://fsapp.linker.cc";
+    private String baseUrl = "http://fsapp.linker.cc/";
     private String pid;
     private String providerCode;
     private String mobileId = "";
@@ -99,9 +98,7 @@ public class RadioPlayListActivity extends AppCompatActivity implements RadioPla
 
     private void initData() {
         int size = columnListBeens.size();
-
         nameList.clear();
-
         for (int i = 0; i < size; i++) {
             ColumnListBean columnListBean = columnListBeens.get(i);
             List<ColumnListBean.ConBean> con = columnListBean.getCon();
@@ -124,7 +121,6 @@ public class RadioPlayListActivity extends AppCompatActivity implements RadioPla
         SortApiService columnListApiService = retrofit.create(SortApiService.class);
 
         Observable<ColumnListBean> columnListBeansOb = columnListApiService.getColumnListData(providerCode, 1, pid, mobileId, currentPage);
-
         columnListBeansOb.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<ColumnListBean>() {
@@ -168,14 +164,14 @@ public class RadioPlayListActivity extends AppCompatActivity implements RadioPla
     public void onListItemClick(int currentPage, int index) {
         this.currentPage = currentPage;
         this.index = index;
-        Log.e("====onListItemClick====", "currentPage = " + currentPage);
-        Log.e("====onListItemClick====", "index = " + index);
+//        Log.e("====onListItemClick====", "currentPage = " + currentPage);
+//        Log.e("====onListItemClick====", "index = " + index);
         Intent intent = new Intent(this, RadioPlayActivity.class);
         Bundle bundle = new Bundle();
         bundle.putInt("currentPage", currentPage);
         bundle.putInt("index", index);
         bundle.putSerializable("columnListBeen", (Serializable) sendColumnListBeens);
-        Log.e("====onListItemClick====", "sendColumnListBeens.size() = " + sendColumnListBeens.size());
+//        Log.e("====onListItemClick====", "sendColumnListBeens.size() = " + sendColumnListBeens.size());
         intent.putExtras(bundle);
         setResult(100, intent);
         finish();

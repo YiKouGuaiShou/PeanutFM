@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:orientation="horizontal"
+    android:padding="5dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/mImageView_search_photo"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/place_holder" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/radioplay_itemtwo_name"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:gravity="center_vertical"
+            android:text="有一个归搜狐"
+            android:textColor="#000000"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/radioplay_itemtwo_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="水果法规法规规定三公分高沙发上的发生的广东省非官方大哥撒大哥大傻瓜的撒个"
+            android:textColor="#90000000"
+            android:textSize="14sp" />
+
+        <include layout="@layout/layout_riqi_dianzan_pinglun" />
+
+    </LinearLayout>
+</LinearLayout>
+
+

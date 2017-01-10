@@ -1,5 +1,6 @@
 package com.yikouguaishou.peanutfm.apiservice;
 
+import com.yikouguaishou.peanutfm.bean.RadioPlayCommentBean;
 import com.yikouguaishou.peanutfm.bean.RecommendBean;
 import com.yikouguaishou.peanutfm.bean.TurnOneItemBean;
 import com.yikouguaishou.peanutfm.bean.TurnTwoItemBean;
@@ -41,4 +42,9 @@ public interface RecommendHttpApiService {
     @FormUrlEncoded
     @POST("fslhsrv/srv/video/videoList")
     Observable<TurnTwoItemBean> getTurnTwoItemBean(@Field("sort") int sort);
+
+    @FormUrlEncoded
+    @POST("fslhsrv/srv/interactive/commentMultiMediaList")
+    Observable<RadioPlayCommentBean> getRadioPlayCommentBean(@Field("correlateId") String correlateId,
+                                                             @Field("type") int type);
 }

@@ -14,6 +14,9 @@ import com.yikouguaishou.peanutfm.bean.TurnTwoItemBean;
 
 import java.util.List;
 
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
+
 /**
  * Created by Administrator on 2017/1/3.
  */
@@ -49,6 +52,13 @@ public class TurnTwoAdapter extends UltimateBaseAdapter {
         holder.tv_descriptions1.setText(entity.getTitle());
         holder.tv_name.setText(entity.getPlayDescribe());
         holder.tv_person.setText(entity.getClickNum() + "人");
+
+        holder.iv_picture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     private static class TurnTwoItemHolder extends RecyclerView.ViewHolder {

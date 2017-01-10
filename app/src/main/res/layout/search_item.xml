@@ -9,9 +9,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_centerVertical="true"
-        android:src="@mipmap/ic_launcher"
-
-        />
+        android:src="@mipmap/ic_launcher" />
 
     <TextView
         android:id="@+id/mTextView_search_title"

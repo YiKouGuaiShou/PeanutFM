@@ -121,16 +121,33 @@
     </LinearLayout>
 
 
-    <Button
+    <LinearLayout
         android:layout_marginTop="45dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:textSize="22dp"
-        android:background="@drawable/buttonshape_personinfo"
-        android:text="QQ登录"
-        android:onClick="QQlogin"/>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:onClick="QQlogin">
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:textSize="22dp"
+            android:background="@drawable/buttonshape_personinfo"
+            android:text="QQ登录"
+            android:onClick="QQlogin" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:textSize="22dp"
+            android:background="@drawable/buttonshape_personinfo"
+            android:text="新浪微博登录"
+            android:onClick="SinaLogin"
+            android:visibility="gone"/>
+    </LinearLayout>
 
 </LinearLayout>

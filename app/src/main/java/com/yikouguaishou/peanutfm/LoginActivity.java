@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-        qq.showUser(null);
+//        qq.showUser(null);
 
 
     }

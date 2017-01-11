@@ -80,21 +80,18 @@
             android:hint="请输入密码"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_marginTop="45dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        >
+
         <TextView
+            android:layout_marginTop="45dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
             android:gravity="center"
             android:textSize="22dp"
             android:background="@drawable/buttonshape_personinfo"
             android:text="登录"/>
-    </LinearLayout>
+
 
 
     <LinearLayout
@@ -122,5 +119,18 @@
             android:layout_height="1dp"
             android:background="#000"/>
     </LinearLayout>
+
+
+    <Button
+        android:layout_marginTop="45dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:textSize="22dp"
+        android:background="@drawable/buttonshape_personinfo"
+        android:text="QQ登录"
+        android:onClick="QQlogin"/>
 
 </LinearLayout>

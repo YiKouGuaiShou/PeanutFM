@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.yikouguaishou.peanutfm.AdviceActivity;
 import com.yikouguaishou.peanutfm.ListenHistoryActivity;
 import com.yikouguaishou.peanutfm.LoginActivity;
@@ -23,6 +24,7 @@ import com.yikouguaishou.peanutfm.MyCollectionActivity;
 import com.yikouguaishou.peanutfm.MyCountActivity;
 import com.yikouguaishou.peanutfm.MyNewsActivity;
 import com.yikouguaishou.peanutfm.MyZhuBoActivity;
+import com.yikouguaishou.peanutfm.PersonInfoActivity;
 import com.yikouguaishou.peanutfm.R;
 import com.yikouguaishou.peanutfm.SettingActivity;
 
@@ -37,8 +39,10 @@ public class MineFragment extends Fragment implements ListView.OnItemClickListen
     private ListViewAdapter adapter;
     private int[] itemlogo;
     private CircleImageView cv;
-
-
+    private TextView mf_username;
+    private boolean isLoaded=false;
+    private String iconurl;
+    private String username;
 
 
     //listview的每个子view的名称
@@ -62,6 +66,8 @@ public class MineFragment extends Fragment implements ListView.OnItemClickListen
         mItemnames = getResources().getStringArray(R.array.minefragment_itemnames);
 
         cv= (CircleImageView) getActivity().findViewById(R.id.cv);
+
+        mf_username = (TextView) getActivity().findViewById(R.id.mf_username);
 
 
         itemlogo = new int[]{R.drawable.ic_mynews,R.drawable.woguanzhudezhubo,R.drawable.myactivity,R.drawable.mycount,
@@ -145,20 +151,36 @@ public class MineFragment extends Fragment implements ListView.OnItemClickListen
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         cv= (CircleImageView) getActivity().findViewById(R.id.cv);
+        mf_username= (TextView) getActivity().findViewById(R.id.mf_username);
         if (cv==null)
         {
             Log.e("TAG", "onActivityCreated: =========>cv==null");
         }
         else {
-            cv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    startActivity(new Intent(getActivity(),LoginActivity.class));
-                }
-            });
+
+                cv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (isLoaded)
+                        {
+                            Intent intent=new Intent(getActivity(),PersonInfoActivity.class);
+                            intent.putExtra("iconurl",iconurl);
+                            intent.putExtra("username",username);
+                            Log.e("TAG", "onClick: ===>"+iconurl);
+                            Log.e("TAG", "onClick: ===>"+username);
+                            startActivity(intent);
+                        }
+                        else {
+
+                            startActivityForResult(new Intent(getActivity(),LoginActivity.class),100);
+
+                        }
+                    }
+                });
+
+
         }
     }
-
 
 
 
@@ -168,5 +190,27 @@ public class MineFragment extends Fragment implements ListView.OnItemClickListen
     }
 
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode==200)
+        {
+            iconurl = data.getStringExtra("iconurl");
+            username = data.getStringExtra("username");
 
+            Log.e("TAG", "onActivityResult: ====>跳回来了" + iconurl);
+            Log.e("TAG", "onActivityResult: username=====>"+ username);
+
+            if ((cv!=null) ||( mf_username!=null))
+            {
+                Glide.with(getActivity()).load(iconurl).into(cv);
+                mf_username.setText(username);
+                isLoaded=true;
+
+            }
+            else {
+                Log.e("TAG", "onActivityResult: "+(cv==null));
+            }
+        }
+    }
 }

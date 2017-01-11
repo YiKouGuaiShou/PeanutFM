@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
@@ -18,6 +19,10 @@ import com.yikouguaishou.peanutfm.fragment.adapter.MainActivityViewPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.tencent.qq.QQ;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -107,6 +112,15 @@ public class MainActivity extends AppCompatActivity {
             }
             else
             {
+                Platform qq= ShareSDK.getPlatform(this, QQ.NAME);
+                if (qq.isAuthValid())
+                {
+                    Log.e("TAG", "onKeyUp:===>授权情况 "+qq.isAuthValid());
+
+                    qq.removeAccount(true);
+                    Log.e("TAG", "onKeyUp:===>授权情况 "+qq.isAuthValid());
+
+                }
                 System.exit(0);
             }
         }

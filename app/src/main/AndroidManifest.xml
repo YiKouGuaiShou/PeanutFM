@@ -90,6 +90,11 @@
             </intent-filter>
         </activity>
 
+        <service
+            android:name=".service.MyRadioStationService"
+            android:enabled="true"
+            android:exported="true"></service>
+
     </application>
 
 </manifest>

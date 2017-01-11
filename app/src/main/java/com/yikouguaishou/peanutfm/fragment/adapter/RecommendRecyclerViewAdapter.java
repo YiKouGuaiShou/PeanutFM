@@ -431,7 +431,12 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
                 intent.putExtras(bundle);
                 context.startActivity(intent);
             } else if (linkType.equals("5")) {
-                Toast.makeText(context, "linkType = " + linkType, Toast.LENGTH_SHORT).show();
+                RecommendBean.BannerListEntity bannerListEntity = bannerList.get(position);
+                Intent intent = new Intent(context, WebViewActivity.class);
+                intent.putExtra("linkUrl", "http://fsapp.linker.cc/fslhsrv/srv/" + bannerListEntity.getLinkUrl());
+                intent.putExtra("name", bannerListEntity.getTitle());
+                intent.putExtra("linkType", 1);
+                context.startActivity(intent);
                 return;
             }
         }

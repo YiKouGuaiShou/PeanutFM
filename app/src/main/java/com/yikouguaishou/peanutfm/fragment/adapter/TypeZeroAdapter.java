@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +45,7 @@ public class TypeZeroAdapter extends TypeThreeAdapter {
     public void setOnclickListener(RecommendBean.ConEntity.DetailListEntity detailListEntity) {
         Intent intent = new Intent(context, WebViewActivity.class);
         intent.putExtra("linkUrl", detailListEntity.getLinkUrl());
-        intent.putExtra("linkType",1);
+        intent.putExtra("linkType", 1);
         context.startActivity(intent);
     }
 }

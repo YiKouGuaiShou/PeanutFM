@@ -81,10 +81,17 @@ public class TypeOneAdapter extends RecyclerView.Adapter {
 
         @Override
         public void onClick(View view) {
-            String linkUrl = detailListEntity.getLinkUrl();
             Intent intent = new Intent(context, WebViewActivity.class);
-            intent.putExtra("linkUrl", linkUrl);
-            //linkType  1 代表是typeZero webView布局，2 代表typeTwo webView布局，3 代表turnThree webView布局。
+            String linkUrl = detailListEntity.getLinkUrl();
+            Log.e("-----------", "linkURL = " + linkUrl);
+            boolean http = linkUrl.startsWith("/radio");
+            if (http) {
+                intent.putExtra("linkUrl", "http://fsapp.linker.cc/fslhsrv/srv" + linkUrl);
+                Log.e("-----------", "linkURL = " + ("http://fsapp.linker.cc/fslhsrv/srv" + linkUrl));
+            } else {
+                Log.e("-----------", "linkURL = " + linkUrl);
+                intent.putExtra("linkUrl", linkUrl);
+            }
             intent.putExtra("linkType", 1);
             context.startActivity(intent);
         }

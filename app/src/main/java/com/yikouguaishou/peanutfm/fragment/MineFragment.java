@@ -168,7 +168,7 @@ public class MineFragment extends Fragment implements ListView.OnItemClickListen
                             intent.putExtra("username",username);
                             Log.e("TAG", "onClick: ===>"+iconurl);
                             Log.e("TAG", "onClick: ===>"+username);
-                            startActivity(intent);
+                            startActivityForResult(intent,101);
                         }
                         else {
 
@@ -211,6 +211,12 @@ public class MineFragment extends Fragment implements ListView.OnItemClickListen
             else {
                 Log.e("TAG", "onActivityResult: "+(cv==null));
             }
+        }
+        else if (resultCode==201)
+        {
+            Log.e("TAG", "onActivityResult: =====>201");
+            cv.setImageResource(R.mipmap.touxiang);
+            mf_username.setText("用户名 ");
         }
     }
 }

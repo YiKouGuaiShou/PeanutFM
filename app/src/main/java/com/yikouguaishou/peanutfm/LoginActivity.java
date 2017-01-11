@@ -14,8 +14,12 @@ import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.tencent.qq.QQ;
+import cn.sharesdk.tencent.weibo.TencentWeibo;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private String iconurl;
+    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,18 +39,27 @@ public class LoginActivity extends AppCompatActivity {
 
     public void QQlogin(View view) {
         ShareSDK.initSDK(this);
-        Platform qq=ShareSDK.getPlatform(this, QQ.NAME);
-        qq.setPlatformActionListener(new PlatformActionListener() {
+        Platform platform=ShareSDK.getPlatform(this, QQ.NAME);
+        platform.setPlatformActionListener(new PlatformActionListener() {
             @Override
             public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
                 Log.e("TAG", "onComplete: ======>登录成功");
-                String iconurl=hashMap.get("figureurl_qq_2").toString();
 
-                String username=platform.getDb().getUserName();
+
+                if (platform.getName().equals(QQ.NAME)){
+                    iconurl = hashMap.get("figureurl_qq_2").toString();
+                }
+                else if (platform.getName().equals(TencentWeibo.NAME))
+                {
+
+                }
+
+
+                username = platform.getDb().getUserName();
 //                backToMine(iconurl);
                 Intent intent = new Intent();
-                intent.putExtra("iconurl",iconurl);
-                intent.putExtra("username",username);
+                intent.putExtra("iconurl", iconurl);
+                intent.putExtra("username", username);
                 setResult(200,intent);
                 finish();
             }

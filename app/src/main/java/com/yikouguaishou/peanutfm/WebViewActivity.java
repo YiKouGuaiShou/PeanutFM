@@ -17,6 +17,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.yikouguaishou.peanutfm.utils.ShareUtils;
+
 /**
  * 跳转这个界面注意：
  * linkType
@@ -154,6 +156,7 @@ public class WebViewActivity extends AppCompatActivity implements View.OnClickLi
                 break;
             case R.id.card_share:
                 //TODO 分享
+                ShareUtils.showShare(this);
                 popupWindow.dismiss();
                 break;
             case R.id.card_btn:

@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.yikouguaishou.peanutfm.R;
 import com.yikouguaishou.peanutfm.WebViewActivity;
 import com.yikouguaishou.peanutfm.bean.TurnOneItemBean;
+import com.yikouguaishou.peanutfm.utils.ShareUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -90,7 +91,7 @@ public class TurnOneAdapter extends UltimateBaseAdapter {
         holder.layout3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                ShareUtils.showShare(context);
             }
         });
 

@@ -15,13 +15,16 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.yikouguaishou.peanutfm.apiservice.RadioStationAPIService;
 import com.yikouguaishou.peanutfm.bean.AnchorPersonInfoBean;
+import com.yikouguaishou.peanutfm.cn.sharesdk.onekeyshare.OnekeyShare;
 import com.yikouguaishou.peanutfm.fragment.AnchorDynamicFragment;
 import com.yikouguaishou.peanutfm.fragment.AnchorProductFragment;
 import com.yikouguaishou.peanutfm.fragment.adapter.AnchorHomeFragmentAdapter;
+import com.yikouguaishou.peanutfm.utils.ShareUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.sharesdk.framework.ShareSDK;
 import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -179,7 +182,7 @@ public class AnchorHomeActivity extends AppCompatActivity implements RadioGroup.
                 finish();
                 break;
             case R.id.mButton_anchor_share:
-                Toast.makeText(this, "分享", Toast.LENGTH_SHORT).show();
+                ShareUtils.showShare(this);
                 break;
             case R.id.mTextView_anchor_focus:
                 if (tv_anchor_follow.getText().toString().equals("+ 关注")) {

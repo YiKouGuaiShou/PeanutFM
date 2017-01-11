@@ -21,14 +21,17 @@ import com.makeramen.roundedimageview.RoundedImageView;
 import com.marshalchen.ultimaterecyclerview.UltimateRecyclerView;
 import com.yikouguaishou.peanutfm.apiservice.SortApiService;
 import com.yikouguaishou.peanutfm.bean.ColumnListBean;
+import com.yikouguaishou.peanutfm.cn.sharesdk.onekeyshare.OnekeyShare;
 import com.yikouguaishou.peanutfm.fragment.adapter.ColumnListAdapter;
 import com.yikouguaishou.peanutfm.utils.APP;
 import com.yikouguaishou.peanutfm.utils.FastBlur;
+import com.yikouguaishou.peanutfm.utils.ShareUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.sharesdk.framework.ShareSDK;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -238,7 +241,7 @@ public class ColumnListActivity extends AppCompatActivity
                 finish();
                 break;
             case R.id.mButton_columnList_share:  //分享
-                Toast.makeText(ColumnListActivity.this, "分享", Toast.LENGTH_SHORT).show();
+                ShareUtils.showShare(this);
                 break;
             case R.id.mRelativeLayout_collect:  //收藏
                 if (tv_columnList_collect.getText().toString().equals("收藏")) {
@@ -299,4 +302,5 @@ public class ColumnListActivity extends AppCompatActivity
         intent.putExtras(bundle);
         startActivityForResult(intent, 2);
     }
+
 }

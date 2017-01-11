@@ -24,6 +24,7 @@ import com.yikouguaishou.peanutfm.bean.ColumnListBean;
 import com.yikouguaishou.peanutfm.bean.RadioPlayCommentBean;
 import com.yikouguaishou.peanutfm.fragment.adapter.RadioPlayCommentAdapter;
 import com.yikouguaishou.peanutfm.service.MyService;
+import com.yikouguaishou.peanutfm.utils.ShareUtils;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -117,6 +118,7 @@ public class RadioPlayActivity extends AppCompatActivity implements View.OnClick
         mPlayNextOne.setOnClickListener(this);
         mBack.setOnClickListener(this);
         mSeekBar.setOnSeekBarChangeListener(new MySeekBarChanageListener());
+        mShare.setOnClickListener(this);
     }
 
     private void findView() {
@@ -182,6 +184,9 @@ public class RadioPlayActivity extends AppCompatActivity implements View.OnClick
                 CoumnIntent.putExtra("page", currentPage);
                 setResult(3, CoumnIntent);
                 finish();
+                break;
+            case R.id.mIv_play_share:
+                ShareUtils.showShare(this);
                 break;
         }
     }

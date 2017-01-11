@@ -24,6 +24,7 @@ import com.yikouguaishou.peanutfm.cn.sharesdk.onekeyshare.OnekeyShare;
 import com.yikouguaishou.peanutfm.fragment.adapter.PlayRadioCommentAdapter;
 import com.yikouguaishou.peanutfm.fragment.adapter.RadioPlayCommentAdapter;
 import com.yikouguaishou.peanutfm.service.MyRadioStationService;
+import com.yikouguaishou.peanutfm.utils.ShareUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -313,7 +314,7 @@ public class PlayRadioActivity extends AppCompatActivity implements View.OnClick
                 finish();
                 break;
             case R.id.iv_play_radio_share:
-                showShare();
+                ShareUtils.showShare(this);
                 break;
             case R.id.iv_play_radio_list:
                 Toast.makeText(this, "列表!", Toast.LENGTH_SHORT).show();
@@ -334,33 +335,6 @@ public class PlayRadioActivity extends AppCompatActivity implements View.OnClick
                 Toast.makeText(this, "播放!", Toast.LENGTH_SHORT).show();
                 break;
         }
-    }
-
-    private void showShare() {
-        ShareSDK.initSDK(this);
-        OnekeyShare oks = new OnekeyShare();
-        //关闭sso授权
-        oks.disableSSOWhenAuthorize();
-
-        // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间等使用
-        oks.setTitle("标题");
-        // titleUrl是标题的网络链接，QQ和QQ空间等使用
-        oks.setTitleUrl("http://sharesdk.cn");
-        // text是分享文本，所有平台都需要这个字段
-        oks.setText("我是分享文本");
-        // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
-        //oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
-        // url仅在微信（包括好友和朋友圈）中使用
-        oks.setUrl("http://sharesdk.cn");
-        // comment是我对这条分享的评论，仅在人人网和QQ空间使用
-        oks.setComment("我是测试评论文本");
-        // site是分享此内容的网站名称，仅在QQ空间使用
-        oks.setSite(getString(R.string.app_name));
-        // siteUrl是分享此内容的网站地址，仅在QQ空间使用
-        oks.setSiteUrl("http://sharesdk.cn");
-
-        // 启动分享GUI
-        oks.show(this);
     }
 
     //绑定模式启动Service一定要在Activity销毁的时候解除绑定。

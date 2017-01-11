@@ -11,4 +11,21 @@
     <include layout="@layout/play_radio_logo" />
 
     <include layout="@layout/play_radio_anchorperson" />
+
+    <TextView
+        android:id="@+id/play_radio_comment_count_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/mTextView_search_title"
+        android:layout_marginTop="14dp"
+        android:gravity="center_vertical"
+        android:text="互动评论(0条)" />
+
+    <com.marshalchen.ultimaterecyclerview.UltimateRecyclerView
+        android:id="@+id/play_radio_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        />
 </LinearLayout>

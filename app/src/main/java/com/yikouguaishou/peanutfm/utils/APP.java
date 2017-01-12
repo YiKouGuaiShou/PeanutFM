@@ -10,6 +10,8 @@ public class APP extends Application {
     private static APP sInstance;
     private String userId;
 
+
+
     public String getUserId() {
         return userId;
     }

@@ -29,4 +29,31 @@ public class MySharePreferrences {
         }
         return lasttime;
     }
+
+    public static void setLoadState(Context context,boolean tureorfalse){
+        SharedPreferences sp=context.getSharedPreferences("logintime",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor=sp.edit();
+        long time=System.currentTimeMillis();
+        if (tureorfalse=true)
+        {
+            editor.putBoolean("isload",true);
+        }
+        else {
+            editor.putBoolean("isload",true);
+        }
+        editor.commit();
+    }
+
+
+    public static boolean getLoadState(Context context){
+        boolean result=false;
+        SharedPreferences sp=context.getSharedPreferences("logintime",Context.MODE_PRIVATE);
+        if (sp!=null)
+        {
+            result=sp.getBoolean("isload",false);
+        }
+        return result;
+    }
+
+
 }

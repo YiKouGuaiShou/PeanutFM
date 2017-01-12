@@ -27,6 +27,7 @@ import com.yikouguaishou.peanutfm.MyZhuBoActivity;
 import com.yikouguaishou.peanutfm.PersonInfoActivity;
 import com.yikouguaishou.peanutfm.R;
 import com.yikouguaishou.peanutfm.SettingActivity;
+import com.yikouguaishou.peanutfm.utils.MySharePreferrences;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -195,6 +196,9 @@ public class MineFragment extends Fragment implements ListView.OnItemClickListen
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode==200)
         {
+            MySharePreferrences.setLoadState(getContext(),true);
+
+
             iconurl = data.getStringExtra("iconurl");
             username = data.getStringExtra("username");
 

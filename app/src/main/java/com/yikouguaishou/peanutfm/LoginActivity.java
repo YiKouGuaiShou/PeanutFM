@@ -50,8 +50,12 @@ public class LoginActivity extends AppCompatActivity {
 
 
                 String userid=platform.getDb().getUserId();
-                app.setUserId(userid);
-                Log.e("TAG", "onComplete: "+userid);
+//                if (userid!=null)
+//                {
+//                    app.setUserId(userid);
+//                    Log.e("TAG", "onComplete: "+userid);
+//                }
+
 
                 String username=platform.getDb().getUserName();
 
@@ -113,10 +117,5 @@ public class LoginActivity extends AppCompatActivity {
 //        platform.showUser(null);
 //    }
 
-//    private void backToMine(String iconurl){
-//        Intent intent=new Intent(this, MineFragment.class);
-//        intent.putExtra("iconurl",iconurl);
-//        startActivityForResult(intent,10086);
-//
-//    }
+
 }

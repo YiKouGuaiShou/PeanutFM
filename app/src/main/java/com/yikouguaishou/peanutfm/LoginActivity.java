@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.yikouguaishou.peanutfm.fragment.MineFragment;
 import com.yikouguaishou.peanutfm.utils.APP;
+import com.yikouguaishou.peanutfm.utils.MySharePreferrences;
 
 import java.util.HashMap;
 
@@ -50,11 +51,12 @@ public class LoginActivity extends AppCompatActivity {
 
 
                 String userid=platform.getDb().getUserId();
-//                if (userid!=null)
-//                {
-//                    app.setUserId(userid);
-//                    Log.e("TAG", "onComplete: "+userid);
-//                }
+                if (userid!=null)
+                {
+                    Log.e("TAG", "onComplete: userid==:"+userid);
+                    MySharePreferrences.setUserID(LoginActivity.this,userid);
+                }
+
 
 
                 String username=platform.getDb().getUserName();

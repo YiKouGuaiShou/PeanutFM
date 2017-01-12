@@ -32,11 +32,15 @@ public class MySharePreferrences {
     public static void setLoadState(Context context, boolean tureorfalse) {
         SharedPreferences sp = context.getSharedPreferences("logintime", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
-        long time = System.currentTimeMillis();
-        if (tureorfalse = true) {
-            editor.putBoolean("isload", true);
+        if (tureorfalse == true) {
+            long time = System.currentTimeMillis();
+            if (tureorfalse = true) {
+                editor.putBoolean("isload", true);
+            } else {
+                editor.putBoolean("isload", true);
+            }
         } else {
-            editor.putBoolean("isload", true);
+            editor.putBoolean("isload", false);
         }
         editor.commit();
     }

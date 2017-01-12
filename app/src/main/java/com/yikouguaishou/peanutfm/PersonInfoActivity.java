@@ -82,6 +82,7 @@ public class PersonInfoActivity extends AppCompatActivity {
             pc_cv.setImageResource(R.mipmap.touxiang);
             pc_nickname.setText("昵称");
             pc_username.setText("用户名");
+            MySharePreferrences.setLoadState(PersonInfoActivity.this,false);
             isExit=true;
         }
     }

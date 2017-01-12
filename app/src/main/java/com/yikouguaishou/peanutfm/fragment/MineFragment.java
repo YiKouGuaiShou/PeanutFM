@@ -101,9 +101,17 @@ public class MineFragment extends Fragment implements ListView.OnItemClickListen
                 } else {
                     if (mf_username != null) {
                         Log.e("TAG", "isLoadAgain: ====>开始读取");
-                        Glide.with(context).load(iconurl).into(cv);
-                        mf_username.setText(username);
-                        isLoaded = true;
+                        if(MySharePreferrences.getLoadState(context))
+                        {
+                            Glide.with(context).load(iconurl).into(cv);
+                            mf_username.setText(username);
+                            isLoaded = true;
+                        }
+                        else
+                        {
+                            mf_username.setText("用户名");
+                            cv.setImageResource(R.mipmap.touxiang);
+                        }
                     }
 
                 }

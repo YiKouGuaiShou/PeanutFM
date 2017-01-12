@@ -34,6 +34,27 @@ public class PersonInfoActivity extends AppCompatActivity {
 
         initView();
 
+        String iconurl=MySharePreferrences.getIconurl(PersonInfoActivity.this);
+        String username=MySharePreferrences.getUsername(PersonInfoActivity.this);
+
+        if ((iconurl!=null)&&(username!=null))
+        {
+            Log.e("TAG", "读取到了onCreateView:  iconurl"+iconurl);
+            Log.e("TAG", "读取到了onCreateView:  username"+username);
+
+
+            if (pc_cv==null||pc_username==null)
+            {
+                Log.e("TAG", "onCreateView: ===========>null");
+            }
+            else {
+                Glide.with(PersonInfoActivity.this).load(iconurl).into(pc_cv);
+                pc_username.setText(username);
+                pc_nickname.setText(username);
+
+            }
+        }
+
 
 
     }
@@ -74,17 +95,23 @@ public class PersonInfoActivity extends AppCompatActivity {
     }
 
     public void exitSafe(View view) {
+        ShareSDK.initSDK(PersonInfoActivity.this);
         Platform qq= ShareSDK.getPlatform(this,QQ.NAME);
         if (qq.isAuthValid())
         {
-            Toast.makeText(PersonInfoActivity.this, "已退出", Toast.LENGTH_SHORT).show();
             qq.removeAccount();
-            pc_cv.setImageResource(R.mipmap.touxiang);
-            pc_nickname.setText("昵称");
-            pc_username.setText("用户名");
-            MySharePreferrences.setLoadState(PersonInfoActivity.this,false);
-            isExit=true;
+
         }
+        Toast.makeText(PersonInfoActivity.this, "已退出", Toast.LENGTH_SHORT).show();
+
+        pc_cv.setImageResource(R.mipmap.touxiang);
+        pc_nickname.setText("昵称");
+        pc_username.setText("用户名");
+        MySharePreferrences.setLoadState(PersonInfoActivity.this,false);
+
+        MySharePreferrences.setIconurl(PersonInfoActivity.this,null);
+        MySharePreferrences.setUsername(PersonInfoActivity.this,null);
+        isExit=true;
     }
 
     @Override

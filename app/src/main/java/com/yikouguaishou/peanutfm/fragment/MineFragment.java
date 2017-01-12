@@ -1,6 +1,7 @@
 package com.yikouguaishou.peanutfm.fragment;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,6 +15,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.yikouguaishou.peanutfm.AdviceActivity;
@@ -28,6 +30,7 @@ import com.yikouguaishou.peanutfm.PersonInfoActivity;
 import com.yikouguaishou.peanutfm.R;
 import com.yikouguaishou.peanutfm.SettingActivity;
 import com.yikouguaishou.peanutfm.utils.MySharePreferrences;
+import com.yikouguaishou.peanutfm.utils.TimeTranstor;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -44,7 +47,7 @@ public class MineFragment extends Fragment implements ListView.OnItemClickListen
     private boolean isLoaded=false;
     private String iconurl;
     private String username;
-
+    private Context context;
 
     //listview的每个子view的名称
 
@@ -53,12 +56,66 @@ public class MineFragment extends Fragment implements ListView.OnItemClickListen
     }
 
     @Override
+    public void onAttach(Context context) {
+
+        super.onAttach(context);
+        this.context = context;
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_mine,container,false);
         init(view);
+
+
+        isLoadAgain();
+
+
         return view;
 
+    }
+
+    private void isLoadAgain() {
+        long nowtime=System.currentTimeMillis();
+        Log.e("TAG", "onCreate: "+"这里获取的nowtime"+nowtime);
+        long lasttime= MySharePreferrences.getLasttime(context);
+        Log.e("TAG", "onCreate: "+"这里获取的上次的lasttime"+lasttime);
+
+//        Toast.makeText(MainActivity.this, "上次登录是"+(nowtime-lasttime)/1000+"秒前", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "上次登录是"+ TimeTranstor.getTime(lasttime), Toast.LENGTH_SHORT).show();
+
+
+        if (nowtime-lasttime<360000000){
+
+            String iconurl=MySharePreferrences.getIconurl(context);
+            String username=MySharePreferrences.getUsername(context);
+
+            if ((iconurl!=null)&&(username!=null))
+            {
+                Log.e("TAG", "读取到了onCreateView:  iconurl： "+iconurl);
+                Log.e("TAG", "读取到了onCreateView:  username： "+username);
+
+
+                if (cv==null||mf_username==null)
+                {
+                    Log.e("TAG", "onCreateView: ===========>null");
+                }
+                else {
+                    if (mf_username!=null)
+                    {
+                        Log.e("TAG", "isLoadAgain: ====>开始读取");
+                        Glide.with(context).load(iconurl).into(cv);
+                        mf_username.setText(username);
+                        isLoaded=true;
+                    }
+
+                }
+            }
+
+
+
+        }
     }
 
     private void init(View view) {
@@ -66,18 +123,31 @@ public class MineFragment extends Fragment implements ListView.OnItemClickListen
         //从资源文件中得到字符串数组
         mItemnames = getResources().getStringArray(R.array.minefragment_itemnames);
 
-        cv= (CircleImageView) getActivity().findViewById(R.id.cv);
-
-        mf_username = (TextView) getActivity().findViewById(R.id.mf_username);
 
 
         itemlogo = new int[]{R.drawable.ic_mynews,R.drawable.woguanzhudezhubo,R.drawable.myactivity,R.drawable.mycount,
                 R.drawable.mycollection,R.drawable.ic_shoutinglishi,R.drawable.ic_yijianfankui,R.drawable.setting};
 
         mListView_mf.addHeaderView(LayoutInflater.from(getContext()).inflate(R.layout.fragment_mine_header,null,false));
+
+        cv= (CircleImageView) getActivity().findViewById(R.id.cv);
+
+        mf_username = (TextView) getActivity().findViewById(R.id.mf_username);
         adapter =new ListViewAdapter();
         mListView_mf.setAdapter(adapter);
         mListView_mf.setOnItemClickListener(this);
+
+
+        String username=MySharePreferrences.getUsername(context);
+        if (username!=null)
+        {
+            isLoaded=false;
+        }
+        else {
+            isLoaded=true;
+        }
+
+
 
 
 
@@ -88,25 +158,25 @@ public class MineFragment extends Fragment implements ListView.OnItemClickListen
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         if (i==1)
         {
-            startActivity(new Intent(getActivity(), MyNewsActivity.class));
+            startActivity(new Intent(context, MyNewsActivity.class));
         }
         else if (i==2)
         {
-            startActivity(new Intent(getActivity(), MyZhuBoActivity.class));
+            startActivity(new Intent(context, MyZhuBoActivity.class));
         }
         else {
             if (i == 3) {
-                startActivity(new Intent(getActivity(), MyActivityActivity.class));
+                startActivity(new Intent(context, MyActivityActivity.class));
             } else if (i == 4) {
-                startActivity(new Intent(getActivity(), MyCountActivity.class));
+                startActivity(new Intent(context, MyCountActivity.class));
             } else if (i == 5) {
-                startActivity(new Intent(getActivity(), MyCollectionActivity.class));
+                startActivity(new Intent(context, MyCollectionActivity.class));
             } else if (i == 6) {
-                startActivity(new Intent(getActivity(), ListenHistoryActivity.class));
+                startActivity(new Intent(context, ListenHistoryActivity.class));
             } else if (i == 7) {
-                startActivity(new Intent(getActivity(), AdviceActivity.class));
+                startActivity(new Intent(context, AdviceActivity.class));
             } else if (i == 8) {
-                startActivity(new Intent(getActivity(), SettingActivity.class));
+                startActivity(new Intent(context, SettingActivity.class));
             }
         }
 
@@ -151,8 +221,12 @@ public class MineFragment extends Fragment implements ListView.OnItemClickListen
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        Log.e("TAG", "onActivityCreated: ======>");
         cv= (CircleImageView) getActivity().findViewById(R.id.cv);
         mf_username= (TextView) getActivity().findViewById(R.id.mf_username);
+
+        isLoadAgain();
+
         if (cv==null)
         {
             Log.e("TAG", "onActivityCreated: =========>cv==null");
@@ -164,7 +238,7 @@ public class MineFragment extends Fragment implements ListView.OnItemClickListen
                     public void onClick(View view) {
                         if (isLoaded)
                         {
-                            Intent intent=new Intent(getActivity(),PersonInfoActivity.class);
+                            Intent intent=new Intent(context,PersonInfoActivity.class);
                             intent.putExtra("iconurl",iconurl);
                             intent.putExtra("username",username);
                             Log.e("TAG", "onClick: ===>"+iconurl);
@@ -173,7 +247,7 @@ public class MineFragment extends Fragment implements ListView.OnItemClickListen
                         }
                         else {
 
-                            startActivityForResult(new Intent(getActivity(),LoginActivity.class),100);
+                            startActivityForResult(new Intent(context,LoginActivity.class),100);
 
                         }
                     }
@@ -207,7 +281,7 @@ public class MineFragment extends Fragment implements ListView.OnItemClickListen
 
             if ((cv!=null) ||( mf_username!=null))
             {
-                Glide.with(getActivity()).load(iconurl).into(cv);
+                Glide.with(context).load(iconurl).into(cv);
                 mf_username.setText(username);
                 isLoaded=true;
 

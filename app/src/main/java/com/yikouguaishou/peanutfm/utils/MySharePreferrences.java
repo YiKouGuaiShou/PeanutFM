@@ -85,4 +85,41 @@ public class MySharePreferrences {
         }
         return time;
     }
+
+
+    public static void setIconurl(Context context, String iconurl) {
+        SharedPreferences sp = context.getSharedPreferences("logintime", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("iconurl", iconurl);
+        editor.commit();
+    }
+
+
+    public static String getIconurl(Context context) {
+        String result = null;
+        SharedPreferences sp = context.getSharedPreferences("logintime", Context.MODE_PRIVATE);
+        if (sp != null) {
+            result = sp.getString("iconurl", "0");
+        }
+        return result;
+
+    }
+
+    public static void setUsername(Context context, String name) {
+        SharedPreferences sp = context.getSharedPreferences("logintime", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("username", name);
+        editor.commit();
+    }
+
+
+    public static String getUsername(Context context) {
+        String result = null;
+        SharedPreferences sp = context.getSharedPreferences("logintime", Context.MODE_PRIVATE);
+        if (sp != null) {
+            result = sp.getString("username", "0");
+        }
+        return result;
+    }
+
 }

@@ -20,9 +20,11 @@ import com.yikouguaishou.peanutfm.utils.MySharePreferrences;
 import com.yikouguaishou.peanutfm.utils.TimeTranstor;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.tencent.qq.QQ;
 
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private MainActivityViewPagerAdapter mAdapter;
 
     private long firstTime=0;
+    private String iconurl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +70,16 @@ public class MainActivity extends AppCompatActivity {
 
 //        Toast.makeText(MainActivity.this, "上次登录是"+(nowtime-lasttime)/1000+"秒前", Toast.LENGTH_SHORT).show();
         Toast.makeText(MainActivity.this, "上次登录是"+ TimeTranstor.getTime(lasttime), Toast.LENGTH_SHORT).show();
+
+
+        if (nowtime-lasttime<360000000){
+
+        }
     }
+
+
+
+
 
     /**
      * 点击搜索按钮跳转。

@@ -21,6 +21,7 @@ import cn.sharesdk.tencent.qq.QQ;
 public class LoginActivity extends AppCompatActivity {
     APP app;
     private String iconurl;
+    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +67,15 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 MySharePreferrences.setLoadState(LoginActivity.this,true);
-                String username=platform.getDb().getUserName();
+                username = platform.getDb().getUserName();
+
+                MySharePreferrences.setUsername(LoginActivity.this, username);
+
+                MySharePreferrences.setIconurl(LoginActivity.this,iconurl);
 
                 Intent intent = new Intent();
                 intent.putExtra("iconurl", iconurl);
-                intent.putExtra("username",username);
+                intent.putExtra("username", username);
                 setResult(200,intent);
                 finish();
             }

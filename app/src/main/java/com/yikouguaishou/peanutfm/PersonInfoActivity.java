@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.yikouguaishou.peanutfm.utils.MySharePreferrences;
 
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.ShareSDK;
@@ -84,6 +85,7 @@ public class PersonInfoActivity extends AppCompatActivity {
             if (isExit)
             {
 
+                MySharePreferrences.setLoadState(PersonInfoActivity.this,false);
                 Intent intent=new Intent();
                 intent.putExtra("isExit",isExit);
                 setResult(201,intent);

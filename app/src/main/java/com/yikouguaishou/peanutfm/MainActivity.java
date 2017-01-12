@@ -16,6 +16,8 @@ import com.yikouguaishou.peanutfm.fragment.RadioStationFragment;
 import com.yikouguaishou.peanutfm.fragment.RecommendFragment;
 import com.yikouguaishou.peanutfm.fragment.SortFragment;
 import com.yikouguaishou.peanutfm.fragment.adapter.MainActivityViewPagerAdapter;
+import com.yikouguaishou.peanutfm.utils.MySharePreferrences;
+import com.yikouguaishou.peanutfm.utils.TimeTranstor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +59,14 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.setCurrentItem(1);
 
         mViewPager.addOnPageChangeListener(new MyPagerChangeListener());
+
+        long nowtime=System.currentTimeMillis();
+        Log.e("TAG", "onCreate: "+"这里获取的nowtime"+nowtime);
+        long lasttime= MySharePreferrences.getLasttime(this);
+        Log.e("TAG", "onCreate: "+"这里获取的上次的lasttime"+lasttime);
+
+//        Toast.makeText(MainActivity.this, "上次登录是"+(nowtime-lasttime)/1000+"秒前", Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "上次登录是"+ TimeTranstor.getTime(lasttime), Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -112,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
             }
             else
             {
+                ShareSDK.initSDK(MainActivity.this);
                 Platform qq= ShareSDK.getPlatform(this, QQ.NAME);
                 if (qq.isAuthValid())
                 {
@@ -121,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.e("TAG", "onKeyUp:===>授权情况 "+qq.isAuthValid());
 
                 }
+                MySharePreferrences.setTime(MainActivity.this);
                 System.exit(0);
             }
         }

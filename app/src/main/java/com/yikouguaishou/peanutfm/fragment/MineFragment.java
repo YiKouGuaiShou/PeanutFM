@@ -217,6 +217,7 @@ public class MineFragment extends Fragment implements ListView.OnItemClickListen
             Log.e("TAG", "onActivityResult: =====>201");
             cv.setImageResource(R.mipmap.touxiang);
             mf_username.setText("用户名 ");
+            isLoaded=false;
         }
     }
 }

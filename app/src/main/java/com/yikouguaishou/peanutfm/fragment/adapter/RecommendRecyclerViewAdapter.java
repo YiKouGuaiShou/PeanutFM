@@ -107,8 +107,10 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
                 return TYPE_TWO_LAYOUT;
             } else if (layout == TYPE_ONE_LAYOUT) {
                 return TYPE_ONE_LAYOUT;
-            } else {
+            } else if (layout == TYPE_ZERO_LAYOUT) {
                 return TYPE_ZERO_LAYOUT;
+            } else {
+                return -1;
             }
         }
     }
@@ -131,10 +133,12 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
             //布局1
             View view = LayoutInflater.from(context).inflate(R.layout.typeone_layout, parent, false);
             return new TypeOneHolder(view, context);
-        } else {
+        } else if (viewType == TYPE_ZERO_LAYOUT) {
             //布局0
             View view = LayoutInflater.from(context).inflate(R.layout.typezero_layout, parent, false);
             return new TypeZeroHolder(view, context);
+        } else {
+            return null;
         }
 
     }

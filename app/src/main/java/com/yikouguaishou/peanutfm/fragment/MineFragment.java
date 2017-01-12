@@ -83,7 +83,7 @@ public class MineFragment extends Fragment implements ListView.OnItemClickListen
         Log.e("TAG", "onCreate: " + "这里获取的上次的lasttime" + lasttime);
 
 //        Toast.makeText(MainActivity.this, "上次登录是"+(nowtime-lasttime)/1000+"秒前", Toast.LENGTH_SHORT).show();
-        Toast.makeText(context, "上次登录是" + TimeTranstor.getTime(lasttime), Toast.LENGTH_SHORT).show();
+        //      Toast.makeText(context, "上次登录是" + TimeTranstor.getTime(lasttime), Toast.LENGTH_SHORT).show();
 
 
         if (nowtime - lasttime < 360000000) {
@@ -184,7 +184,6 @@ public class MineFragment extends Fragment implements ListView.OnItemClickListen
 
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
-            Log.e("--------", "getview..........");
             ViewHolder viewHolder = null;
             if (view == null) {
                 viewHolder = new ViewHolder();

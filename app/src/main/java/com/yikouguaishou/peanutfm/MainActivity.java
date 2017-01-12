@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private List<Fragment> mFragments;
     private MainActivityViewPagerAdapter mAdapter;
 
-    private long firstTime=0;
+    private long firstTime = 0;
     private String iconurl;
 
     @Override
@@ -63,22 +63,19 @@ public class MainActivity extends AppCompatActivity {
 
         mViewPager.addOnPageChangeListener(new MyPagerChangeListener());
 
-        long nowtime=System.currentTimeMillis();
-        Log.e("TAG", "onCreate: "+"这里获取的nowtime"+nowtime);
-        long lasttime= MySharePreferrences.getLasttime(this);
-        Log.e("TAG", "onCreate: "+"这里获取的上次的lasttime"+lasttime);
+        long nowtime = System.currentTimeMillis();
+        Log.e("TAG", "onCreate: " + "这里获取的nowtime" + nowtime);
+        long lasttime = MySharePreferrences.getLasttime(this);
+        Log.e("TAG", "onCreate: " + "这里获取的上次的lasttime" + lasttime);
 
 //        Toast.makeText(MainActivity.this, "上次登录是"+(nowtime-lasttime)/1000+"秒前", Toast.LENGTH_SHORT).show();
-        Toast.makeText(MainActivity.this, "上次登录是"+ TimeTranstor.getTime(lasttime), Toast.LENGTH_SHORT).show();
+        //       Toast.makeText(MainActivity.this, "上次登录是"+ TimeTranstor.getTime(lasttime), Toast.LENGTH_SHORT).show();
 
 
-        if (nowtime-lasttime<360000000){
+        if (nowtime - lasttime < 360000000) {
 
         }
     }
-
-
-
 
 
     /**
@@ -122,26 +119,21 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
-        if (keyCode==KeyEvent.KEYCODE_BACK)
-        {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
 
-            long secondTime=System.currentTimeMillis();
-            if (secondTime-firstTime>800)
-            {
+            long secondTime = System.currentTimeMillis();
+            if (secondTime - firstTime > 800) {
                 Toast.makeText(MainActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
-                firstTime=secondTime;
-                return  true;
-            }
-            else
-            {
+                firstTime = secondTime;
+                return true;
+            } else {
                 ShareSDK.initSDK(MainActivity.this);
-                Platform qq= ShareSDK.getPlatform(this, QQ.NAME);
-                if (qq.isAuthValid())
-                {
-                    Log.e("TAG", "onKeyUp:===>授权情况 "+qq.isAuthValid());
+                Platform qq = ShareSDK.getPlatform(this, QQ.NAME);
+                if (qq.isAuthValid()) {
+                    Log.e("TAG", "onKeyUp:===>授权情况 " + qq.isAuthValid());
 
                     qq.removeAccount(true);
-                    Log.e("TAG", "onKeyUp:===>授权情况 "+qq.isAuthValid());
+                    Log.e("TAG", "onKeyUp:===>授权情况 " + qq.isAuthValid());
 
                 }
                 MySharePreferrences.setTime(MainActivity.this);

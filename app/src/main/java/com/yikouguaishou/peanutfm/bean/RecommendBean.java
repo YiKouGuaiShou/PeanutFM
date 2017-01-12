@@ -59,7 +59,7 @@ public class RecommendBean implements Serializable {
         return rt;
     }
 
-    public class ConEntity implements Serializable{
+    public class ConEntity implements Serializable {
         /**
          * id : 175
          * layout : 3
@@ -123,7 +123,7 @@ public class RecommendBean implements Serializable {
             return type;
         }
 
-        public class DetailListEntity implements Serializable{
+        public class DetailListEntity implements Serializable {
             /**
              * logo : http://cdn.linker.cc/FSYT%2F201612%2F28%2F11%2Fjpg2016122811732.jpg
              * createTime : null
@@ -163,7 +163,7 @@ public class RecommendBean implements Serializable {
             private String startTime;
             private int id;
             private String playUrl;
-            private String anchorpersonList;
+            private Object anchorpersonList;
             private String name;
             private String radioId;
             private String userNames;
@@ -233,7 +233,7 @@ public class RecommendBean implements Serializable {
                 this.playUrl = playUrl;
             }
 
-            public void setAnchorpersonList(String anchorpersonList) {
+            public void setAnchorpersonList(Object anchorpersonList) {
                 this.anchorpersonList = anchorpersonList;
             }
 
@@ -317,7 +317,7 @@ public class RecommendBean implements Serializable {
                 return playUrl;
             }
 
-            public String getAnchorpersonList() {
+            public Object getAnchorpersonList() {
                 return anchorpersonList;
             }
 
@@ -339,7 +339,7 @@ public class RecommendBean implements Serializable {
         }
     }
 
-    public class BannerListEntity implements Serializable{
+    public class BannerListEntity implements Serializable {
         /**
          * song : {"index":0,"ifDownload":0,"columnId":"14828898156640","logoUrl":"http://cdn.linker.cc/FSYT%2F201612%2F28%2F10%2Fjpg2016122810170.jpg","isCollect":-1,"anchorperson":"336","replyNum":null,"id":"14690089628495","playUrl":"http://cdn.linker.cc/FSYT2016-12-28/MJSJ26ar7D.mp3","duration":"03:57","providerName":null,"anchorpersonList":null,"name":"说出你的2017小目标","listenNum":null,"columnName":null,"artist":null}
          * broadcastingName : null
@@ -533,7 +533,7 @@ public class RecommendBean implements Serializable {
             return broadcastingFrequency;
         }
 
-        public class SongEntity implements Serializable{
+        public class SongEntity implements Serializable {
             /**
              * index : 0
              * ifDownload : 0
@@ -698,7 +698,7 @@ public class RecommendBean implements Serializable {
             }
         }
 
-        public class AnchorpersonListEntity implements Serializable{
+        public class AnchorpersonListEntity implements Serializable {
             /**
              * isFollow : 0
              * id : null
@@ -834,7 +834,7 @@ public class RecommendBean implements Serializable {
         }
     }
 
-    public class TurnListEntity implements Serializable{
+    public class TurnListEntity implements Serializable {
         /**
          * icon : http://cdn.linker.cc/FSYT%2F201611%2F03%2F10%2Fpng2016110310882.png
          * linkUrl :

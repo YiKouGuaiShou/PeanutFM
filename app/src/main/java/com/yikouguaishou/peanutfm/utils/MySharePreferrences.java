@@ -69,4 +69,20 @@ public class MySharePreferrences {
         return result;
 
     }
+
+    public static void setSignTime(Context context, long time) {
+        SharedPreferences sp = context.getSharedPreferences("logintime", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putLong("signTime", time);
+        editor.commit();
+    }
+
+    public static long getSignTime(Context context) {
+        long time = 0;
+        SharedPreferences sp = context.getSharedPreferences("logintime", Context.MODE_PRIVATE);
+        if (sp != null) {
+            time = sp.getLong("signTime", 0);
+        }
+        return time;
+    }
 }

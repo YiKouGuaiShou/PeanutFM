@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2017/1/3.
  */
-public class TurnTwoItemBean implements Serializable{
+public class TurnTwoItemBean implements Serializable {
 
     /**
      * des : succeed
@@ -42,7 +42,7 @@ public class TurnTwoItemBean implements Serializable{
         return rt;
     }
 
-    public class VideoPlateListEntity implements Serializable{
+    public class VideoPlateListEntity implements Serializable {
         /**
          * playDescribe : 花生FM独家播放：佛山电台2016跨年玩唱会捞喜三国宣传片3
          * sort : 22
@@ -62,7 +62,7 @@ public class TurnTwoItemBean implements Serializable{
         private String playDescribe;
         private int sort;
         private String liveDate;
-        private String videoInfo;
+        private Object videoInfo;
         private String liveStartTime;
         private String type;
         private int id;
@@ -86,7 +86,7 @@ public class TurnTwoItemBean implements Serializable{
             this.liveDate = liveDate;
         }
 
-        public void setVideoInfo(String videoInfo) {
+        public void setVideoInfo(Object videoInfo) {
             this.videoInfo = videoInfo;
         }
 
@@ -142,7 +142,7 @@ public class TurnTwoItemBean implements Serializable{
             return liveDate;
         }
 
-        public String getVideoInfo() {
+        public Object getVideoInfo() {
             return videoInfo;
         }
 
@@ -186,7 +186,7 @@ public class TurnTwoItemBean implements Serializable{
             return operators;
         }
 
-        public class VideoExpandEntity implements Serializable{
+        public class VideoExpandEntity implements Serializable {
             /**
              * id : 23423852
              * videoIcon : http://cdn.linker.cc/FSYT%2F201612%2F26%2F15%2Fpng2016122615725.png
@@ -320,7 +320,7 @@ public class TurnTwoItemBean implements Serializable{
                 return videoDuration;
             }
 
-            public class AnchorpersonListEntity implements Serializable{
+            public class AnchorpersonListEntity implements Serializable {
                 /**
                  * isFollow : 0
                  * id : null

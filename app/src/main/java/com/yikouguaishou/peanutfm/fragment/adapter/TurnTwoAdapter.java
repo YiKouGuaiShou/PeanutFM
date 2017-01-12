@@ -48,14 +48,22 @@ public class TurnTwoAdapter extends UltimateBaseAdapter {
         vh.tv_descriptions1.setText(entity.getTitle());
         vh.tv_name.setText(entity.getPlayDescribe());
         vh.tv_person.setText(entity.getClickNum() + "人");
-        vh.JC.setUp(entity.getVideoExpand().getVideoUrl(), JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "");
-        Glide.with(context).load(entity.getVideoExpand().getVideoIcon())
-                .placeholder(R.mipmap.place_holder)
-                .into(vh.JC.thumbImageView);
+        if (entity.getVideoExpand() != null) {
+            vh.JC.setUp(entity.getVideoExpand().getVideoUrl(), JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "");
+            Glide.with(context).load(entity.getVideoExpand().getVideoIcon())
+                    .placeholder(R.mipmap.place_holder)
+                    .into(vh.JC.thumbImageView);
+            vh.tv_wait.setVisibility(View.INVISIBLE);
+        } else {
+            Glide.with(context).load(entity.getCover())
+                    .placeholder(R.mipmap.place_holder)
+                    .into(vh.JC.thumbImageView);
+            vh.tv_wait.setVisibility(View.VISIBLE);
+        }
     }
 
     private static class TurnTwoItemHolder extends RecyclerView.ViewHolder {
-        public TextView tv_descriptions1, tv_name, tv_person;
+        public TextView tv_descriptions1, tv_name, tv_person, tv_wait;
         JCVideoPlayerStandard JC;
 
         public TurnTwoItemHolder(View itemView) {
@@ -64,6 +72,7 @@ public class TurnTwoAdapter extends UltimateBaseAdapter {
             tv_descriptions1 = (TextView) itemView.findViewById(R.id.tv_descriptions1);
             tv_name = (TextView) itemView.findViewById(R.id.tv_name1);
             tv_person = (TextView) itemView.findViewById(R.id.tv_persons);
+            tv_wait = (TextView) itemView.findViewById(R.id.tv_please_wait);
         }
     }
 }

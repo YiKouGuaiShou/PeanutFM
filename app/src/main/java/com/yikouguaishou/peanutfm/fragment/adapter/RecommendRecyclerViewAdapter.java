@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.marshalchen.ultimaterecyclerview.UltimateViewAdapter;
 import com.yikouguaishou.peanutfm.AdviceActivity;
 import com.yikouguaishou.peanutfm.ColumnListActivity;
+import com.yikouguaishou.peanutfm.LoginActivity;
 import com.yikouguaishou.peanutfm.PlayRadioActivity;
 import com.yikouguaishou.peanutfm.R;
 import com.yikouguaishou.peanutfm.RadioPlayActivity;
@@ -29,6 +30,7 @@ import com.yikouguaishou.peanutfm.TypeThreeMoreActivity;
 import com.yikouguaishou.peanutfm.TypeZeroMoreActivity;
 import com.yikouguaishou.peanutfm.WebViewActivity;
 import com.yikouguaishou.peanutfm.bean.RecommendBean;
+import com.yikouguaishou.peanutfm.utils.MySharePreferrences;
 import com.yikouguaishou.peanutfm.view.MyImageLoader;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -416,7 +418,7 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
             } else if (linkType.equals("15")) {
                 //表示播放界面。
                 //TODO 跳转播放界面
-                Toast.makeText(context, "linkType = " + linkType, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "linkType = " + linkType, Toast.LENGTH_SHORT).show();
                 return;
             } else if (linkType.equals("1")) {
                 //表示是播放列表。
@@ -516,8 +518,21 @@ public class RecommendRecyclerViewAdapter extends UltimateViewAdapter {
 
         @Override
         public void onClick(View view) {
-            //TODO 跳转签到界面。
-
+            boolean stateOK = MySharePreferrences.getLoadState(context);
+            if (stateOK) {
+                long signTime = MySharePreferrences.getSignTime(context.getApplicationContext());
+                long nowTime = System.currentTimeMillis();
+                long eachTime = nowTime - signTime;
+                if (signTime != 0 && eachTime < 86400000) {
+                    Toast.makeText(context, "明天再来吧", Toast.LENGTH_SHORT).show();
+                } else {
+                    MySharePreferrences.setSignTime(context.getApplicationContext(), nowTime);
+                    Toast.makeText(context, "签到成功", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Intent intent = new Intent(context, LoginActivity.class);
+                context.startActivity(intent);
+            }
         }
     }
 

@@ -9,145 +9,152 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="57dp">
+
         <ImageView
             android:id="@+id/itemlog"
             android:layout_width="60dp"
             android:layout_height="match_parent"
+            android:onClick="goBack"
             android:padding="15dp"
-            android:src="@drawable/mf_leftjian"
-            android:onClick="goBack"/>
+            android:src="@drawable/mf_leftjian" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="57dp"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:textSize="18dp"
-            android:text="登录"/>
+            android:text="登录"
+            android:textSize="18dp" />
+
         <TextView
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:textColor="#f9eb58"
             android:layout_width="wrap_content"
             android:layout_height="57dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
             android:gravity="center"
-            android:textSize="18dp"
-            android:text="注册"
             android:onClick="goRegist"
-            />
+            android:text="注册"
+            android:textColor="#f9eb58"
+            android:textSize="18dp" />
 
     </RelativeLayout>
 
 
     <LinearLayout
-        android:background="@drawable/edittext_peroninfo"
+        android:layout_width="match_parent"
 
+        android:layout_height="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:layout_marginTop="45dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        >
+        android:background="@drawable/edittext_peroninfo">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_phonelogo"/>
+            android:src="@drawable/ic_phonelogo" />
+
         <EditText
-            android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
             android:background="@null"
-            android:hint="请输入手机号"/>
+            android:hint="请输入手机号" />
     </LinearLayout>
 
     <LinearLayout
-        android:background="@drawable/edittext_peroninfo"
+        android:layout_width="match_parent"
 
+        android:layout_height="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:layout_marginTop="25dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        >
+        android:background="@drawable/edittext_peroninfo">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_mimalogo"/>
+            android:src="@drawable/ic_mimalogo" />
+
         <EditText
-            android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
             android:background="@null"
-            android:hint="请输入密码"/>
+            android:hint="请输入密码" />
     </LinearLayout>
 
 
-        <TextView
-            android:layout_marginTop="45dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:textSize="22dp"
-            android:background="@drawable/buttonshape_personinfo"
-            android:text="登录"/>
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="45dp"
+        android:background="@drawable/buttonshape_personinfo"
+        android:gravity="center"
+        android:text="登录"
+        android:textSize="22dp" />
 
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:layout_marginTop="55dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
         android:gravity="center"
         android:orientation="horizontal">
+
         <View
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="1dp"
-            android:background="#000"
-            />
+            android:layout_weight="1"
+            android:background="#000" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="或使用其他账号登录"/>
+            android:text="或使用其他账号登录" />
+
         <View
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="1dp"
-            android:background="#000"/>
+            android:layout_weight="1"
+            android:background="#000" />
     </LinearLayout>
 
 
     <LinearLayout
-        android:layout_marginTop="45dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:onClick="QQlogin">
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="45dp"
+        android:onClick="QQlogin"
+        android:orientation="horizontal">
+
         <Button
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="50dp"
-            android:gravity="center"
-            android:textSize="22dp"
+            android:layout_weight="1"
             android:background="@drawable/buttonshape_personinfo"
+            android:gravity="center"
+            android:onClick="QQlogin"
             android:text="QQ登录"
-            android:onClick="QQlogin" />
+            android:textSize="22dp" />
+
         <Button
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="50dp"
-            android:gravity="center"
-            android:textSize="22dp"
+            android:layout_weight="1"
             android:background="@drawable/buttonshape_personinfo"
-            android:text="新浪微博登录"
+            android:gravity="center"
             android:onClick="SinaLogin"
-            android:visibility="gone"/>
+            android:text="新浪微博登录"
+            android:textSize="22dp"
+            android:visibility="gone" />
     </LinearLayout>
 
 </LinearLayout>

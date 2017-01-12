@@ -19,19 +19,20 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.marshalchen.ultimaterecyclerview.UltimateRecyclerView;
+import com.yikouguaishou.peanutfm.apiservice.HttpApiService;
 import com.yikouguaishou.peanutfm.apiservice.SortApiService;
+import com.yikouguaishou.peanutfm.bean.CollectBean;
 import com.yikouguaishou.peanutfm.bean.ColumnListBean;
-import com.yikouguaishou.peanutfm.cn.sharesdk.onekeyshare.OnekeyShare;
 import com.yikouguaishou.peanutfm.fragment.adapter.ColumnListAdapter;
 import com.yikouguaishou.peanutfm.utils.APP;
 import com.yikouguaishou.peanutfm.utils.FastBlur;
+import com.yikouguaishou.peanutfm.utils.MySharePreferrences;
 import com.yikouguaishou.peanutfm.utils.ShareUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.sharesdk.framework.ShareSDK;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -49,7 +50,7 @@ public class ColumnListActivity extends AppCompatActivity
     private String pid;
     private String providerCode;
     private String columnName;
-    private String mobileId = "";
+    private String mobileId;
 
     private RelativeLayout rl_columnList_bar;
     private UltimateRecyclerView rv_columnList;
@@ -75,6 +76,7 @@ public class ColumnListActivity extends AppCompatActivity
     private ImageView iv_collect_logo;
 
     private List<ColumnListBean> columnListBeen = new ArrayList<>();
+    private int isCollect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +87,6 @@ public class ColumnListActivity extends AppCompatActivity
         pid = bundle.getString("albumId");
         providerCode = bundle.getString("providerCode");
         Log.e("======columnList===", "===pid===" + pid);
-
 
         initViews();
         layoutManager = new LinearLayoutManager(this);
@@ -155,6 +156,7 @@ public class ColumnListActivity extends AppCompatActivity
 
                     @Override
                     public void onNext(ColumnListBean columnListBean) {
+                        isCollect = columnListBean.getCon().get(0).getIsCollect();
                         //刷新传数据给我有问题，我改了下。
                         columnListBeen.clear();
                         columnListBeen.add(columnListBean);
@@ -234,6 +236,70 @@ public class ColumnListActivity extends AppCompatActivity
         }).start();
     }
 
+    /**
+     * 添加收藏
+     */
+    private void addAlbum() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .build();
+
+        HttpApiService addAlbumApiService = retrofit.create(HttpApiService.class);
+
+        Observable<CollectBean> collectBeanObservable = addAlbumApiService.addAlbum(providerCode, columnName, mobileId, pid, logoUrl);
+
+        collectBeanObservable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<CollectBean>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e("======onError===", "===addAlbum===" + e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(CollectBean collectBean) {
+                    }
+                });
+    }
+
+    /**
+     * 取消收藏
+     */
+    private void deleteAlbum() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .build();
+
+        HttpApiService deleteAlbumApiService = retrofit.create(HttpApiService.class);
+
+        Observable<CollectBean> collectBeanObservable = deleteAlbumApiService.deleteAlbum(pid, providerCode, mobileId);
+
+        collectBeanObservable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<CollectBean>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e("======onError===", "===deleteAlbum===" + e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(CollectBean collectBean) {
+                    }
+                });
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -243,13 +309,25 @@ public class ColumnListActivity extends AppCompatActivity
             case R.id.mButton_columnList_share:  //分享
                 ShareUtils.showShare(this);
                 break;
-            case R.id.mRelativeLayout_collect:  //收藏
-                if (tv_columnList_collect.getText().toString().equals("收藏")) {
-                    tv_columnList_collect.setText("已收藏");
-                    iv_collect_logo.setImageResource(R.mipmap.collected);
+            case R.id.mRelativeLayout_collect:  //收藏or取消收藏
+                mobileId = MySharePreferrences.getUserID(this);
+                Log.e("------", "===column===" + mobileId);
+                if (mobileId.equals("0")) { //用户ID未空，未登录跳转登录页面
+                    Toast.makeText(this, "请先登录!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(ColumnListActivity.this, LoginActivity.class);
+                    startActivity(intent);
                 } else {
-                    tv_columnList_collect.setText("收藏");
-                    iv_collect_logo.setImageResource(R.mipmap.collect);
+                    if (tv_columnList_collect.getText().toString().equals("已收藏")) {
+                        deleteAlbum();
+                        tv_columnList_collect.setText("收藏");
+                        iv_collect_logo.setImageResource(R.mipmap.collect);
+                        Toast.makeText(this, "取消收藏", Toast.LENGTH_SHORT).show();
+                    } else {
+                        addAlbum();
+                        tv_columnList_collect.setText("已收藏");
+                        iv_collect_logo.setImageResource(R.mipmap.collected);
+                        Toast.makeText(this, "已收藏", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 break;
         }

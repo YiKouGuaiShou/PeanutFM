@@ -62,6 +62,14 @@ public class PersonInfoActivity extends AppCompatActivity {
     }
 
     public void goBack(View view) {
+        if (isExit)
+        {
+
+            MySharePreferrences.setLoadState(PersonInfoActivity.this,false);
+            Intent intent=new Intent();
+            intent.putExtra("isExit",isExit);
+            setResult(201,intent);
+        }
         finish();
     }
 

@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void goBack(View view) {
+
         finish();
     }
 

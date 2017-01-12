@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.yikouguaishou.peanutfm.fragment.MineFragment;
+import com.yikouguaishou.peanutfm.utils.APP;
 
 import java.util.HashMap;
 
@@ -17,7 +18,7 @@ import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qq.QQ;
 
 public class LoginActivity extends AppCompatActivity {
-
+    APP app;
     private String iconurl;
 
     @Override
@@ -47,6 +48,10 @@ public class LoginActivity extends AppCompatActivity {
 
                     iconurl = hashMap.get("figureurl_qq_2").toString();
 
+
+                String userid=platform.getDb().getUserId();
+                app.setUserId(userid);
+                Log.e("TAG", "onComplete: "+userid);
 
                 String username=platform.getDb().getUserName();
 

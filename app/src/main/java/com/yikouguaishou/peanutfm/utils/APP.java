@@ -8,6 +8,16 @@ import android.os.Handler;
  */
 public class APP extends Application {
     private static APP sInstance;
+    private String userId;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
     public static APP getInstance() {
         return sInstance;
     }

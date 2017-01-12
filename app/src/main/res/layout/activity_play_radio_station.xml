@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.yikouguaishou.peanutfm.PlayRadioStationActivity">
+
+    <TextView
+        android:id="@+id/play_list_radio_station_title"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:elevation="2dp"
+        android:gravity="center"
+        android:text="今日节目"
+        android:textSize="16sp" />
+
+    <com.marshalchen.ultimaterecyclerview.UltimateRecyclerView
+        android:id="@+id/play_list_radio_station_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/play_list_radio_station_title"
+        android:layout_margin="10dp"></com.marshalchen.ultimaterecyclerview.UltimateRecyclerView>
+</RelativeLayout>

@@ -26,6 +26,7 @@ import com.yikouguaishou.peanutfm.fragment.adapter.RadioPlayCommentAdapter;
 import com.yikouguaishou.peanutfm.service.MyRadioStationService;
 import com.yikouguaishou.peanutfm.utils.ShareUtils;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -62,6 +63,7 @@ public class PlayRadioActivity extends AppCompatActivity implements View.OnClick
 
     private String baseUrl = "https://fsapp.linker.cc/";
     private int id;
+    private int playingState = 1;//播放状态 1：正在播放 0：暂停
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,13 +136,10 @@ public class PlayRadioActivity extends AppCompatActivity implements View.OnClick
      * 获得数据,并设置
      */
     private void initData() {
-        String names = null;
-
         Intent intent = getIntent();
         radioStationData = (List<RadioStationBean.ConBeanX>) intent.getSerializableExtra("radioStationData");
         position = intent.getIntExtra("position", -1);
-        //获取音频地址
-        playUrl = radioStationData.get(0).getLiveList().get(position).getPlayUrl();
+
         name = intent.getStringExtra("name");
 
         if (radioStationData != null && position != -1) {
@@ -153,48 +152,7 @@ public class PlayRadioActivity extends AppCompatActivity implements View.OnClick
                 int start = getInteger(startTime);
                 int end = getInteger(endTime);
                 if (time >= start && time < end) {
-                    //设置节目背景图片
-                    String url = progamlist.get(i).getLogoList().get(0).getUrl();
-                    if (url != null) {
-                        Glide.with(this).load(url).into(iv_play_radio_logo);
-                    } else {
-                        iv_play_radio_logo.setImageResource(R.mipmap.ic_launcher);
-                    }
-
-                    //设置节目名
-                    String name = progamlist.get(i).getName();
-                    tv_play_radio_name.setText(name);
-
-                    //设置主播头像
-                    anchorpersonPic = progamlist.get(i).getAnchorpersonList().get(0).getAnchorpersonPic();
-                    if (anchorpersonPic != null) {
-                        Glide.with(this).load(anchorpersonPic).into(iv_play_radio_anchorperson);
-                    } else {
-                        iv_play_radio_logo.setImageResource(R.mipmap.ic_launcher);
-                    }
-
-                    //设置主播名
-                    for (int j = 0; j < progamlist.get(i).getAnchorpersonList().size(); j++) {
-                        String anchorpersonName = progamlist.get(i).getAnchorpersonList().get(j).getAnchorpersonName();
-                        if (j == 0) {
-                            names = anchorpersonName;
-                        } else {
-                            names = names + "," + anchorpersonName;
-                        }
-                    }
-
-                    tv_play_radio_anchorperson.setText(names);
-
-                    //设置鲜花数
-                    int appraiseCount = progamlist.get(i).getAppraiseCount();
-                    tv_play_radio_flower.setText("" + appraiseCount);
-
-                    //获取主播ID
-                    anchorId = progamlist.get(i).getAnchorpersonList().get(0).getAnchorpersonId();
-                    //获取主播名
-                    anchorpersonName = progamlist.get(i).getAnchorpersonList().get(0).getAnchorpersonName();
-                    //获取音频ID
-                    id = progamlist.get(i).getId();
+                    setData(progamlist, i);
                 }
             }
 
@@ -205,6 +163,54 @@ public class PlayRadioActivity extends AppCompatActivity implements View.OnClick
 
         //显示评论
         showComment();
+    }
+
+    private void setData(List<RadioStationBean.ConBeanX.LiveListBean.ProgamlistBean> progamlist, int i) {
+        String names = null;
+        //设置节目背景图片
+        String url = progamlist.get(i).getLogoList().get(0).getUrl();
+        if (url != null) {
+            Glide.with(this).load(url).into(iv_play_radio_logo);
+        } else {
+            iv_play_radio_logo.setImageResource(R.mipmap.ic_launcher);
+        }
+
+        //设置节目名
+        String name = progamlist.get(i).getName();
+        tv_play_radio_name.setText(name);
+
+        //设置主播头像
+        anchorpersonPic = progamlist.get(i).getAnchorpersonList().get(0).getAnchorpersonPic();
+        if (anchorpersonPic != null) {
+            Glide.with(this).load(anchorpersonPic).into(iv_play_radio_anchorperson);
+        } else {
+            iv_play_radio_logo.setImageResource(R.mipmap.ic_launcher);
+        }
+
+        //设置主播名
+        for (int j = 0; j < progamlist.get(i).getAnchorpersonList().size(); j++) {
+            String anchorpersonName = progamlist.get(i).getAnchorpersonList().get(j).getAnchorpersonName();
+            if (j == 0) {
+                names = anchorpersonName;
+            } else {
+                names = names + "," + anchorpersonName;
+            }
+        }
+
+        tv_play_radio_anchorperson.setText(names);
+
+        //设置鲜花数
+        int appraiseCount = progamlist.get(i).getAppraiseCount();
+        tv_play_radio_flower.setText("" + appraiseCount);
+
+        //获取主播ID
+        anchorId = progamlist.get(i).getAnchorpersonList().get(0).getAnchorpersonId();
+        //获取主播名
+        anchorpersonName = progamlist.get(i).getAnchorpersonList().get(0).getAnchorpersonName();
+        //获取音频ID
+        id = progamlist.get(i).getId();
+        //获取音频地址
+        playUrl = progamlist.get(i).getPlayUrl();
     }
 
     /**
@@ -317,10 +323,19 @@ public class PlayRadioActivity extends AppCompatActivity implements View.OnClick
                 ShareUtils.showShare(this);
                 break;
             case R.id.iv_play_radio_list:
-                Toast.makeText(this, "列表!", Toast.LENGTH_SHORT).show();
+                Intent intent1 = new Intent(PlayRadioActivity.this, PlayRadioStationActivity.class);
+                intent1.putExtra("radioStationData", (Serializable) radioStationData);
+                intent1.putExtra("position", position);
+                startActivityForResult(intent1, 100);
                 break;
             case R.id.playing_radio:
-                Toast.makeText(this, "播放!", Toast.LENGTH_SHORT).show();
+                if (playingState == 0) {
+                    playing_radio.setImageResource(R.drawable.play_ondemand_image_pause);
+                    playingState = 1;
+                } else {
+                    playing_radio.setImageResource(R.drawable.play_ondemand_image_play);
+                    playingState = 0;
+                }
                 break;
             case R.id.iv_play_radio_anchorperson:
                 Intent intent = new Intent(PlayRadioActivity.this, AnchorHomeActivity.class);
@@ -332,8 +347,18 @@ public class PlayRadioActivity extends AppCompatActivity implements View.OnClick
                 startActivity(intent);
                 break;
             case R.id.ll_play_radio_flower:
-                Toast.makeText(this, "播放!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "献花!", Toast.LENGTH_SHORT).show();
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 200) {
+            List<RadioStationBean.ConBeanX.LiveListBean.ProgamlistBean> progamlist = (List<RadioStationBean.ConBeanX.LiveListBean.ProgamlistBean>) data.getSerializableExtra("progamlist");
+            int position = data.getIntExtra("position", -1);
+            setData(progamlist, position);
         }
     }
 

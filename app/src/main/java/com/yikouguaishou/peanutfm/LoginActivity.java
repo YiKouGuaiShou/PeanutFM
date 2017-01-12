@@ -52,14 +52,20 @@ public class LoginActivity extends AppCompatActivity {
 
 
                 String userid=platform.getDb().getUserId();
+
+
+                String token=platform.getDb().getToken();
+                if (token!=null)
+                {
+                    Log.e("TAG", "onComplete: "+token);
+                }
                 if (userid!=null)
                 {
                     Log.e("TAG", "onComplete: userid==:"+userid);
                     MySharePreferrences.setUserID(LoginActivity.this,userid);
                 }
 
-
-
+                MySharePreferrences.setLoadState(LoginActivity.this,true);
                 String username=platform.getDb().getUserName();
 
                 Intent intent = new Intent();
